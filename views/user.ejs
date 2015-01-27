@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>서울시립대 강의평가</title>
+  
+    <!-- jquery  -->
+    <script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
+    <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+
+    <!-- Bootstrap Core CSS - Uses Bootswatch Flatly Theme: http://bootswatch.com/flatly/ -->
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0-wip/css/bootstrap.min.css">
+ 
+
+    <!-- Custom Fonts -->
+    <link href="../font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+
+
+	<!-- Ajax Table CSS CDN Link -->
+	<link href="//cdn.datatables.net/1.10.4/css/jquery.dataTables.css" rel="stylesheet" type="text/css">
+	
+	<!-- Reponsive Table CSS CDN Link -->
+	<link href="//cdn.datatables.net/responsive/1.0.3/css/dataTables.responsive.css" rel="stylesheet" type="text/css">
+	<!-- Custom CSS -->
+    <link href="../css/freelancer.css" rel="stylesheet">
+	
+
+	
+	
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body id="page-top" class="index">
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header page-scroll">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#page-top">UOS Evaluate</a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                  
+                    <li class="page-scroll">
+                        <a href="#evaluate_and_search">Search/Evaluxate</a>
+                    </li>
+                    <li class="page-scroll">
+                    	
+                        <a href="#logout_modal" id="signup_login_link" data-title="signup_login"  data-toggle="modal" >Logout</a>
+                        
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+            
+          	<p class="text-success"><%=message%>님 환영합니다!</p>
+        </div>
+        <!-- /.container-fluid -->
+    </nav>
+
+    <!-- Header -->
+    <header>
+        <div class="container">
+           <div class="row">
+                <div class="col-lg-3 col-md-6">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <div class="row">
+                                <div class="col-xs-3">
+                                    <i class="fa fa-comments fa-5x"></i>
+                                </div>
+                                <div class="col-xs-9 text-right">
+                                    <div class="huge">26개의</div>
+                                    <div>새로운 평가!</div>
+                                </div>
+                            </div>
+                        </div>
+                        <span class="page-scroll">
+                        <a href="#evaluate_and_search" class="page-scroll">
+                            <div class="panel-footer">
+                                <span class="pull-left">최근평가보기</span>
+                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                                <div class="clearfix"></div>
+                            </div>
+                        </a>
+                        </span>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <div class="row">
+                                <div class="col-xs-3">
+                                    <i class="fa fa-tasks fa-5x"></i>
+                                </div>
+                                <div class="col-xs-9 text-right">
+                                    <div class="huge">12개의</div>
+                                    <div>강좌들!</div>
+                                </div>
+                            </div>
+                        </div>
+                        <span class="page-scroll">
+                        <a href="#evaluate_and_search">
+                            <div class="panel-footer">
+                                <span class="pull-left">강좌보기</span>
+                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                                <div class="clearfix"></div>
+                            </div>
+                        </a>
+                        </span>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <div class="row">
+                                <div class="col-xs-3">
+                                    <i class="fa fa-shopping-cart fa-5x"></i>
+                                </div>
+                                <div class="col-xs-9 text-right">
+                                    <div class="huge">연락처?</div>
+                                    <div>!</div>
+                                </div>
+                            </div>
+                        </div>
+                        <span class="page-scroll">
+                        <a href="#footer">
+                            <div class="panel-footer">
+                                <span class="pull-left">View Details</span>
+                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                                <div class="clearfix"></div>
+                            </div>
+                        </a>
+                        </span>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <div class="row">
+                                <div class="col-xs-3">
+                                    <i class="fa fa-support fa-5x"></i>
+                                </div>
+                                <div class="col-xs-9 text-right">
+                                    <div class="huge">13</div>
+                                    <div>Support Tickets!</div>
+                                </div>
+                            </div>
+                        </div>
+                        <a href="#">
+                            <div class="panel-footer">
+                                <span class="pull-left">View Details</span>
+                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                                <div class="clearfix"></div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Portfolio Grid Section -->
+    <section id="evaluate_and_search">
+    
+		    	 <div class="container" >
+		           	  <br>
+		           	  
+	     		 <div class="col-sm-7">
+                    <div class="panel eval-panel">
+                        <div class="panel-heading">
+                             	강의검색
+                        </div>
+                        <div class="panel-body">
+                            <table id="course" class="display" cellspacing="0" width="100%">
+								        <thead>
+								            <tr>
+								                <th>학부</th>
+								                <th>교과구분</th>
+								                <th>교과목명</th>
+								                <th>담당교수</th>
+								               	<th></th>
+								            </tr>
+								        </thead>			
+								        
+							   				
+							</table>
+                        </div>  
+                    </div>
+                    <!-- /.col-lg-4 -->
+                </div>
+                
+                 <div class="col-sm-5">
+                    <div class="panel recent-eval-panel">
+                        <div class="panel-heading">
+                                                  최근평가
+                        </div>
+                        <div class="panel-body">
+                            
+                        </div>
+                       
+                    </div>
+                    <!-- /.col-lg-4 -->
+                </div>
+	     					
+			</div>
+   					
+	</section>
+	
+	
+	
+	
+	<!-- signup/login modal -->
+
+<div class="modal bs-example-modal-sm" id="logout_modal" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header"><h4>Logout <i class="fa fa-lock"></i></h4></div>
+      <div class="modal-body"><h4 class="text-danger">정말 로그아웃 하시겠습니까?</h4></div>
+      <div class="modal-footer"><a href="javascript:;" id="logout" class="btn btn-primary btn-block">Logout</a></div>
+    </div>
+  </div>
+</div>
+
+
+  
+
+    <!-- Footer -->
+    <footer class="text-center" id="footer">
+        
+        <div class="footer-below">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                       UOS Evaluate by JongHwanKim
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scroll to Top Button (Only visible on small and extra-small screen sizes) -->
+    <div class="scroll-top page-scroll visible-xs visble-sm">
+        <a class="btn btn-primary" href="#page-top">
+            <i class="fa fa-chevron-up"></i>
+        </a>
+    </div>
+
+  
+    
+
+    <!-- jQuery -->
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script> 
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0-wip/js/bootstrap.min.js"></script>
+
+
+    <!-- Plugin JavaScript -->
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
+    <script src="../js/classie.js"></script>
+    <script src="../js/cbpAnimatedHeader.js"></script>
+    
+ 
+    <!-- Validation JavaScript -->
+    <script src="../js/jqBootstrapValidation.js"></script>
+
+    <!-- Custom Theme JavaScript -->
+    <script src="../js/index.js"></script>
+    <script src="../js/user_page_init.js"></script>
+  
+   
+    
+    <!-- Ajax Table JavaScript CDN Link -->
+    <script src="//cdn.datatables.net/1.10.4/js/jquery.dataTables.min.js"></script>
+    <!-- Reponsive Table JavaScript CDN Link -->
+	<script src="//cdn.datatables.net/responsive/1.0.3/js/dataTables.responsive.js"></script>
+
+    
+  
+
+</body>
+
+</html>
