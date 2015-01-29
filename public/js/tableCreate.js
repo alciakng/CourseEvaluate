@@ -8,7 +8,6 @@ $(document).ready(function() {
   
 });
 
-
 //table init
 function table_init() {
 		
@@ -40,25 +39,7 @@ function table_init() {
     						
     				});
     			    
-        			//테이블 로우에 마우스 올리면 시간을 파싱해서 시간표에 음영을 보여준다.
-    			    $('#course tbody').on( 'mouseover', 'tr', function () {
-    			        var courseTime = $(this).children("td").eq(4).text();
-    			        var TimeObjectArray = new Array();
-    			        
-    			        TimeObjectArray =  Parsing(courseTime);
-    			        
-    			        TimeObjectArray.forEach(function(element,index,array){
-    			            
-    			            element.time.forEach(function(eachtime,index,array){
-
-                              var tds=documnet.getByElementId(eachtime).getElementByTagName('td');
-                             
-                              tds[element.day].style.backgroundColor="#2c3e50";
-                              
-    			            }) 
-    			        });
-    			    });
-			    
+        			
 				 //coulmn마다  검색필터 주기 
 				  $('#course thead th').each( function () { 
 					  var title = $('#course thead th').eq( $(this).index() ).text();
@@ -122,3 +103,27 @@ var Parsing = function(courseTime){
     return TimeObjectArray;  
 }
 
+
+//마우스 Event 함수
+var MouseEvent = function(eventname,color){
+	
+	//테이블 로우에 마우스 올리면 시간을 파싱해서 시간표에 음영을 보여준다.
+    $('#course tbody').on(eventname, 'tr', function () {
+        var courseTime = $(this).children("td").eq(4).text();
+        var TimeObjectArray = new Array();
+        
+        TimeObjectArray =  Parsing(courseTime);
+        
+        TimeObjectArray.forEach(function(element,index,array){
+            
+            element.time.forEach(function(eachtime,index,array){
+
+              var tds=documnet.getByElementId(eachtime).getElementByTagName('td');
+             
+              tds[element.day].style.backgroundColor=color;
+              
+            }) 
+        });
+    });
+
+}
