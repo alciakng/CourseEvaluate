@@ -136,7 +136,17 @@
                 
                 
                 <div class="col-lg-6 col-md-6">
-                
+                 	<div class="panel red-panel">
+                        <div class="panel-heading">
+                           		 최근평가
+                        </div>
+                        <div class="panel-body" style="min-height:10;max-height:10">
+                        
+                        </div>
+                      
+                         
+	             
+                    </div>
                 </div>
                
                    
@@ -151,13 +161,13 @@
 		    	 <div class="container" >
 		           	 
 		         <div class="row">
-	     		 <div class="col-sm-7">
-                    <div class="panel eval-panel">
+	     		 <div class="col-sm-7" style="height:200px;">
+                    <div class="panel green-panel">
                         <div class="panel-heading">
                              	강의검색
                         </div>
-                        <div class="panel-body">
-                            <table id="course" class="display" cellspacing="0" width="100%">
+                        <div class="panel-body" >
+                            <table id="course" class="display"  cellspacing="0" width="100%">
 								        <thead>
 								            <tr>
 								                <th>학부</th>
@@ -167,7 +177,17 @@
 								                <th>시간/강의실</th>
 								               	<th></th>
 								            </tr>
-								        </thead>			
+								        </thead>
+								        <tfoot>
+								             <tr>
+								                <th>학부</th>
+								                <th>교과구분</th>
+								                <th>교과목명</th>
+								                <th>담당교수</th>
+								                <th>시간/강의실</th>
+								               	<th></th>
+								            </tr>
+										</tfoot>
 								        
 							   				
 							</table>
@@ -177,13 +197,13 @@
                 </div>
                 
                  <div class="col-sm-5" >
-                    <div class="panel recent-eval-panel">
+                    <div class="panel navy-panel">
                         <div class="panel-heading">
                            	 시간표
                         </div>
                         <div class="panel-body">
                         
-                        <table class="table table-bordered" id="timetable">
+                        <table class="table table-bordered" id="timetable" style="table-layout:fixed">
 							<thead>
 						          <tr>
 						            <th></th>
@@ -198,127 +218,128 @@
 						   <tbody>				   
 							  <tr id="01">
 					           <td style="width:80px;text-align: center"><strong>1교시</strong><p style="font-size:8px"> 09:00-09:50</p></td>
-					            <td id="011"></td>
-					            <td id="012"></td>
-					            <td id="013"></td>
-					            <td id="014" ></td>
-					            <td id="015"></td>
-					            <td id="016"></td>
+					            <td id="011" time="월요일 1교시"></td>
+					            <td id="012" time="화요일 1교시"></td>
+					            <td id="013" time="수요일 1교시"></td>
+					            <td id="014" time="목요일 1교시"></td>
+					            <td id="015" time="금요일 1교시"></td>
+					            <td id="016" time="토요일 1교시"></td>
 					          </tr>
 					          <tr id="02">
 					            <td style="width:80px;text-align: center"><strong>2교시</strong><p style="font-size:8px"> 10:00-10:50</p></td>
-					            <td id="021"></td>
-					            <td id="022"></td>
-					            <td id="023"></td>
-					            <td id="024"></td>
-					            <td id="025"></td>
-					            <td id="026"></td>
+					            <td id="021" time="월요일 2교시"></td>
+					            <td id="022" time="화요일 2교시"></td>
+					            <td id="023" time="수요일 2교시"></td>
+					            <td id="024" time="목요일 2교시"></td>
+					            <td id="025" time="금요일 2교시"></td>
+					            <td id="026" time="토요일 2교시"></td>
 					          </tr>
 					          <tr id="03">
 					            <td style="width:80px;text-align: center"><strong>3교시</strong><p style="font-size:8px"> 11:00-11:50</p></td>
-					       		<td id="031"></td>
-					            <td id="032"></td>
-					            <td id="033"></td>
-					            <td id="034"></td>
-					            <td id="035"></td>
-					            <td id="036"></td>
+					       		<td id="031" time="월요일 3교시"></td>
+					            <td id="032" time="화요일 3교시"></td>
+					            <td id="033" time="수요일 3교시"></td>
+					            <td id="034" time="목요일 3교시"></td>
+					            <td id="035" time="금요일 3교시"></td>
+					            <td id="036" time="토요일 3교시"></td>
 					          </tr>
 					          <tr id="04">
 					           <td style="width:80px;text-align: center"><strong>4교시</strong><p style="font-size:8px"> 12:00-12:50</p></td>
-					           	<td id="041"></td>
-					            <td id="041"></td>
-					            <td></td>
-					            <td></td>
-					            <td></td>
-					            <td></td>
+					           	<td id="041" time="월요일 4교시"></td>
+					            <td id="042" time="화요일 4교시"></td>
+					            <td id="043" time="수요일 4교시"></td>
+					            <td id="044" time="목요일 4교시"></td>
+					            <td id="045" time="금요일 4교시"></td>
+					            <td id="046" time="토요일 4교시"></td>
 					          </tr>
 					          <tr id="05">
 					           <td style="width:80px;text-align: center"><strong>5교시</strong><p style="font-size:8px"> 13:00-13:50</p></td>
-					         <td></td>
-					            <td></td>
-					            <td></td>
-					            <td></td>
-					            <td></td>
-					            <td></td>
+					         
+					            <td id="051" time="월요일 5교시"></td>
+					            <td id="052" time="화요일 5교시"></td>
+					            <td id="053" time="수요일 5교시"></td>
+					            <td id="054" time="목요일 5교시"></td>
+					            <td id="055" time="금요일 5교시"> </td>
+					            <td id="056" time="토요일 5교시"> </td>
 					          </tr>
 					          <tr id="06">
 					         <td style="width:80px;text-align: center"><strong>6교시</strong><p style="font-size:8px"> 14:00-14:50</p></td>
-					          <td id="monday6"></td>
-					           <td></td>
-					            <td></td>
-					            <td></td>
-					            <td></td>
-					            <td></td>
-					            <td></td>
+					          <td id="061" time="월요일 6교시"></td>
+					           <td id="062" time="화요일 6교시"></td>
+					            <td id="063" time="수요일 6교시"></td>
+					            <td id="064" time="목요일 6교시"></td>
+					            <td id="065" time="금요일 6교시"></td>
+					            <td id="066" time="토요일 6교시"></td>
+					          
 					          </tr>
 					          <tr id="07">
 					            <td style="width:80px;text-align: center"><strong>7교시</strong><p style="font-size:8px"> 15:00-15:50</p></td>
-					          <td></td>
-					            <td></td>
-					            <td></td>
-					            <td></td>
-					            <td></td>
-					            <td></td>
+					          <td id="071" time="월요일 7교시"></td>
+					            <td id="072" time="화요일 7교시"></td>
+					            <td id="073" time="수요일 7교시"></td>
+					            <td id="074" time="목요일 7교시"></td>
+					            <td id="075" time="금요일 7교시"></td>
+					            <td id="076" time="토요일 7교시"></td>
 					          </tr>
 					          <tr id="08">
 					             <td style="width:80px;text-align: center"><strong>8교시</strong><p style="font-size:8px"> 16:00-16:50</p></td>
-					            <td></td>
-					            <td></td>
-					            <td></td>
-					            <td></td>
-					            <td></td>
-					            <td></td>
+					            <td id="081" time="월요일 8교시"></td>
+					            <td id="082" time="화요일 8교시"></td>
+					            <td id="083" time="수요일 8교시"></td>
+					            <td id="084" time="목요일 8교시"></td>
+					            <td id="085" time="금요일 8교시"></td>
+					            <td id="086" time="토요일 8교시"></td>
 					          </tr>
 					          <tr id="09">
 					             <td style="width:80px;text-align: center"><strong>9교시</strong><p style="font-size:8px"> 17:00-17:50</p></td>
-					           <td></td>
-					            <td></td>
-					            <td></td>
-					            <td></td>
-					            <td></td>
-					            <td></td>
+					           <td id="091" time="토요일 4교시"></td>
+					            <td id="092" time="토요일 4교시"></td>
+					            <td id="093" time="토요일 4교시"></td>
+					            <td id="094" time="토요일 4교시"></td>
+					            <td id="095" time="토요일 4교시"></td>
+					            <td id="096" time="토요일 4교시"></td>
 					          </tr>
 					          <tr id="10">
 					             <td style="width:80px;text-align: center"><strong>10교시</strong><p style="font-size:8px"> 18:00-18:50</p></td>
-					            <td></td>
-					            <td></td>
-					            <td></td>
-					            <td></td>
-					            <td></td>
-					            <td></td>
+					            <td id="101" time="토요일 4교시"></td>
+					            <td id="102" time="토요일 4교시"></td>
+					            <td id="103" time="토요일 4교시"></td>
+					            <td id="104" time="토요일 4교시"></td>
+					            <td id="105" time="토요일 4교시"></td>
+					            <td id="106" time="토요일 4교시"></td>
 					          </tr>
 					          <tr id="11">
 					            <td style="width:80px;text-align: center"><strong>11교시</strong><p style="font-size:8px"> 19:00-19:50</p></td>
-					            <td></td>
-					            <td></td>
-					            <td></td>
-					            <td></td>
-					            <td></td>
-					            <td></td>
+					            <td id="111" time="토요일 4교시"></td>
+					            <td id="112" time="토요일 4교시"></td>
+					            <td id="113" time="토요일 4교시"></td>
+					            <td id="114" time="토요일 4교시"></td>
+					            <td id="115"></td>
+					            <td id="116"></td>
 					          </tr>
 					          <tr id="12">
 					             <td style="width:80px;text-align: center"><strong>12교시</strong><p style="font-size:8px"> 20:00-20:50</p></td>
-					            <td></td>
-					            <td></td>
-					            <td></td>
-					            <td></td>
-					            <td></td>
-					            <td></td>
+					            <td id="121"></td>
+					            <td id="122"></td>
+					            <td id="123"></td>
+					            <td id="124"></td>
+					            <td id="125"></td>
+					            <td id="126"></td>
 					          </tr>
 					          <tr id="13">
 					             <td style="width:80px;text-align: center"><strong>13교시</strong><p style="font-size:8px"> 21:00-21:50</p></td>
-					            <td></td>
-					            <td></td>
-					            <td></td>
-					            <td></td>
-					            <td></td>
-					            <td></td>
+					            <td id="131"></td>
+					            <td id="132"></td>
+					            <td id="133"></td>
+					            <td id="134"></td>
+					            <td id="135"></td>
+					            <td id="136"></td>
 					          </tr>
 						   
 						   
 						   </tbody>
 						   
-						   
+						     
 						</table>
                             
                         </div>
@@ -506,8 +527,11 @@
     <!-- Custom Theme JavaScript -->
     <script src="js/index.js"></script>
     <script src="js/tableCreate.js"></script>
-  
-   
+    <script src="js/colummFilter.js"></script>
+  	
+  	
+  	<!-- Column Filter Plugin -->
+    <script src="js/jquery.dataTables.columnFilter.js"></script>
     
     <!-- Ajax Table JavaScript CDN Link -->
     <script src="//cdn.datatables.net/1.10.4/js/jquery.dataTables.min.js"></script>
