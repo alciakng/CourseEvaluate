@@ -491,3 +491,10 @@ border-top-right-radius: 3px;
 }
 
 
+hr {
+margin-top: 3px;
+margin-bottom: 3px;
+border: 2;
+border-top: 1px solid #eee;
+}
+

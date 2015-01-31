@@ -13,14 +13,14 @@
 <body class="eternity-form">
     <nav class="main-nav">
         <ul>
-            <li><a href="#demo1" class="active" data-title="로그인" data-panel="first"></a></li>
-            <li><a href="#demo2" data-title="회원가입" data-panel="second"></a></li>
-            <li><a href="#demo3" data-title="비밀번호 찾기" data-panel="third"></a></li>
+            <li><a href="#loginSection" class="active" data-title="로그인" data-panel="first"></a></li>
+            <li><a href="#signupSection" data-title="회원가입" data-panel="second"></a></li>
+            <li><a href="#searchSection" data-title="비밀번호 찾기" data-panel="third"></a></li>
            
         </ul>
     </nav>
    
-    <section class="colorBg1 colorBg" id="demo1" data-panel="first">
+    <section class="colorBg1 colorBg" id="loginSection" data-panel="first">
 
         <div class=" container">
 
@@ -75,13 +75,13 @@
                 </div>
                 <div class="login-form-links link1 " data-animation="fadeInLeftBig" data-animation-delay=".2s">
                     <h4 class="blue">회원이 아니세요?</h4>
-                    <a href="#demo2" class="blue">여기를 눌러</a>
+                    <a href="#signupSection" class="blue">여기를 눌러</a>
                     <span>회원가입 하세요</span>
                 </div>
                 <div class="login-form-links link2 " data-animation="fadeInRightBig" data-animation-delay=".4s">
                     <h4 class="green">비밀번호를 잊으셨나요?</h4>
                     <span>걱정마세요</span>
-                    <a href="#demo3" class="green">여기를 눌러</a>
+                    <a href="#searchSection" class="green">여기를 눌러</a>
                     <span>비밀번호를 찾으세요</span>
                 </div>
             </div>
@@ -90,9 +90,10 @@
 
         </div>
     </section>
-     <section class="colorBg form-seprator i2">
+    
+    <section class="colorBg form-seprator i2" >
 
-        <i class="icon-windows" data-animation="bounceInUp"></i>
+        
         <br />
         <br />
         <h1 data-animation="bounceInUp" data-animation-delay=".2s">UOS EVALUATE</h1>
@@ -100,7 +101,7 @@
 
     </section>
   
-    <section class="colorBg2 colorBg" id="demo2" data-panel="second">
+    <section class="colorBg2 colorBg" id="signupSection" data-panel="second">
         <div class=" container">
             <br />
             <br />
@@ -190,8 +191,8 @@
                             </div>
                         </div>
                     </div>
-                    <div class="registration-form-action clearfix " data-animation="fadeInUp" data-animation-delay=".15s">
-                        <a href="#demo1" class="btn btn-success pull-left blue-btn ">
+                    <div class="registration-form-action clearfix " data-animation="fadeInUp" data-animation-delay=".10s">
+                        <a href="#loginSection" class="btn btn-success pull-left blue-btn ">
                             <i class="icon-chevron-left"></i>&nbsp; &nbsp;로그인으로 가기
                         </a>
                        
@@ -204,16 +205,19 @@
 
         </div>
     </section>
+    
     <section class="colorBg form-seprator i2">
 
-        <i class="icon-windows" data-animation="bounceInUp"></i>
+       
         <br />
         <br />
         <h1 data-animation="bounceInUp" data-animation-delay=".2s">UOS EVALUATE</h1>
 
 
     </section>
-    <section class="colorBg3 colorBg" id="demo3" data-panel="third">
+    
+    
+    <section class="colorBg3 colorBg" id="searchSection" data-panel="third">
         <div class=" container">
             <br />
             <br />
@@ -233,7 +237,7 @@
                             </div>
                         </div>
                         <div class="forget-form-action clearfix">
-                            <a class="btn btn-success pull-left blue-btn" href="#demo1"><i class="icon-chevron-left"></i>&nbsp;&nbsp;뒤로가기 </a>
+                            <a class="btn btn-success pull-left blue-btn" href="#loginSection"><i class="icon-chevron-left"></i>&nbsp;&nbsp;뒤로가기 </a>
                             <button type="submit" class="btn btn-success pull-right green-btn">전송 &nbsp;&nbsp; <i class="icon-chevron-right"></i></button>
                         </div>
                     </form>
