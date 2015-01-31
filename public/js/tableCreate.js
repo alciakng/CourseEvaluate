@@ -18,10 +18,9 @@ function table_init() {
                 url:'/courseLoad',
                 dataType:'json',
                 type:'GET', 
-                success:function(result){
-                    
-                    
-                    //테이블 설정
+                success:function(result){ 
+                  
+                	//테이블 설정
     			    var table= $('#course').DataTable({
     						 "data": result,
     						 //search input 라벨 제거

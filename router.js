@@ -29,7 +29,7 @@ exports.route = function(app,passport){
         failureRedirect:'/signup',
         failureFlash:true
     }))
-	
+	//modal 방식으로 로그인 구현한 예제
 	/*
 	app.post('/login',function(req, res, next) {
 	    passport.authenticate('local-login',function(err,user,info){

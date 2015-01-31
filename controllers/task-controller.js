@@ -113,18 +113,28 @@ exports.evaluation_post = function(req,res){
 	console.log(req.body.evaluate_message);
 	//console.log(req.body.evaluate_select);
 	
-	var evaluate_message=req.body.evaluate;
+	var evaluation=req.body.evaluate;
+	var coursename = req.body.coursename;
 	var difficulty = req.body.evaluate_select[0];
 	var satisfaction = req.body.evaluate_select[1];
-	var total_evaluation = req.body.evaluate_select[2];
-	
+	var totalScore = req.body.evaluate_select[2];
+
+	console.log(coursename);
 	console.log(difficulty);
 	console.log(satisfaction);
-	console.log(total_evaluation);
+	console.log(totalScore);
 	
-	res.render('index.ejs');
-	
-	
+	db.getConnection(function(err,connection){
+   	 
+   	 connection.query("insert into evaluation values(?,?,?,?,?,?)",[coursename,req.user.email,evaluation,difficulty,satisfaction,totalScore], function(err, rows){
+   		 connection.release();
+   		 //오류가 발생한 경우.
+            if (err){
+                res.send({message:"error"});
+            }
+          	res.send({message:"success"});
+		});
+   	});
 	
 }
 

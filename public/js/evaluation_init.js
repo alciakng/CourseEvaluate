@@ -22,17 +22,18 @@ var evaluation_post = function(){
                      type: "POST",
                      data: $("#evaluate_form").serializeArray(),
                      cache: false,
-                     success: function() {
+                     success: function(result){
+                    	 if(result.message=="error") alert("평을 올리는데 에러가 발생하였습니다! 인터넬 연결 상태를 확인하세요. 혹은 서버 과부하 오류 일 수 있습니다.");
+                    	 else{
+                    		 
+                    		 
+                    	 }
                      },
                      error: function() {
-       
+                    	
                      },
                  });
-       
-       
     })
- 
- 
 }
 
 
