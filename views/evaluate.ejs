@@ -93,7 +93,7 @@
                                                    Evaluate
                         </div>
                         
-                        <div class="panel-body">
+                        <div class="panel-body" id="evaluationBody">
                         	
 							<div class="post-preview clearfix">
 								<div class="post-preview-content">
@@ -114,7 +114,7 @@
                         
                         <div class="panel-footer">
 					           
-					            <form method="POST" action="/evaluation_post"  id="evaluate_form">
+					            <form method="POST" action="/evaluation_post"  accept-charset="UTF-8" id="evaluationForm">
 					           		<div class="form-group">
 					                	<textarea  id="evaluate_message" style="width:100%	" name="evaluate_message"
 					                	placeholder="강의평을 입력하세요" class="form-control" rows="4"></textarea>
@@ -229,9 +229,9 @@
 
 
     
-    
+    <!-- Validation JavaScript -->
+    <script src="js/jqBootstrapValidation.js"></script>
  
-	
     <!-- MultiSelect JavaScript -->
     <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.6.3/js/bootstrap-select.min.js"></script>
   	<!-- evaluation_post JavaScript -->

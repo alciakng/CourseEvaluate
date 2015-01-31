@@ -10,8 +10,10 @@ exports.route = function(app,passport){
 	app.get('/',task.init);
 	app.get('/user/:alias',task.userpage);
 	app.get('/courseLoad',task.courseLoad);
+	//csnm은 강의명 pfnm은 교수명
 	app.get('/evaluate/:csnm/:pfnm',task.evaluate);
-	app.post('/evaluation_post',task.evaluation_post);
+	//rmnm(roomname)은 강의명+교수명
+	app.post('/evaluation_post/:rmnm',task.evaluation_post);
 	
 	
 	app.get('/authenticatepage',task.authenticatepage);

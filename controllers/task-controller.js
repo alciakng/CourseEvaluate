@@ -114,7 +114,8 @@ exports.evaluation_post = function(req,res){
 	//console.log(req.body.evaluate_select);
 	
 	var evaluation=req.body.evaluate;
-	var coursename = req.body.coursename;
+	//파라미터로 전송한 rmnm(기본키:강의명+교수명)을 파싱해서 받아온다.
+	var courseName = req.params.rmnm;
 	var difficulty = req.body.evaluate_select[0];
 	var satisfaction = req.body.evaluate_select[1];
 	var totalScore = req.body.evaluate_select[2];
@@ -126,7 +127,7 @@ exports.evaluation_post = function(req,res){
 	
 	db.getConnection(function(err,connection){
    	 
-   	 connection.query("insert into evaluation values(?,?,?,?,?,?)",[coursename,req.user.email,evaluation,difficulty,satisfaction,totalScore], function(err, rows){
+   	 connection.query("insert into evaluation values(?,?,?,?,?,?)",[courseName,req.user.email,evaluation,difficulty,satisfaction,totalScore], function(err, rows){
    		 connection.release();
    		 //오류가 발생한 경우.
             if (err){

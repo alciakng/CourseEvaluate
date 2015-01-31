@@ -6,33 +6,44 @@
 $(function() {
 //twitter bootstrap script
 	
-    evaluation_post();
+   // evaluation_post();
     socket_init();
-        
- })
- 
- //evaluation_post function
+    
+    $('#evaluationForm').find('input,select,textarea').not('[type=submit]').jqBootstrapValidation({
+
+        submitSuccess: function ($form, event) {
+        	var courseName = document.getElementById("room_name").innerHTML;
+
+        	 $.ajax({
+                 url: $form.attr('action')+"/"+courseName,
+                 type: "POST",
+                 data: $form.serialize(),
+                 cache: false,
+                 success: function(result){                    	
+                	 if(result.message=="error") alert("평을 올리는데 에러가 발생하였습니다! 인터넬 연결 상태를 확인하세요. 혹은 서버 과부하 오류 일 수 있습니다.");
+                	 else{
+                		alert($("#evaluate_form").serializeArray());
+                	 }
+                 },
+                 error: function() {
+                	
+                 },
+        	 });
+
+          // will not trigger the default submission in favor of the ajax function
+          event.preventDefault();
+         
+        }
+
+     });
+})
+
+//evaluation_post function
  
 var evaluation_post = function(){
     
-    $("#evaluation_form").submit(function(){
-        
-        $.ajax({
-                     url: "/evaluation_post",
-                     type: "POST",
-                     data: $("#evaluate_form").serializeArray(),
-                     cache: false,
-                     success: function(result){
-                    	 if(result.message=="error") alert("평을 올리는데 에러가 발생하였습니다! 인터넬 연결 상태를 확인하세요. 혹은 서버 과부하 오류 일 수 있습니다.");
-                    	 else{
-                    		 
-                    		 
-                    	 }
-                     },
-                     error: function() {
-                    	
-                     },
-                 });
+    $("#evaluation_form").submit(function(){ 	
+       
     })
 }
 
