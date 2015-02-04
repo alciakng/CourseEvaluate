@@ -26,10 +26,11 @@
 
 
 	<!-- Ajax Table CSS CDN Link -->
-	<link href="//cdn.datatables.net/1.10.4/css/jquery.dataTables.css" rel="stylesheet" type="text/css">
+	<link rel="stylesheet" href="css/bootstrap-table.css">
+	<!-- table filter plugin -->
+	<link rel="stylesheet" href="css/bootstrap-table-filter.css">
 	
-	<!-- Reponsive Table CSS CDN Link -->
-	<link href="//cdn.datatables.net/responsive/1.0.3/css/dataTables.responsive.css" rel="stylesheet" type="text/css">
+
 	<!-- Custom CSS -->
     <link href="css/index.css" rel="stylesheet">
 	
@@ -151,181 +152,34 @@
 		    	 <div class="container" >
 		           	 
 		         <div class="row">
-	     		 <div class="col-sm-7">
+	     		 <div class="col-sm-13">
                     <div class="panel eval-panel">
                         <div class="panel-heading">
                              	강의검색
                         </div>
                         <div class="panel-body">
-                            <table id="course" class="display" cellspacing="0" width="100%">
-								        <thead>
-								            <tr>
-								                <th>학부</th>
-								                <th>교과구분</th>
-								                <th>교과목명</th>
-								                <th>담당교수</th>
-								                <th>시간/강의실</th>
-								               	<th></th>
-								            </tr>
-								        </thead>			
-								        
-							   				
+							 
+							
+                            <table id="course" data-show-columns="true"  data-show-toggle="true"  data-search="true"
+       data-pagination="true" >
+	       						<thead>
+	       							<tr>
+	       								<th	data-field="majorDiv" data-sortable="true">학부</th>
+	       								<th	data-field="curriculumDiv" data-sortable="true">교과구분</th>
+	       								<th	data-field="courseName" data-sortable="true">교과목명</th>
+	       								<th	data-field="professorName" data-sortable="true">담당교수</th>
+	       								<th	data-field="evaluation" data-sortable="true">평가</th>
+	       							</tr>
+	    						</thead>
+	    						<tbody class="searchable">
+	    						</tbody>
 							</table>
                         </div>  
                     </div>
                     <!-- /.col-lg-4 -->
                 </div>
                 
-                 <div class="col-sm-5" >
-                    <div class="panel recent-eval-panel">
-                        <div class="panel-heading">
-                           	 시간표
-                        </div>
-                        <div class="panel-body">
-                        
-                        <table class="table table-bordered" id="timetable">
-							<thead>
-						          <tr>
-						            <th></th>
-						            <th>월</th>
-						            <th>화</th>
-						            <th>수</th>
-						            <th>목</th>
-						            <th>금</th>
-						            <th>토</th>
-						          </tr>
-						   </thead>
-						   <tbody>				   
-							  <tr id="01">
-					           <td style="width:80px;text-align: center"><strong>1교시</strong><p style="font-size:8px"> 09:00-09:50</p></td>
-					            <td id="011"></td>
-					            <td id="012"></td>
-					            <td id="013"></td>
-					            <td id="014" ></td>
-					            <td id="015"></td>
-					            <td id="016"></td>
-					          </tr>
-					          <tr id="02">
-					            <td style="width:80px;text-align: center"><strong>2교시</strong><p style="font-size:8px"> 10:00-10:50</p></td>
-					            <td id="021"></td>
-					            <td id="022"></td>
-					            <td id="023"></td>
-					            <td id="024"></td>
-					            <td id="025"></td>
-					            <td id="026"></td>
-					          </tr>
-					          <tr id="03">
-					            <td style="width:80px;text-align: center"><strong>3교시</strong><p style="font-size:8px"> 11:00-11:50</p></td>
-					       		<td id="031"></td>
-					            <td id="032"></td>
-					            <td id="033"></td>
-					            <td id="034"></td>
-					            <td id="035"></td>
-					            <td id="036"></td>
-					          </tr>
-					          <tr id="04">
-					           <td style="width:80px;text-align: center"><strong>4교시</strong><p style="font-size:8px"> 12:00-12:50</p></td>
-					           	<td id="041"></td>
-					            <td id="041"></td>
-					            <td></td>
-					            <td></td>
-					            <td></td>
-					            <td></td>
-					          </tr>
-					          <tr id="05">
-					           <td style="width:80px;text-align: center"><strong>5교시</strong><p style="font-size:8px"> 13:00-13:50</p></td>
-					         <td></td>
-					            <td></td>
-					            <td></td>
-					            <td></td>
-					            <td></td>
-					            <td></td>
-					          </tr>
-					          <tr id="06">
-					         <td style="width:80px;text-align: center"><strong>6교시</strong><p style="font-size:8px"> 14:00-14:50</p></td>
-					          <td id="monday6"></td>
-					           <td></td>
-					            <td></td>
-					            <td></td>
-					            <td></td>
-					            <td></td>
-					            <td></td>
-					          </tr>
-					          <tr id="07">
-					            <td style="width:80px;text-align: center"><strong>7교시</strong><p style="font-size:8px"> 15:00-15:50</p></td>
-					          <td></td>
-					            <td></td>
-					            <td></td>
-					            <td></td>
-					            <td></td>
-					            <td></td>
-					          </tr>
-					          <tr id="08">
-					             <td style="width:80px;text-align: center"><strong>8교시</strong><p style="font-size:8px"> 16:00-16:50</p></td>
-					            <td></td>
-					            <td></td>
-					            <td></td>
-					            <td></td>
-					            <td></td>
-					            <td></td>
-					          </tr>
-					          <tr id="09">
-					             <td style="width:80px;text-align: center"><strong>9교시</strong><p style="font-size:8px"> 17:00-17:50</p></td>
-					           <td></td>
-					            <td></td>
-					            <td></td>
-					            <td></td>
-					            <td></td>
-					            <td></td>
-					          </tr>
-					          <tr id="10">
-					             <td style="width:80px;text-align: center"><strong>10교시</strong><p style="font-size:8px"> 18:00-18:50</p></td>
-					            <td></td>
-					            <td></td>
-					            <td></td>
-					            <td></td>
-					            <td></td>
-					            <td></td>
-					          </tr>
-					          <tr id="11">
-					            <td style="width:80px;text-align: center"><strong>11교시</strong><p style="font-size:8px"> 19:00-19:50</p></td>
-					            <td></td>
-					            <td></td>
-					            <td></td>
-					            <td></td>
-					            <td></td>
-					            <td></td>
-					          </tr>
-					          <tr id="12">
-					             <td style="width:80px;text-align: center"><strong>12교시</strong><p style="font-size:8px"> 20:00-20:50</p></td>
-					            <td></td>
-					            <td></td>
-					            <td></td>
-					            <td></td>
-					            <td></td>
-					            <td></td>
-					          </tr>
-					          <tr id="13">
-					             <td style="width:80px;text-align: center"><strong>13교시</strong><p style="font-size:8px"> 21:00-21:50</p></td>
-					            <td></td>
-					            <td></td>
-					            <td></td>
-					            <td></td>
-					            <td></td>
-					            <td></td>
-					          </tr>
-						   
-						   
-						   </tbody>
-						   
-						   
-						</table>
-                            
-                        </div>
-                       
-                    </div>
-                    <!-- /.col-lg-4 -->
-                </div>
+                 
 	     		</div>		
 			</div>
    					
@@ -333,132 +187,6 @@
 	
 	
 	
-	
-	<!-- signup/login modal -->
-
-	<div class="modal fade bs-modal-sm" id="modal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-sm">
-    <div class="modal-content">
-        <br>
-        <div class="bs-example bs-example-tabs">
-            <ul id="myTab" class="nav nav-tabs">
-              <li class="active"><a href="#signin" data-toggle="tab"><h4>로그인</h4></a></li>
-              <li class=""><a href="#signup" data-toggle="tab"><h4>회원가입</h4></a></li>
-            </ul>
-        </div>
-        
-      <div class="modal-body">
-        <div id="myTabContent" class="tab-content">
-        <div class="tab-pane fade active in" id="signin">
-            
-            
-            <form action='/login' id="login_form" method="POST" accept-charset='UTF-8'>
-            
-            <!-- Sign In Form -->
-            <!-- Text input-->
-            <div class="control-group">
-              <label class="control-label" for="emailinput">이메일 : </label>
-              <div class="controls">
-              <input class="form-control" name="emailinput"   data-validation-email-message="올바른 형식의 이메일을 입력하세요." data-validation-required-message="이메일을 입력하세요."   type="email" placeholder="JoeSixpack@sixpacksrus.com" required></input>
-              <p class="help-block text-danger"></p>
-              </div>
-            </div>
-
-            <!-- Password input-->
-            <div class="control-group">
-            
-              <label class="control-label"  for="passwordinput">비밀번호 :</label>
-              <div class="controls">
-              <input class="form-control input-large"  name="passwordinput"  type="password" data-validation-required-message="비밀번호를 입력하세요." placeholder="********"  required ></input>
-              <p class="help-block"></p>
-              </div>
-            </div>
-
-            <!-- Multiple Checkboxes (inline) -->
-            
-                
-            <input type="checkbox" name="rememberme" id="rememberme-0" value="Remember me">
-                  	저장하기
-           
-
-            <!-- Button -->
-         		  <div class="alert alert-danger" id="login_message"></div> 
-         		<br>
-                <button  type="submit"  class="btn btn-success">로그인</button>
-              
-            </form>
-        </div>
-        <div class="tab-pane fade" id="signup">
-            
-            <form role="form" accept-charset="UTF-8"  id="signup_form" action="/signup" method="POST">
-         
-            <!-- Sign Up Form -->
-             
-            <!-- Email input-->
-            <div class="control-group">
-              <label class="control-label" for="email">이메일 : </label>
-              <div class="controls">
-              <input class="form-control" name="email"  data-validation-ajax-ajax="/email_validation" data-validation-email-message="올바른 형식의 이메일을 입력하세요." data-validation-required-message="이메일을 입력하세요."   type="email" placeholder="JoeSixpack@sixpacksrus.com" required aria-invalid="true"></input>
-              <p class="help-block text-danger"></p>
-              </div>
-            </div>
-            
-            
-            <!-- Password input-->
-            <div class="control-group">
-            
-              <label class="control-label"  for="password">비밀번호 :</label>
-              <div class="controls">
-              <input class="form-control input-large"  name="password"  type="password" data-validation-required-message="비밀번호를 입력하세요." placeholder="********"  required aria-invalid="true"></input>
-              <p class="help-block text-danger"></p>
-              </div>
-            </div>
-            
-            
-            <!-- Text input-->
-            <div class="control-group">
-              <label class="control-label"  for="reenterpassword">비밀번호 확인 :</label>
-              <div class="controls">
-              <input class="form-control" data-validation-match-match="password" data-validation-match-message="위와 동일한 비밀번호를 입력하세요." data-validation-required-message="비밀번호를 다시 한번 입력하세요." name="reenterpassword" type="password" placeholder="********" required aria-invalid="true"></input>
-              <p class="help-block"></p>
-              </div>
-            </div>
-            
-            
-             <!-- Email input-->
-            <div class="form-group">
-              <label  for="major">학부 :</label>
-              <input id="major" name="major" class="form-control input-large" type="text" placeholder="예)컴퓨터과학부" data-validation-required-message="학부를 입력하세요." required aria-invalid="true">
-            </div>
-            
-            <!-- Email input-->
-            <div class="control-group">
-              <label class="control-label"  for="alias">닉네임 :</label>
-              <div class="controls">
-              <input id="alias" name="alias" data-validation-required-message="닉네임을 입력하세요" data-validation-ajax-ajax="/alias_validation"  class="form-control input-large" type="text" placeholder="시립대 멋쟁이" required aria-invalid="true">
-              <p class="help-block"></p>
-              </div>
-            </div>
-            
-            <div class="alert alert-danger hidden" id="signup_message"></div> 
-            
-            <div class="form-actions">
-            <!-- Button -->
-            <button type="submit" class="btn btn-success">회원가입</button>
-            </div>
-            </form>
-      </div>
-    </div>
-      </div>
-      <div class="modal-footer">
-      
-        <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
-  
-      </div>
-    </div>
-  </div>
-</div>
-
 
 
   
@@ -510,9 +238,10 @@
    
     
     <!-- Ajax Table JavaScript CDN Link -->
-    <script src="//cdn.datatables.net/1.10.4/js/jquery.dataTables.min.js"></script>
-    <!-- Reponsive Table JavaScript CDN Link -->
-	<script src="//cdn.datatables.net/responsive/1.0.3/js/dataTables.responsive.js"></script>
+   	<script src="js/bootstrap-table.js"></script>
+   	<script src="js/bootstrap-table-ko-KR.js"></script>
+   	<script src="js/bootstrap-table-filter.js"></script>
+  
 
     
   

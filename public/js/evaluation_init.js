@@ -12,8 +12,8 @@ $(function() {
     $('#evaluationForm').find('input,select,textarea').not('[type=submit]').jqBootstrapValidation({
 
         submitSuccess: function ($form, event) {
-        	var courseName = document.getElementById("room_name").innerHTML;
-
+        	var courseName = document.getElementById('room_name').innerHTML;
+        	
         	 $.ajax({
                  url: $form.attr('action')+"/"+courseName,
                  type: "POST",
@@ -53,7 +53,6 @@ var socket_init= function(){
     
  var socket = io.connect('http://localhost:3000');
  
-  
  socket.emit('joinroom',{
      room:localStorage.getItem('roomName'),
      nickname : localStorage.getItem('nickName')            
@@ -61,10 +60,12 @@ var socket_init= function(){
 
  //message 전송 이벤트
  $("#msgbox").keyup(function(event) {
-     if (event.which == 13) {
+    
+	 if (event.which == 13) {
          socket.emit('send_msg',{to:$('#to').val(),msg:$('#msgbox').val()});
          $('#msgbox').val('');
      }
+	 
  });
  
 
@@ -85,8 +86,26 @@ var socket_init= function(){
      console.log(data.msg);
      $('#msgs').append(data.msg+'<BR>');
  });
- 
- 
- 
- 
+
 };
+
+//each evaluation viewing
+var evalView = function(evalNo){
+	alert(evalNo);
+	
+	$.ajax({
+         url: '/evalView',
+         type: "POST",
+         data: evalNo,
+         cache: false,
+         success: function(result){                    	
+        	 if(result.message=="error") alert("평을 불러오는 데 에러가 발생하였습니다! 인터넬 연결 상태를 확인하세요. 혹은 서버 과부하 오류 일 수 있습니다.");
+        	 else{
+        		
+        	 }
+         },
+         error: function() {
+        	
+         },
+	 });
+}

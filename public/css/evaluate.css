@@ -21,6 +21,15 @@ a.active {
     color: #18bc9c;
 }
 
+a[name="evaluationEdit"]{
+	color:#ffffff
+}
+
+a[name="evaluationRenew"]{
+	margin-left:7px;
+	color:#ffffff
+}
+
 h1,
 h2,
 h3,
@@ -498,3 +507,30 @@ border: 2;
 border-top: 1px solid #eee;
 }
 
+.form-group {
+margin-bottom: 5px;
+}
+
+.modal-body {
+position: relative;
+padding: 10px;
+}
+
+.modal-header {
+min-height: 16.428571429px;
+padding: 10px;
+border-bottom: 1px solid #e5e5e5;
+}
+
+.control-group.error > label, .control-group.error .help-block, .control-group.error .help-inline {
+color: #b94a48;
+}
+
+.control-group.error input, .control-group.error select, .control-group.error textarea {
+color: #b94a48;
+border-color: #b94a48;
+}
+
+.control-group.error > label, .control-group.error .help-block, .control-group.error .help-inline {
+color: #b94a48;
+}

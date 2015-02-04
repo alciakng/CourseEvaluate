@@ -23,6 +23,7 @@ var db = require('../db.js');
 //index init 함수
 exports.init = function(req,res){
 	  //index Load
+	
 	  res.render("index");
 }
 
@@ -65,19 +66,19 @@ exports.courseLoad = function(req,res){
 	    	
 	    	//받아온 강의 데이터 xml 형식을 json으로 변환.
 	    	var course_array = xm.load(data_utf8).root.mainlist.list;
-	    	var dataSet= new Array(course_array.length);
+	    	var dataSet= new Array();
 			
 	    	//받아온 데이터를 테이블 형식에 맞게  Array형식으로 변환.
 			for(var i=0;i<course_array.length;i++){
-				 dataSet[i]= new Array(4); 
-				 dataSet[i][0]=course_array[i].sub_dept.$cd;
-				 dataSet[i][1]=course_array[i].subject_div.$cd;
-				 dataSet[i][2]=course_array[i].subject_nm.$cd;
-				 dataSet[i][3]=course_array[i].prof_nm.$cd;
-				 dataSet[i][4]=course_array[i].class_nm.$cd;
-				 dataSet[i][5]='<a href="/evaluate/'+course_array[i].subject_nm.$cd+"/"+course_array[i].prof_nm.$cd+'" class="btn btn-primary btn-xs" data-title="evaluate"><span class="glyphicon glyphicon-pencil"> 평가하기</span></a>'
+				 var data= new Object(); 
+				 data['majorDiv']=course_array[i].sub_dept.$cd;
+				 data['curriculumDiv']=course_array[i].subject_div.$cd;
+				 data['courseName']=course_array[i].subject_nm.$cd;
+				 data['professorName']=course_array[i].prof_nm.$cd;
+				 data['evaluation']='<a href="/evaluate/'+course_array[i].subject_nm.$cd+"/"+course_array[i].prof_nm.$cd+'" class="btn btn-danger btn-xs" data-title="evaluate"><span class="glyphicon glyphicon-pencil"> 평가하기</span></a>'
+				 dataSet.push(data);
 			};
-	    	
+	    	console.log(dataSet);
 	    	
 	    	//Array를  클라이언트로 전송.
 			res.send(dataSet);
@@ -91,20 +92,35 @@ exports.evaluate = function(req,res){
 	
 	//강의 페이지 상단에 강좌-교수 정보를 표시하기 위한 객체.
 	var course_data=[];
-	
-	console.log(req.params.csnm);
-	console.log(req.user);
+	var course_name = req.params.csnm+"("+req.params.pfnm+")";
+	var evalDatas = [];
 	
 	//url을 parsing하여 객체에 추가.
 	course_data.push(req.params.csnm);
 	course_data.push(req.params.pfnm);
+	console.log(course_name);
 	
-	//evaluate page로 전송.
-	res.render("evaluate.ejs",
-			{
-	            data : course_data,
-	            nickname : req.user.alias
-			});
+	//db에서 평가정보를 받아온다.
+	db.getConnection(function(err,connection){
+        connection.query("SELECT *,DATE_FORMAT(evaluationTime,'%Y-%m-%d %h:%i %p') as evalTime FROM evaluation WHERE courseName =?",[course_name], function(err, rows) {
+        	
+        	//console.log(rows);
+        	//evaluate page로 전송.
+        	res.render("evaluate.ejs",
+        			{
+        	            data : course_data,
+        	            nickname : req.user.alias,
+        	            evalData : rows
+        			});
+        	
+        	connection.release();
+        });
+	});
+	
+	//console.log(evalDatas);
+	
+	
+	
 }
 
 //evaluate_post 함수.
@@ -113,27 +129,31 @@ exports.evaluation_post = function(req,res){
 	console.log(req.body.evaluate_message);
 	//console.log(req.body.evaluate_select);
 	
-	var evaluation=req.body.evaluate;
+	var evaluation=req.body.evaluate_message;
 	//파라미터로 전송한 rmnm(기본키:강의명+교수명)을 파싱해서 받아온다.
 	var courseName = req.params.rmnm;
-	var difficulty = req.body.evaluate_select[0];
-	var satisfaction = req.body.evaluate_select[1];
-	var totalScore = req.body.evaluate_select[2];
+	var title = req.body.title;
+	var difficulty = req.body.difficulty;
+	var satisfaction = req.body.satisfaction;
+	var totalScore = req.body.totalScore;
+	
 
-	console.log(coursename);
+	console.log(courseName);
 	console.log(difficulty);
 	console.log(satisfaction);
 	console.log(totalScore);
 	
 	db.getConnection(function(err,connection){
-   	 
-   	 connection.query("insert into evaluation values(?,?,?,?,?,?)",[courseName,req.user.email,evaluation,difficulty,satisfaction,totalScore], function(err, rows){
+   	 connection.query("insert into evaluation(userNo,userAlias,courseName,title,evaluation,difficulty,satisfaction,totalScore,evaluationTime) values(?,?,?,?,?,?,?,?,now());",[req.user.userNo,req.user.alias,courseName,title,evaluation,difficulty,satisfaction,totalScore], function(err, rows){
    		 connection.release();
    		 //오류가 발생한 경우.
             if (err){
+            	console.log("강의평 db에 삽입오류.");
                 res.send({message:"error"});
-            }
+            }else{
+            console.log("강의평 db에 정상적으로 삽입");
           	res.send({message:"success"});
+            }
 		});
    	});
 	
@@ -215,7 +235,6 @@ exports.pass = function(passport){
 	        function(req, email, password, done) {
 	            // find a user whose email is the same as the forms email
 	            // we are checking to see if the user trying to login already exists
-	        	
 	        	db.getConnection(function(err,connection){
 	            connection.query("SELECT * FROM user WHERE email = ?",[email], function(err, rows) {
 	            	connection.release();
@@ -234,14 +253,16 @@ exports.pass = function(passport){
 	                        email: email,
 	                        password: bcrypt.hashSync(password, null, null),
 	                        major : req.body.major,
-                            alias: req.body.alias
+                            alias: req.body.alias,
+                            introduction : req.body.introduction
                          };
 
-                        var insertQuery = "INSERT INTO user(email, password,major,alias) values (?,?,?,?)";
+                        var insertQuery = "INSERT INTO user(email, password,major,alias,introduction) values (?,?,?,?,?)";
 
-                            connection.query(insertQuery,[newUserMysql.email, newUserMysql.password,newUserMysql.major,newUserMysql.alias],function(err, rows) {
+                            connection.query(insertQuery,[newUserMysql.email, newUserMysql.password,newUserMysql.major,newUserMysql.alias,newUserMysql.introduction],function(err, rows) {
                             
-                            return done(null, newUserMysql,req.flash('signupMessage', '회원가입 성공!'));
+                            return done(
+                            		null, newUserMysql,req.flash('signupMessage', '회원가입 성공!'));
                      });
                    }
                 });

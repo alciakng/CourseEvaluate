@@ -29,7 +29,7 @@
 
 
 	<!-- Ajax Table CSS CDN Link -->
-	<link href="//cdn.datatables.net/1.10.4/css/jquery.dataTables.css" rel="stylesheet" type="text/css">
+	<link rel="stylesheet" href="../../bootstrap-table.css">
 	
 	<!-- Reponsive Table CSS CDN Link -->
 	<link href="//cdn.datatables.net/responsive/1.0.3/css/dataTables.responsive.css" rel="stylesheet" type="text/css">
@@ -59,9 +59,7 @@
         <div class="container">
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header page-scroll">
-                <a class="navbar-brand" id ="room_name" href="#page-top">
-                 <%=data[0]%>(<%=data[1]%>)
-                </a>
+                <a class="navbar-brand" id ="room_name" href="#page-top"><%=data[0]%>(<%=data[1]%>)</a>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
@@ -87,68 +85,15 @@
 	     			
 	     	<div class="row">
                 <div class="col-lg-6">
-                    <div class="panel eval-panel">
-                        <div class="panel-heading">
-                       		 <i class="fa fa-edit"></i>
-                                                   Evaluate
-                        </div>
-                        
-                        <div class="panel-body" id="evaluationBody">
-                        	
-							<div class="post-preview clearfix">
-								<div class="post-preview-content">
-									<strong><a href="/topic/3006/install-on-freebsd">Install on FreeBSD</a></strong>
-									<hr>
-									<div class="content">
-									<p><a class="plugin-mentions-a" href="/user/a_5mith">@a_5mith</a> There is more to NodeBB than just node. I would be nice to see a FreeBSD, or simply BSD, guide somewhere.</p>
-								</div>
-									<p class="fade-out"></p>
-								</div>
-								<span class="pull-right footer">
-									<span class="timeago" title="2015-01-30T17:47:36.650Z">about 11 hours ago</span> •
-									<a href="/topic/3006/install-on-freebsd/4">read more</a>
-								</span>
-							</div>
-                            
-                        </div>
-                        
-                        <div class="panel-footer">
-					           
-					            <form method="POST" action="/evaluation_post"  accept-charset="UTF-8" id="evaluationForm">
-					           		<div class="form-group">
-					                	<textarea  id="evaluate_message" style="width:100%	" name="evaluate_message"
-					                	placeholder="강의평을 입력하세요" class="form-control" rows="4"></textarea>
-									</div>
-								
-									<span class="form-group">
-					               	   	<select class="selectpicker" id="evaluate_select" name="evaluate_select" class="form-control"  multiple title='평가항목'   data-max-options="3">
-										    <optgroup label="난이도" data-max	-options="1">
-										      <option>상</option>
-										      <option>중</option>
-										      <option>하</option>
-										    </optgroup>
-										    <optgroup label="학점만족" data-max-options="1">
-										      <option>만족</option>
-										      <option>보통</option>
-										      <option>불 만족</option>
-										    </optgroup>
-										    
-										    <optgroup label="종합 평점" data-max-options="1" >
-										      <option>1</option>
-										      <option>2</option>
-										      <option>3</option>
-										      <option>4</option>
-										      <option>5</option>
-										    </optgroup>
-										  </select>
-					                </span>
-					                
-					                <button class="btn btn-info" type="submit">강의평 달기</button>
-					               
-					            </form>
-	       				  
-                        </div> 
-                    </div>
+                    <table data-url="data1.json" data-height="299" data-show-refresh="true" data-show-toggle="true" data-show-columns="true" data-search="true" data-select-item-name="toolbar1">
+					    <thead>
+					    <tr>
+					        <th data-field="userAlias" data-radio="true">글쓴이</th>
+					        <th data-field="title" data-align="right">제목</th>
+					        <th data-field="price" data-align="left">Item Price</th>
+					    </tr>
+					    </thead>
+					</table>
                 </div>
                 
                 
@@ -184,14 +129,125 @@
                         </div>
                     </div>
                 </div>
-                
-               
             </div>
 		</div>	
    					
 	</section>
- 
-
+	
+	
+	<!--  evaluation modal -->
+	<div class="modal fade" id="evaluationModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="fa fa-times"></i></button>
+        <h4 class="modal-title">evaluation</h4>
+      </div>
+      <div class="modal-body">
+   				<form method="POST" action="/evaluation_post" accept-charset="UTF-8" id="evaluationForm" novalidate>
+		            	<div class="control-group">
+		            		<div class="controls">
+			            		<input type="text" style="width:100%" placeholder="제목" name="title" data-validation-required-message="제목을 입력하세요"  class="form-control" required></input>
+			            		<p class="help-block "></p>
+		            		</div>
+		            	</div>
+		        
+		           		<div class="control-group">
+		           			<div class="controls">
+			                	<textarea  id="evaluate_message" style="width:100%" maxlength="1000" name="evaluate_message"
+			                	placeholder="강의평을 입력하세요(1000자이내)" data-validation-required-message="강의평을 입력하세요" class="form-control" rows="4" required></textarea>
+			                	<p class="help-block "></p>
+		                	</div>
+						</div>
+						
+						<div class="control-group">
+						    <label class="control-label">난이도</label>
+						    <div class="controls">
+								 <span class="btn-group" data-toggle="buttons">
+									 
+									  <label class="btn btn-primary">
+									    <input type="radio" name="difficulty" id="option1" value="1" data-validation-required-message="난이도를 선택하세요" required>1
+									  </label>
+									  <label class="btn btn-primary">
+									    <input type="radio" name="difficulty" id="option2" value="2" data-validation-required-message="난이도를 선택하세요" required> 2
+									  </label>
+									  <label class="btn btn-primary">
+									    <input type="radio" name="difficulty" id="option3" value="3" data-validation-required-message="난이도를 선택하세요" required> 3
+									  </label>
+									   <label class="btn btn-primary">
+									    <input type="radio" name="difficulty" id="option4" value="4" data-validation-required-message="난이도를 선택하세요" required> 4
+									  </label>
+									   <label class="btn btn-primary">
+									    <input type="radio" name="difficulty" id="option5" value="5" data-validation-required-message="난이도를 선택하세요" required> 5
+									  </label>
+								 </span>
+								 <span class="help-block"></span>
+						    </div>
+					    </div>
+					    
+					    
+					    <div class="control-group">
+					    <label class="control-label">학점만족도</label>
+						    <div class="controls">
+						    	    
+								 <span class="btn-group" data-toggle="buttons"   >
+									 
+									  <label class="btn btn-danger">
+									    <input type="radio" name="satisfaction" id="option1" value="1" data-validation-required-message="학점만족도를 선택하세요" required>1
+									  </label>
+									  <label class="btn btn-danger">
+									    <input type="radio" name="satisfaction" id="option2" value="2" data-validation-required-message="학점만족도를 선택하세요" required> 2
+									  </label>
+									  <label class="btn btn-danger">
+									    <input type="radio" name="satisfaction" id="option3" value="3" data-validation-required-message="학점만족도를 선택하세요" required> 3
+									  </label>
+									   <label class="btn btn-danger">
+									    <input type="radio" name="satisfaction" id="option4" value="4" data-validation-required-message="학점만족도를 선택하세요" required> 4
+									  </label>
+									   <label class="btn btn-danger">
+									    <input type="radio" name="satisfaction" id="option5" value="5" data-validation-required-message="학점만족도를 선택하세요" required> 5
+									  </label>
+								 </span>
+								 <p class="help-block "></p>
+						    </div>
+					    </div>
+					    
+					    
+					    <div class="control-group">
+					    <label class="control-label">총 평점</label>
+						    <div class="controls">
+						    	    
+								 <span class="btn-group" data-toggle="buttons"  >
+									 
+									  <label class="btn btn-success">
+									    <input type="radio" name="totalScore" id="option1" value="1" data-validation-required-message="총평점을 선택하세요" required>1
+									  </label>
+									  <label class="btn btn-success">
+									    <input type="radio" name="totalScore" id="option2" value="2" data-validation-required-message="총평점을 선택하세요" required> 2
+									  </label>
+									  <label class="btn btn-success">
+									    <input type="radio" name="totalScore" id="option3" value="3" data-validation-required-message="총평점을 선택하세요" required> 3
+									  </label>
+									   <label class="btn btn-success">
+									    <input type="radio" name="totalScore" id="option4" value="4" data-validation-required-message="총평점을 선택하세요" required> 4
+									  </label>
+									   <label class="btn btn-success">
+									    <input type="radio" name="totalScore" id="option5" value="5" data-validation-required-message="총평점을 선택하세요" required> 5
+									  </label>
+								 </span>
+								 <p class="help-block "></p>
+						    </div>
+					    </div>
+					 
+		                <button class="btn btn-info" type="submit">강의평 달기</button>
+		       
+		            </form>
+        	
+      </div>
+    
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
    
 
     <!-- Footer -->
@@ -213,6 +269,8 @@
             <i class="fa fa-chevron-up"></i>
         </a>
     </div>
+    
+    
 
   
     
@@ -230,7 +288,7 @@
 
     
     <!-- Validation JavaScript -->
-    <script src="js/jqBootstrapValidation.js"></script>
+    <script src="../../js/jqBootstrapValidation.js"></script>
  
     <!-- MultiSelect JavaScript -->
     <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.6.3/js/bootstrap-select.min.js"></script>
@@ -238,6 +296,11 @@
   	<script type="text/javascript" src="../../js/evaluation_init.js"></script>
   	<!-- socket.io CDN JavaScript -->
   	<script src="https://cdn.socket.io/socket.io-1.3.2.js"></script>
+  	
+  	<!-- bootstrap-table plugin -->
+  	<script src="../../bootstrap-table.js"></script>
+	<!-- put your locale files after bootstrap-table.js -->
+	<script src="../../bootstrap-table-zh-CN.js"></script>
   	
 
 </body>
