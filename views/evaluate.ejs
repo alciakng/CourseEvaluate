@@ -29,12 +29,16 @@
 
 
 	<!-- Ajax Table CSS CDN Link -->
-	<link rel="stylesheet" href="../../bootstrap-table.css">
+	<link rel="stylesheet" href="../../css/bootstrap-table.css">
+	<!-- table filter plugin -->
+	<link rel="stylesheet" href="../../css/bootstrap-table-filter.css">
 	
-	<!-- Reponsive Table CSS CDN Link -->
+	<!--Reponsive Table CSS CDN Link-->
 	<link href="//cdn.datatables.net/responsive/1.0.3/css/dataTables.responsive.css" rel="stylesheet" type="text/css">
-	<!-- Custom CSS -->
+	<!--Custom CSS-->
     <link href="../../css/evaluate.css" rel="stylesheet">
+    <!--simple Slidebar-->
+    <link href="../../css/simple-slidebar.css" rel="stylesheet">
 	
 
 	
@@ -52,14 +56,30 @@
 	</script>
 </head>
 
-<body id="page-top" class="index">
+<body id="page-top">
 
+	<div id="wrapper" class>
+		<div id="sidebar-wrapper">
+	            <ul class="sidebar-nav">
+	                <li class="sidebar-brand">
+	                    <a href="#">
+	                        Start Bootstrap
+	                    </a>
+	                </li>
+	            </ul>
+	    </div>
+	
+	  <div id="page-content-wrapper">
     <!-- Navigation -->
     <nav class="navbar navbar-default navbar-fixed-top">
         <div class="container">
             <!-- Brand and toggle get grouped for better mobile display -->
+            
+           
+            
             <div class="navbar-header page-scroll">
-                <a class="navbar-brand" id ="room_name" href="#page-top"><%=data[0]%>(<%=data[1]%>)</a>
+             	<a class="navbar-minimalize minimalize-styl-2 btn btn-primary" id="menu-toggle" href="#menu-toggle"><i class="fa fa-bars"></i> </a>
+                <a class="navbar-brand"  id ="room_name" href="#page-top"><%=data[0]%>(<%=data[1]%>)</a>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
@@ -68,32 +88,80 @@
         </div>
         <!-- /.container-fluid -->
     </nav>
-
-    <!-- Header -->
-    <header>
-
-    </header>
     
-
-    <!-- Portfolio Grid Section -->
-    <section>
+   	<section>
     	<div class="container">
-    	
-    				<br>
-           			 <br>
            			 <br>
 	     			
 	     	<div class="row">
                 <div class="col-lg-6">
-                    <table data-url="data1.json" data-height="299" data-show-refresh="true" data-show-toggle="true" data-show-columns="true" data-search="true" data-select-item-name="toolbar1">
+                 <div class="panel eval-panel">
+                        <div class="panel-heading">
+                        <i class="fa  fa-edit"></i>
+                          	 evaluate
+                        <span class="pull-right">
+                        <a href="#" data-toggle="modal" data-target="#evaluationModal"><i class="fa fa-edit"></i></a>
+                        </span>
+                        </div>
+                 <div class="panel-body">
+                    <table id="evalTable" data-pagination="true"  data-show-toggle="true" data-show-columns="true" data-search="true">
 					    <thead>
-					    <tr>
-					        <th data-field="userAlias" data-radio="true">글쓴이</th>
-					        <th data-field="title" data-align="right">제목</th>
-					        <th data-field="price" data-align="left">Item Price</th>
-					    </tr>
+						    <tr>
+						        <th>글쓴이</th>
+						        <th>제목</th>
+						        <th>평가</th>
+						        <th>작성일</th>
+						        <th></th>
+						    </tr>
 					    </thead>
+					   	<tbody>
+					   		<% for(var i=0;i<evalData.length;i++){%>
+					   			<tr>
+						   		<td><%=evalData[i].userAlias%></td>
+						   		<td><%=evalData[i].title%></td>
+						   		<td><label>난이도 : </label><%=evalData[i].difficulty %><label>학점만족도 : </label><%=evalData[i].satisfaction %><label>총점 : </label><%=evalData[i].totalScore %></td>
+						   		
+							   		<% var date = new Date()%>
+							   		<% var year = date.getFullYear();%>
+							   		<% var month = date.getMonth()+1;%>
+							   		<% if(month<10) month = '0'+month; %>
+							   		<% var day = date.getDate();%>
+							   		<% if(day<10) day = '0'+day;%>
+							   		<% var currentDate = year+"-"+month+"-"+day;%>
+							   		<% if(evalData[i].evalTime.substring(0,10)==currentDate){%>
+							   		<td><%=evalData[i].evalTime.substring(11,20)%></td>
+							   		<%}%>
+							   		<% if(evalData[i].evalTime.substring(0,10)!=currentDate){%>
+							   		<td><%=evalData[i].evalTime.substring(0,10)%></td>
+							   		<%}%>
+						   		
+						   		<% if(nickname==evalData[i].userAlias){%>
+							   		<td>
+								   		<a class="like" id="<%=evalData[i].evalNO%>" href="/evalView/<%=evalData[i].evalNo%>" title="더보기">
+							                <i class="glyphicon glyphicon-search"></i>
+							            </a>
+							            <a class="edit ml10" id="<%=evalData[i].evalNO%>" href="" title="수정하기">
+							                <i class="glyphicon glyphicon-wrench"></i>
+							            </a>
+							            <a class="remove ml10" id="<%=evalData[i].evalNO%>" href="" title="삭제하기">
+							                <i class="glyphicon glyphicon-trash"></i>
+							            </a>
+						            </td>
+					            <%}%>
+					            <% if(nickname!=evalData[i].userAlias){%>
+					            	<td>
+								   		<a class="like" href="#" title="더보기">
+							                <i class="glyphicon glyphicon-search"></i>
+							            </a>
+							        </td>
+							     <%}%>
+					      
+						   		</tr>
+					   		<%}%>
+					   	</tbody>
 					</table>
+					</div>
+					</div>	
                 </div>
                 
                 
@@ -131,10 +199,7 @@
                 </div>
             </div>
 		</div>	
-   					
 	</section>
-	
-	
 	<!--  evaluation modal -->
 	<div class="modal fade" id="evaluationModal">
   <div class="modal-dialog">
@@ -144,7 +209,7 @@
         <h4 class="modal-title">evaluation</h4>
       </div>
       <div class="modal-body">
-   				<form method="POST" action="/evaluation_post" accept-charset="UTF-8" id="evaluationForm" novalidate>
+   				<form method="POST" action="/evaluationPost" accept-charset="UTF-8" id="evaluationForm" novalidate>
 		            	<div class="control-group">
 		            		<div class="controls">
 			            		<input type="text" style="width:100%" placeholder="제목" name="title" data-validation-required-message="제목을 입력하세요"  class="form-control" required></input>
@@ -156,7 +221,7 @@
 		           			<div class="controls">
 			                	<textarea  id="evaluate_message" style="width:100%" maxlength="1000" name="evaluate_message"
 			                	placeholder="강의평을 입력하세요(1000자이내)" data-validation-required-message="강의평을 입력하세요" class="form-control" rows="4" required></textarea>
-			                	<p class="help-block "></p>
+			                	<p class="help-block"></p>
 		                	</div>
 						</div>
 						
@@ -270,9 +335,9 @@
         </a>
     </div>
     
-    
+    </div>
 
-  
+  </div>
     
 
     <!-- jQuery -->
@@ -298,9 +363,9 @@
   	<script src="https://cdn.socket.io/socket.io-1.3.2.js"></script>
   	
   	<!-- bootstrap-table plugin -->
-  	<script src="../../bootstrap-table.js"></script>
-	<!-- put your locale files after bootstrap-table.js -->
-	<script src="../../bootstrap-table-zh-CN.js"></script>
+  	<script src="../../js/bootstrap-table.js"></script>
+   	<script src="../../js/bootstrap-table-ko-KR.js"></script>
+   	<script src="../../js/bootstrap-table-filter.js"></script>
   	
 
 </body>

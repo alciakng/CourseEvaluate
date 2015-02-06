@@ -1,6 +1,5 @@
-/**
- * New node file
- */
+//**New node file**//
+
 //request 모듈.학교 api 받아오기 위해 사용.
 var request = require('request');
 
@@ -25,6 +24,12 @@ exports.init = function(req,res){
 	  //index Load
 	
 	  res.render("index");
+}
+
+//slide loading 
+exports.slide = function(req,res){
+	
+	res.render("evaluation");
 }
 
 //userpage loading 함수
@@ -92,8 +97,8 @@ exports.evaluate = function(req,res){
 	
 	//강의 페이지 상단에 강좌-교수 정보를 표시하기 위한 객체.
 	var course_data=[];
-	var course_name = req.params.csnm+"("+req.params.pfnm+")";
-	var evalDatas = [];
+	var course_name = req.params.csnm+req.params.pfnm;
+	
 	
 	//url을 parsing하여 객체에 추가.
 	course_data.push(req.params.csnm);
@@ -119,12 +124,53 @@ exports.evaluate = function(req,res){
 	
 	//console.log(evalDatas);
 	
+}
+
+//evaluationLoad
+exports.evalView =function(req,res){
 	
+	var evalNo = req.params.evalNo;
+	var evalData;
+	var replyData;
 	
+	//db에서 평가정보를 받아온다.
+	db.getConnection(function(err,connection){
+        connection.query("SELECT *,DATE_FORMAT(evaluationTime,'%Y-%m-%d %h:%i %p') as evalTime FROM evaluation WHERE evalNo =?",[evalNo], function(err, evalData) {
+        	//배열복사
+        	connection.query("SELECT *,DATE_FORMAT(replyTime,'%Y-%m-%d %h:%i %p') as replyTime FROM reply WHERE evalNo =?",[evalNo], function(err, replyData) {
+            	//배열복사
+            	console.log(replyData);
+            		 res.render("evalView",{
+            	        	evalData : evalData,
+            	        	replyData : replyData
+            	        })
+            });  
+        	
+        });  
+
+        connection.release();
+     });
+};
+
+//evaluationReply
+exports.reply = function(req,res){
+	
+	var evaluationNo = req.params.evaluationNo;
+	var replyText = req.body.replyText;
+	
+	db.getConnection(function(err,connection){
+	   	 connection.query("insert into reply(userNo,userAlias,evalNo,replyText) values(?,?,?,?)",[req.user.userNo,req.user.alias,evaluationNo,replyText], function(err, rows){
+	   		 connection.release();
+	   		 if(err) alert("에러발생");
+	   		 else
+	   		 res.redirect('/evalView/'+evaluationNo);
+	   		 
+			});
+	   	});
 }
 
 //evaluate_post 함수.
-exports.evaluation_post = function(req,res){
+exports.evaluationPost = function(req,res){
 	
 	console.log(req.body.evaluate_message);
 	//console.log(req.body.evaluate_select);
@@ -172,7 +218,6 @@ exports.loginSession = function(req,res){
 }
 
 //passport configuration
-
 exports.pass = function(passport){
 
 	passport.serializeUser(function(user,done){
@@ -304,8 +349,7 @@ exports.email_validation = function(req,res){
 };
 
 //별칭 중복확인
-exports.alias_validation = function(req,res){
-		
+exports.alias_validation = function(req,res){		
 	db.getConnection(function(err,connection){
 		
 		console.log(req.param("value"));
@@ -335,5 +379,54 @@ exports.alias_validation = function(req,res){
 		});
 	});
 };
+
+//autocomplete
+exports.courseSearch = function(req,res){
+	//input에 입력된 keyword
+	var keyword = req.body.term;
+	
+	var headers = {
+		    'User-Agent':       'Super Agent/0.0.1',
+		    'Content-Type':     "application/xml"	
+	}
+	
+	 //api get options.옵션 content-type,encoding 아직 이해하지 못했음..
+	 var options = {
+			 url : 'http://wise.uos.ac.kr/uosdoc/api.ApiApiSubjectList.oapi',
+			 method:'GET',
+			 headers:headers,
+			 encoding:'binary',
+			 qs: {'apiKey': '201501195EQW98965','year':'2014','term':'A10','subjectNm':keyword}
+	 };
+	
+	console.log("Let's Start courseLoad");
+	//request 동작. 
+	
+	request(options, function (error, response, body) {
+	    if(error) console.log("에러에러(wise 점검 및 인터넷 연결 안됨)");
+	    if (!error && response.statusCode == 200) {
+	    	
+	    	//받아온 데이터의 euc-kr 형식을 ut8로 변환
+	    	var data = new Buffer(body, 'binary');
+	    	
+	    	var data_utf8 = euckr2utf8.convert(data).toString();
+	    
+	    	//받아온 강의 데이터 xml 형식을 json으로 변환.
+	    	var courseData = xm.load(data_utf8).root.mainlist.list;
+	    	
+	    	//Array를  클라이언트로 전송.
+			res.send(courseData);
+	    }
+	});
+}
+
+
+
+
+
+
+
+
+
 
 

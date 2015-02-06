@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="EUC-KR">
+	<title>서울시립대 강의평가</title>
+ 	<meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Simple Sidebar - Start Bootstrap Template</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="../../css/bootstrap.min.css" rel="stylesheet">
+    <!-- evalView css -->
+    <link href="../../css/evalView.css" rel="stylesheet">
+    <!-- font-awesome -->
+    <link href="../../font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div class="container" id="content">
+<div class="topic">
+		<ul id="post-container" class="posts" data-tid="3791">
+			<li class="post-row" data-pid="26936" data-uid="3984" data-username="akumbhare" data-userslug="akumbhare" data-index="0">
+				<div class="topic-item">
+					<div class="topic-body">
+						<div class="row">
+							<div class="col-md-12">
+								<div class="topic-text">
+									<h3 class="topic-title">
+									 <p id="topic_title_26936" class="topic-title" itemprop="name"><i class="fa fa-thumb-tack hide"></i> <i class="fa fa-lock hide"></i><%=evalData[0].title%></p>
+									   <hr>
+									</h3>
+									<div id="content_26936" class="post-content" itemprop="text">
+										<%=evalData[0].evaluation%>
+										<div class="row">
+										</div></div>
+									
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="topic-footer">
+						<div class="row">
+							<div class="">
+								<small class="pull-right">
+							
+									<span>Posts</span>
+									<strong><span class="topic-post-count human-readable-number" title="1">1</span></strong> |
+									<span>Views</span>
+									<strong><span class="human-readable-number" title="4">4</span></strong>
+						
+									<span>
+												<i class="fa fa-circle status offline" title="Offline"></i>
+										<span class="username-field" data-username="akumbhare" data-uid="3984">
+																						<strong><a href="/user/akumbhare" itemprop="author"><%=evalData[0].userAlias%></a></strong> posted <span class="timeago" title="2015-02-05T06:36:01.224Z"><%=evalData[0].evalTime%></span>
+										</span>
+									</span>
+
+									
+								</small>
+
+					
+
+								
+								<a href="#" class="upvote ">
+									<i class="fa fa-chevron-up"></i>
+								</a>
+								<span class="votes" data-votes="0">0</span>
+								<a href="#" class="downvote ">
+									<i class="fa fa-chevron-down"></i>
+								</a>
+
+							
+							</div>
+						</div>
+					</div>
+				</div>
+			</li>
+					
+			<li class="post-bar" data-index="0">
+				<form method="POST" action="/reply/<%=evalData[0].evalNo%>" accept-charset="UTF-8" id="replyForm" novalidate>
+					<div class="control-group">
+						<div class="controls">
+							<textarea placeholder="댓글을 입력하세요." name="replyText" data-validation-required-message="댓글을 입력하세요." rows="3" type"text" class="form-control" style="width:100%" required></textarea>
+							<p class="help-block"></p>
+						</div>
+					</div>
+					<br>
+						<button type="submit" class="btn btn-primary" style="float:right">댓글달기</button>
+					<div style="clear:both;"></div>
+				</form>
+			</li>
+			
+			
+			
+			<% if(replyData!=undefined){%>
+			<% for(var i=0;i<replyData.length; i++){%>					
+			<li class="post-row" data-pid="2274" data-uid="2" data-username="julian" data-userslug="julian" data-index="1" data-timestamp="1388257563869" data-votes="0" itemscope="" itemtype="http://schema.org/Comment" style="display: list-item;">
+
+				<div class="topic-item">
+					<div class="topic-body">
+						<div class="row">
+							<div class="col-md-12">
+								<div class="topic-text">
+									<div id="content_2274" class="post-content" itemprop="text">
+									<p><%=replyData[i].replyText%></p>
+										<div class="row">
+
+										</div></div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="topic-footer">
+						<div class="row">
+							<div class="">
+								<small class="pull-right">
+									<span>
+																				<i class="fa fa-circle status offline" title="Offline"></i>
+										<span class="username-field" data-username="julian" data-uid="2">
+																						<strong><a href="/user/julian" itemprop="author"><%=replyData[i].userAlias%></a></strong> posted <span class="timeago" title="2013-12-28T19:06:03.869Z"><%=replyData[i].replyTime%></span>
+										</span>
+									</span>
+
+									
+								</small>
+
+								
+							</div>
+						</div>
+					</div>
+				</div>
+			</li>
+			<%}%>
+			<%}%>
+						</ul>	
+		
+	
+ 		<!-- jQuery -->
+	    <script src="../../js/jquery.js"></script>
+	
+	    <!-- Bootstrap Core JavaScript -->
+	    <script src="../../js/bootstrap.min.js"></script>
+</div>
+</div>
+</body>
+</html>

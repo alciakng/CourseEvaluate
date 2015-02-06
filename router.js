@@ -12,9 +12,10 @@ exports.route = function(app,passport){
 	app.get('/courseLoad',task.courseLoad);
 	//csnm은 강의명 pfnm은 교수명
 	app.get('/evaluate/:csnm/:pfnm',task.evaluate);
-	//rmnm(roomname)은 강의명+교수명
-	app.post('/evaluation_post/:rmnm',task.evaluation_post);
+	app.get('/evalView/:evalNo',task.evalView);
 	
+	//rmnm(roomname)은 강의명+교수명
+	app.post('/evaluationPost/:rmnm',task.evaluationPost);
 	
 	app.get('/authenticatepage',task.authenticatepage);
 	//app.get('/login',task.login);
@@ -26,11 +27,14 @@ exports.route = function(app,passport){
 	    failureFlash:true
 	}),task.loginSession);
 	
+	
 	app.post('/signup',passport.authenticate('local-signup',{
         successRedirect:'/',
         failureRedirect:'/signup',
         failureFlash:true
     }))
+    
+    
 	//modal 방식으로 로그인 구현한 예제
 	/*
 	app.post('/login',function(req, res, next) {
@@ -55,6 +59,7 @@ exports.route = function(app,passport){
         })(req, res, next);
     });
 	*/
+    //로그아웃시..
     app.get('/logout', function(req, res){
 	    req.logout();
 	    res.redirect('/');
@@ -63,5 +68,15 @@ exports.route = function(app,passport){
 	
 	app.get('/email_validation',task.email_validation);
 	app.get('/alias_validation',task.alias_validation);
+	
+	//test 
+	app.get('/evaluation',task.slide);
+	
+	//autocomplete
+	app.post('/courseSearch',task.courseSearch);
+	
+	//evaluation reply
+	app.post('/reply/:evaluationNo',task.reply);
+	
 };
 

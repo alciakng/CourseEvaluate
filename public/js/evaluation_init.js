@@ -4,15 +4,33 @@
 
 
 $(function() {
-//twitter bootstrap script
+
 	
-   // evaluation_post();
+    //evaluationTable Load
+	//TableLoad();
+	
+    $("#menu-toggle").click(function(e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("toggled");
+    });
+    
+	$('#evalTable').bootstrapTable();
+	
+	//socket_init
     socket_init();
     
-    $('#evaluationForm').find('input,select,textarea').not('[type=submit]').jqBootstrapValidation({
+    //evaluation_post
+    evaluation_post();
+})
+
+
+//evaluation_post function
+var evaluation_post = function(){
+    
+	$('#evaluationForm').find('input,select,textarea').not('[type=submit]').jqBootstrapValidation({
 
         submitSuccess: function ($form, event) {
-        	var courseName = document.getElementById('room_name').innerHTML;
+        	var courseName = localStorage.getItem('roomName');
         	
         	 $.ajax({
                  url: $form.attr('action')+"/"+courseName,
@@ -36,17 +54,7 @@ $(function() {
         }
 
      });
-})
-
-//evaluation_post function
- 
-var evaluation_post = function(){
-    
-    $("#evaluation_form").submit(function(){ 	
-       
-    })
 }
-
 
  //socket_init function
 var socket_init= function(){
@@ -89,23 +97,3 @@ var socket_init= function(){
 
 };
 
-//each evaluation viewing
-var evalView = function(evalNo){
-	alert(evalNo);
-	
-	$.ajax({
-         url: '/evalView',
-         type: "POST",
-         data: evalNo,
-         cache: false,
-         success: function(result){                    	
-        	 if(result.message=="error") alert("평을 불러오는 데 에러가 발생하였습니다! 인터넬 연결 상태를 확인하세요. 혹은 서버 과부하 오류 일 수 있습니다.");
-        	 else{
-        		
-        	 }
-         },
-         error: function() {
-        	
-         },
-	 });
-}
