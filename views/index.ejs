@@ -85,63 +85,49 @@
     <header class="hidden-md hidden-sm hidden-xs">
         <div class="container">
            <div class="row">
-                <div class="col-lg-3 col-md-3 ">
-                    <div class="panel panel-primary">
-                        <div class="panel-heading">
-                            <div class="row">
-                                <div class="col-xs-3">
-                                    <i class="fa fa-comments fa-5x"></i>
-                                </div>
-                                <div class="col-xs-9 text-right">
-                                    <div class="huge"><h4>26개의</h4></div>
-                                    <div><h4>새로운 평가!</h4></div>
-                                </div>
-                            </div>
-                        </div>
-                        <span class="page-scroll">
-	                        <a href="#evaluate_and_search" class="page-scroll">
-	                            <div class="panel-footer">
-		                            <span class="pull-left">최근평가보기</span>
-		                            <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-	                                <div class="clearfix"></div>
-	                            </div>
-	                        </a>
-                        </span>
-                    </div>
-                     <div class="panel panel-primary">
-	                        
-	                        <div class="panel-heading">
-	                            <div class="row">
-	                                <div class="col-xs-3">
-	                                    <i class="fa fa-tasks fa-5x"></i>
-	                                </div>
-	                                <div class="col-xs-9 text-right">
-	                                    <div class="huge"><h4>12개의</h4></div>
-	                                    <div><h4>강의들!</h4></div>
-	                                </div>
-	                            </div>
-	                        </div>
-                        
-	                        <span class="page-scroll">
-		                        <a href="#evaluate_and_search">
-		                            <div class="panel-footer">
-		                                <span class="pull-left">강좌보기</span>
-		                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-		                                <div class="clearfix"></div>
-		                            </div>
-		                        </a>
-	                        </span>
-                    </div>
+           		<div class="col-lg-4 col-md-4">
+           			<div class="panel index-header-panel">
+           				<div class="panel-heading">공지사항</div>
+           			</div>
+           		</div>
                 
-                </div>
-                
-                
-                <div class="col-lg-6 col-md-6">
-                
-                </div>
-               
-                   
-               
+                <div class="col-lg-4 col-md-4">
+                	<div class="panel index-header-panel">
+                		<div class="panel-heading">최근평가</div>
+                			<div class="panel-body">
+					             <div class="category-box">
+					             	<% for(var i=0;i<recentEval.length;i++){%>
+									 <div class="post-preview clearfix">
+										<div class="post-preview-content">
+										  <strong>
+										  <a href="/evalView/<%=recentEval[i].evalNo%>"><%=recentEval[i].title%></a>
+										  </strong>
+											<hr>
+											 <div class="content">
+												<p><a class="plugin-mentions-a" href="/user/baris"><%=recentEval[i].userAlias%></a> 
+													<%=recentEval[i].evaluation%>
+												</p>
+					
+											 </div>
+											    <div class="fade-out"></div>
+												</div>
+												<span class="pull-right footer">
+													<span class="timeago" title="2015-02-06T02:21:41.604Z"><%=recentEval[i].evalTime%></span> •
+													<a href="/evalView/<%=recentEval[i].evalNo%>">read more</a>
+												</span>
+											</div>
+											<%}%>
+											
+										</div>
+							</div>
+						</div>
+                	</div>
+                	
+                	<div class="col-lg-4 col-md-4">
+           				<div class="panel index-header-panel">
+           				  <div class="panel-heading">건의사항</div>
+           				</div>
+           			</div>
             </div>
         </div>
     </header>

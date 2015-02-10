@@ -19,11 +19,10 @@ app.set('port', process.env.PORT || 3000);
 app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
 
-
 //req.flash를 쓰기 위한 설정. 
 app.configure(function() {
 	app.use(express.cookieParser('keyboard cat'));
-	app.use(express.session({ cookie: { maxAge: 3600000}}));
+	app.use(express.session({ cookie: { maxAge: 36000000}}));
 	app.use(flash());
 });
 
@@ -40,17 +39,12 @@ app.use(app.router);
 app.use(express.static(path.join(__dirname, 'public')));
 
 
-
-
-
 // development only
 if ('development' == app.get('env')) {
   app.use(express.errorHandler());
 }
 
-
 require('./router.js').route(app,passport);
-
 
 var httpServer =http.createServer(app).listen(app.get('port'), function(){
   console.log('Socket IO Server has been started');

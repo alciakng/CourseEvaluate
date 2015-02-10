@@ -7,8 +7,8 @@ var task = require('./controllers/task-controller.js')
 
 exports.route = function(app,passport){
 
-	app.get('/',task.init);
-	app.get('/user/:alias',task.userpage);
+	app.get('/',task.ensureAuthenticated,task.userpage);
+	
 	app.get('/courseLoad',task.courseLoad);
 	//csnm은 강의명 pfnm은 교수명
 	app.get('/evaluate/:csnm/:pfnm',task.evaluate);
@@ -27,6 +27,10 @@ exports.route = function(app,passport){
 	    failureFlash:true
 	}),task.loginSession);
 	
+	app.get('/logout', function(req, res){
+		  req.logout();
+		  res.redirect('/');
+		});
 	
 	app.post('/signup',passport.authenticate('local-signup',{
         successRedirect:'/',
@@ -69,8 +73,6 @@ exports.route = function(app,passport){
 	app.get('/email_validation',task.email_validation);
 	app.get('/alias_validation',task.alias_validation);
 	
-	//test 
-	app.get('/evaluation',task.slide);
 	
 	//autocomplete
 	app.post('/courseSearch',task.courseSearch);

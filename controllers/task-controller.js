@@ -19,23 +19,44 @@ var bcrypt = require('bcrypt-nodejs');
 //db 모듈(custom 모듈)
 var db = require('../db.js');
 
-//index init 함수
-exports.init = function(req,res){
-	  //index Load
-	
-	  res.render("index");
+
+
+//로그인이 되어있는지 확인하는 함수.
+exports.ensureAuthenticated= function(req, res, next) {
+    // 로그인이 되어 있으면, 다음 파이프라인으로 진행
+    if (req.isAuthenticated()) { return next(); }
+    // 로그인이 안되어 있으면 index Load
+	db.getConnection(function(err,connection){
+        connection.query("SELECT *,DATE_FORMAT(evaluationTime,'%Y-%m-%d %h:%i %p') as evalTime FROM evaluation ORDER BY evaluationTime DESC LIMIT 2", function(err, rows) {
+        	connection.release();
+        	res.render("index",{
+        		recentEval:rows
+        	});
+        	
+        });
+	});
+    
 }
 
-//slide loading 
-exports.slide = function(req,res){
-	
-	res.render("evaluation");
+//index init 함수
+exports.init = function(req,res){
+	 
 }
 
 //userpage loading 함수
 exports.userpage = function(req,res){
-  res.render("authenticate",{message:req.params.alias});
+	//userpage Load
+	db.getConnection(function(err,connection){
+        connection.query("SELECT *,DATE_FORMAT(evaluationTime,'%Y-%m-%d %h:%i %p') as evalTime FROM evaluation ORDER BY evaluationTime DESC LIMIT 2", function(err, rows) {
+        	connection.release();
+        	res.render("user",{
+        		recentEval:rows
+        	});
+        	
+        });
+	});
 }
+
 
 //강의 로딩 함수(나중에 init이랑 합쳐져야함)
 exports.courseLoad = function(req,res){
@@ -108,7 +129,7 @@ exports.evaluate = function(req,res){
 	//db에서 평가정보를 받아온다.
 	db.getConnection(function(err,connection){
         connection.query("SELECT *,DATE_FORMAT(evaluationTime,'%Y-%m-%d %h:%i %p') as evalTime FROM evaluation WHERE courseName =?",[course_name], function(err, rows) {
-        	
+        	connection.release();
         	//console.log(rows);
         	//evaluate page로 전송.
         	res.render("evaluate.ejs",
@@ -118,7 +139,7 @@ exports.evaluate = function(req,res){
         	            evalData : rows
         			});
         	
-        	connection.release();
+        	
         });
 	});
 	
@@ -384,6 +405,8 @@ exports.alias_validation = function(req,res){
 exports.courseSearch = function(req,res){
 	//input에 입력된 keyword
 	var keyword = req.body.term;
+	
+	console.log(keyword);
 	
 	var headers = {
 		    'User-Agent':       'Super Agent/0.0.1',

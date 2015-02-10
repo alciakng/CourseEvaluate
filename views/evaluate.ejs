@@ -36,7 +36,7 @@
 	<!--Reponsive Table CSS CDN Link-->
 	<link href="//cdn.datatables.net/responsive/1.0.3/css/dataTables.responsive.css" rel="stylesheet" type="text/css">
 	<!--Custom CSS-->
-    <link href="../../css/evaluate.css" rel="stylesheet">
+    <link href="../../css/sb-admin-2.css" rel="stylesheet">
     <!--simple Slidebar-->
     <link href="../../css/simple-slidebar.css" rel="stylesheet">
 	
@@ -58,47 +58,53 @@
 
 <body id="page-top">
 
-	<div id="wrapper" class>
-		<div id="sidebar-wrapper">
-	            <ul class="sidebar-nav">
-	                <li class="sidebar-brand">
-	                    <a href="#">
-	                        Start Bootstrap
-	                    </a>
-	                </li>
-	            </ul>
-	    </div>
-	
-	  <div id="page-content-wrapper">
-    <!-- Navigation -->
-    <nav class="navbar navbar-default navbar-fixed-top">
-        <div class="container">
-            <!-- Brand and toggle get grouped for better mobile display -->
-            
-           
-            
-            <div class="navbar-header page-scroll">
-             	<a class="navbar-minimalize minimalize-styl-2 btn btn-primary" id="menu-toggle" href="#menu-toggle"><i class="fa fa-bars"></i> </a>
-                <a class="navbar-brand"  id ="room_name" href="#page-top"><%=data[0]%>(<%=data[1]%>)</a>
-            </div>
+	<div id="wrapper">
 
-            <!-- Collect the nav links, forms, and other content for toggling -->
-           
-            <!-- /.navbar-collapse -->
-        </div>
-        <!-- /.container-fluid -->
-    </nav>
-    
-   	<section>
-    	<div class="container">
-           			 <br>
-	     			
-	     	<div class="row">
-                <div class="col-lg-6">
+        <!-- Navigation -->
+        <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+           <div class="navbar-header page-scroll">
+                <a class="navbar-brand"  id ="room_name" href="#page-top">UOS EVALUATE</a>
+            </div>
+            <!-- /.navbar-header -->
+
+          
+
+            <div class="navbar-default sidebar" role="navigation">
+                <div class="sidebar-nav navbar-collapse">
+                    <ul class="nav" id="side-menu">
+                        <li class="sidebar-search">
+                            <div class="input-group custom-search-form">
+                                <input type="text" class="form-control" placeholder="강의검색">
+                                <span class="input-group-btn">
+                                <button class="btn btn-default" type="button">
+                                    <i class="fa fa-search"></i>
+                                </button>
+                            </span>
+                            </div>
+                            <!-- /input-group -->
+                        </li>
+                       
+                    </ul>
+                </div>
+                <!-- /.sidebar-collapse -->
+            </div>
+            <!-- /.navbar-static-side -->
+        </nav>
+
+        <div id="page-wrapper">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h1 class="page-header"><%=data[0]%>(<%=data[1]%>)</h1>
+                </div>
+                <!-- /.col-lg-12 -->
+            </div>
+            
+            <div class="row">
+                <div class="col-lg-12">
                  <div class="panel eval-panel">
                         <div class="panel-heading">
                         <i class="fa  fa-edit"></i>
-                          	 evaluate
+                          	 Evaluate
                         <span class="pull-right">
                         <a href="#" data-toggle="modal" data-target="#evaluationModal"><i class="fa fa-edit"></i></a>
                         </span>
@@ -163,10 +169,10 @@
 					</div>
 					</div>	
                 </div>
+              </div>  
                 
-                
-                
-                <div class="col-lg-6">
+              <div class="row">
+                <div class="col-lg-12">
                     <div class="panel chat-panel">
                         <div class="panel-heading">
                         <i class="fa fa-comments fa-fw"></i>
@@ -198,9 +204,9 @@
                     </div>
                 </div>
             </div>
-		</div>	
-	</section>
-	<!--  evaluation modal -->
+            
+            
+            <!--  evaluation modal -->
 	<div class="modal fade" id="evaluationModal">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -313,20 +319,6 @@
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
-   
-
-    <!-- Footer -->
-    <footer class="text-center">
-        <div class="footer-below">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-12">
-                       UOS Evaluate By JongHwanKim
-                    </div>
-                </div>
-            </div>
-        </div>
-    </footer>
 
     <!-- Scroll to Top Button (Only visible on small and extra-small screen sizes) -->
     <div class="scroll-top page-scroll visible-xs visble-sm">
@@ -334,10 +326,15 @@
             <i class="fa fa-chevron-up"></i>
         </a>
     </div>
-    
-    </div>
+            
+            
+            
+        </div>
+        <!-- /#page-wrapper -->
 
-  </div>
+    </div>
+    <!-- /#wrapper -->
+	
     
 
     <!-- jQuery -->
