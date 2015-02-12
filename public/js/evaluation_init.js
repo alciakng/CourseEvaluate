@@ -17,15 +17,15 @@ $(function() {
 	$('#evalTable').bootstrapTable();
 	
 	//socket_init
-    socket_init();
+    socketInit();
     
     //evaluation_post
-    evaluation_post();
+    evaluationPost();
 })
 
 
 //evaluation_post function
-var evaluation_post = function(){
+var evaluationPost = function(){
     
 	$('#evaluationForm').find('input,select,textarea').not('[type=submit]').jqBootstrapValidation({
 
@@ -33,7 +33,7 @@ var evaluation_post = function(){
         	var courseName = localStorage.getItem('roomName');
         	
         	 $.ajax({
-                 url: $form.attr('action')+"/"+courseName,
+                 url: $form.attr('action'),
                  type: "POST",
                  data: $form.serialize(),
                  cache: false,
@@ -57,7 +57,7 @@ var evaluation_post = function(){
 }
 
  //socket_init function
-var socket_init= function(){
+var socketInit= function(){
     
  var socket = io.connect('http://localhost:3000');
  

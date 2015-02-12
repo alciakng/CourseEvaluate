@@ -8,9 +8,24 @@ var express = require('express')
   , path = require('path')
   , passport = require('passport')
   , flash = require('connect-flash')
-  , task = require('./controllers/task-controller.js');
+  , user = require('./models/user.js')
+  , eval = require('./models/eval.js')
+  , task = require('./controllers/task-controller.js')
+  , fs =require('fs')
+  , mongoose =require('mongoose');
 
+//express 함수
 var app = express();
+//db 연결
+var connect = function () {
+	  var options = { server: { socketOptions: { keepAlive: 1 } } };
+	  mongoose.connect('mongodb://localhost/CourseEvaluate', options);
+};
+connect();
+
+mongoose.connection.on('error', console.log);
+mongoose.connection.on('disconnected', connect);
+
 
 task.pass(passport);
 

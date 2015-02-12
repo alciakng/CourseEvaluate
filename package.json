@@ -47,5 +47,8 @@
   },
   "dependencies":{
   	  "mongoose":"*"
+  },
+  "dependencies":{
+  	  "crypto":"*"
   }
 }

@@ -36,7 +36,7 @@
 	<!--Reponsive Table CSS CDN Link-->
 	<link href="//cdn.datatables.net/responsive/1.0.3/css/dataTables.responsive.css" rel="stylesheet" type="text/css">
 	<!--Custom CSS-->
-    <link href="../../css/sb-admin-2.css" rel="stylesheet">
+    <link href="../../css/evalView.css" rel="stylesheet">
     <!--simple Slidebar-->
     <link href="../../css/simple-slidebar.css" rel="stylesheet">
 	
@@ -50,10 +50,6 @@
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 
-	<script type="text/javascript">
-		localStorage.setItem('roomName','<%=data[0]%><%=data[1]%>');
-		localStorage.setItem('nickName','<%=nickname%>')
-	</script>
 </head>
 
 <body id="page-top">
@@ -93,83 +89,73 @@
 
         <div id="page-wrapper">
             <div class="row">
-                <div class="col-lg-12">
-                    <h1 class="page-header"><%=data[0]%>(<%=data[1]%>)</h1>
+                <div class="col-lg-10">
+                    <h1 class="page-header"><%=title%></h1>
+                </div>
+                <div class="col-lg-2">
+                	<button data-target="#evaluationModal"  data-toggle="modal">글쓰기</button>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
             
             <div class="row">
                 <div class="col-lg-12">
-                 <div class="panel eval-panel">
-                        <div class="panel-heading">
-                        <i class="fa  fa-edit"></i>
-                          	 Evaluate
-                        <span class="pull-right">
-                        <a href="#" data-toggle="modal" data-target="#evaluationModal"><i class="fa fa-edit"></i></a>
-                        </span>
-                        </div>
-                 <div class="panel-body">
-                    <table id="evalTable" data-pagination="true"  data-show-toggle="true" data-show-columns="true" data-search="true">
-					    <thead>
-						    <tr>
-						        <th>글쓴이</th>
-						        <th>제목</th>
-						        <th>평가</th>
-						        <th>작성일</th>
-						        <th></th>
-						    </tr>
-					    </thead>
-					   	<tbody>
-					   		<% for(var i=0;i<evalData.length;i++){%>
-					   			<tr>
-						   		<td><%=evalData[i].userAlias%></td>
-						   		<td><%=evalData[i].title%></td>
-						   		<td><label>난이도 : </label><%=evalData[i].difficulty %><label>학점만족도 : </label><%=evalData[i].satisfaction %><label>총점 : </label><%=evalData[i].totalScore %></td>
-						   		
-							   		<% var date = new Date()%>
-							   		<% var year = date.getFullYear();%>
-							   		<% var month = date.getMonth()+1;%>
-							   		<% if(month<10) month = '0'+month; %>
-							   		<% var day = date.getDate();%>
-							   		<% if(day<10) day = '0'+day;%>
-							   		<% var currentDate = year+"-"+month+"-"+day;%>
-							   		<% if(evalData[i].evalTime.substring(0,10)==currentDate){%>
-							   		<td><%=evalData[i].evalTime.substring(11,20)%></td>
-							   		<%}%>
-							   		<% if(evalData[i].evalTime.substring(0,10)!=currentDate){%>
-							   		<td><%=evalData[i].evalTime.substring(0,10)%></td>
-							   		<%}%>
-						   		
-						   		<% if(nickname==evalData[i].userAlias){%>
-							   		<td>
-								   		<a class="like" id="<%=evalData[i].evalNO%>" href="/evalView/<%=evalData[i].evalNo%>" title="더보기">
-							                <i class="glyphicon glyphicon-search"></i>
-							            </a>
-							            <a class="edit ml10" id="<%=evalData[i].evalNO%>" href="" title="수정하기">
-							                <i class="glyphicon glyphicon-wrench"></i>
-							            </a>
-							            <a class="remove ml10" id="<%=evalData[i].evalNO%>" href="" title="삭제하기">
-							                <i class="glyphicon glyphicon-trash"></i>
-							            </a>
-						            </td>
-					            <%}%>
-					            <% if(nickname!=evalData[i].userAlias){%>
-					            	<td>
-								   		<a class="like" href="#" title="더보기">
-							                <i class="glyphicon glyphicon-search"></i>
-							            </a>
-							        </td>
-							     <%}%>
-					      
-						   		</tr>
-					   		<%}%>
-					   	</tbody>
-					</table>
-					</div>
+                 
+                   <div class="Evalpage">
+                   	<ul id="eval-container" class="evals">
+                   	<% evals.forEach(function(eval){%>
+		              <li class="eval-row" style="display:list-item;">
+						<div class="EvalPage-item">
+							<div class="EvalPage-body">
+								<div class="row">
+									<div class="col-md-12">
+										<div class="EvalPage-text">
+											<div class="eval-content" itemprop="text">
+											<p><%=eval.body%></p>
+												<div class="row">
+		
+												</div></div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="EvalPage-footer">
+								<div class="row">
+									<div class="">
+										<small class="pull-right">
+											<span>
+																						<i class="fa fa-circle status offline" title="Offline"></i>
+												<span class="username-field" data-username="julian" data-uid="2">
+																								<strong><a href="/user/julian" itemprop="author"><%=eval.user.alias%></a></strong> posted <span class="timeago"><%=eval.createdAt.toISOString()%></span>
+												</span>
+											</span>
+		
+											
+										</small>
+		
+										
+									</div>
+								</div>
+							</div>
+						</div>
+					</li>
+					<%})%>	
+                   	</ul>
+				 </div>
+				 
+			 		
+			 		 <ul id="pagination-demo" class="pagination-sm"></ul>
+			 		 
+			 		 <script>
+				 		$("#pagination-demo").twbsPagination({
+				 	        totalPages: 30,
+				 	        visiblePages: 1,
+				 	        href: '/<%=title%>?page={{page}}'
+				 	    });
+			 		 </script>
+				 </div>
 					</div>	
-                </div>
-              </div>  
+                
                 
               <div class="row">
                 <div class="col-lg-12">
@@ -215,7 +201,7 @@
         <h4 class="modal-title">evaluation</h4>
       </div>
       <div class="modal-body">
-   				<form method="POST" action="/evaluationPost" accept-charset="UTF-8" id="evaluationForm" novalidate>
+   				<form method="POST" action="/evaluationPost/<%=title%>" accept-charset="UTF-8" id="evaluationForm" novalidate>
 		            	<div class="control-group">
 		            		<div class="controls">
 			            		<input type="text" style="width:100%" placeholder="제목" name="title" data-validation-required-message="제목을 입력하세요"  class="form-control" required></input>
@@ -225,7 +211,7 @@
 		        
 		           		<div class="control-group">
 		           			<div class="controls">
-			                	<textarea  id="evaluate_message" style="width:100%" maxlength="1000" name="evaluate_message"
+			                	<textarea  id="body" style="width:100%" maxlength="1000" name="body"
 			                	placeholder="강의평을 입력하세요(1000자이내)" data-validation-required-message="강의평을 입력하세요" class="form-control" rows="4" required></textarea>
 			                	<p class="help-block"></p>
 		                	</div>
@@ -237,19 +223,19 @@
 								 <span class="btn-group" data-toggle="buttons">
 									 
 									  <label class="btn btn-primary">
-									    <input type="radio" name="difficulty" id="option1" value="1" data-validation-required-message="난이도를 선택하세요" required>1
+									    <input type="radio" name="difficulty" value="1" data-validation-required-message="난이도를 선택하세요" required>1
 									  </label>
 									  <label class="btn btn-primary">
-									    <input type="radio" name="difficulty" id="option2" value="2" data-validation-required-message="난이도를 선택하세요" required> 2
+									    <input type="radio" name="difficulty"  value="2" data-validation-required-message="난이도를 선택하세요" required> 2
 									  </label>
 									  <label class="btn btn-primary">
-									    <input type="radio" name="difficulty" id="option3" value="3" data-validation-required-message="난이도를 선택하세요" required> 3
+									    <input type="radio" name="difficulty"  value="3" data-validation-required-message="난이도를 선택하세요" required> 3
 									  </label>
 									   <label class="btn btn-primary">
-									    <input type="radio" name="difficulty" id="option4" value="4" data-validation-required-message="난이도를 선택하세요" required> 4
+									    <input type="radio" name="difficulty"  value="4" data-validation-required-message="난이도를 선택하세요" required> 4
 									  </label>
 									   <label class="btn btn-primary">
-									    <input type="radio" name="difficulty" id="option5" value="5" data-validation-required-message="난이도를 선택하세요" required> 5
+									    <input type="radio" name="difficulty" value="5" data-validation-required-message="난이도를 선택하세요" required> 5
 									  </label>
 								 </span>
 								 <span class="help-block"></span>
@@ -264,19 +250,19 @@
 								 <span class="btn-group" data-toggle="buttons"   >
 									 
 									  <label class="btn btn-danger">
-									    <input type="radio" name="satisfaction" id="option1" value="1" data-validation-required-message="학점만족도를 선택하세요" required>1
+									    <input type="radio" name="satisfaction"  value="1" data-validation-required-message="학점만족도를 선택하세요" required>1
 									  </label>
 									  <label class="btn btn-danger">
-									    <input type="radio" name="satisfaction" id="option2" value="2" data-validation-required-message="학점만족도를 선택하세요" required> 2
+									    <input type="radio" name="satisfaction" value="2" data-validation-required-message="학점만족도를 선택하세요" required> 2
 									  </label>
 									  <label class="btn btn-danger">
-									    <input type="radio" name="satisfaction" id="option3" value="3" data-validation-required-message="학점만족도를 선택하세요" required> 3
+									    <input type="radio" name="satisfaction" value="3" data-validation-required-message="학점만족도를 선택하세요" required> 3
 									  </label>
 									   <label class="btn btn-danger">
-									    <input type="radio" name="satisfaction" id="option4" value="4" data-validation-required-message="학점만족도를 선택하세요" required> 4
+									    <input type="radio" name="satisfaction"  value="4" data-validation-required-message="학점만족도를 선택하세요" required> 4
 									  </label>
 									   <label class="btn btn-danger">
-									    <input type="radio" name="satisfaction" id="option5" value="5" data-validation-required-message="학점만족도를 선택하세요" required> 5
+									    <input type="radio" name="satisfaction" value="5" data-validation-required-message="학점만족도를 선택하세요" required> 5
 									  </label>
 								 </span>
 								 <p class="help-block "></p>
@@ -291,19 +277,19 @@
 								 <span class="btn-group" data-toggle="buttons"  >
 									 
 									  <label class="btn btn-success">
-									    <input type="radio" name="totalScore" id="option1" value="1" data-validation-required-message="총평점을 선택하세요" required>1
+									    <input type="radio" name="totalScore" value="1" data-validation-required-message="총평점을 선택하세요" required>1
 									  </label>
 									  <label class="btn btn-success">
-									    <input type="radio" name="totalScore" id="option2" value="2" data-validation-required-message="총평점을 선택하세요" required> 2
+									    <input type="radio" name="totalScore" value="2" data-validation-required-message="총평점을 선택하세요" required> 2
 									  </label>
 									  <label class="btn btn-success">
-									    <input type="radio" name="totalScore" id="option3" value="3" data-validation-required-message="총평점을 선택하세요" required> 3
+									    <input type="radio" name="totalScore" value="3" data-validation-required-message="총평점을 선택하세요" required> 3
 									  </label>
 									   <label class="btn btn-success">
-									    <input type="radio" name="totalScore" id="option4" value="4" data-validation-required-message="총평점을 선택하세요" required> 4
+									    <input type="radio" name="totalScore" value="4" data-validation-required-message="총평점을 선택하세요" required> 4
 									  </label>
 									   <label class="btn btn-success">
-									    <input type="radio" name="totalScore" id="option5" value="5" data-validation-required-message="총평점을 선택하세요" required> 5
+									    <input type="radio" name="totalScore" value="5" data-validation-required-message="총평점을 선택하세요" required> 5
 									  </label>
 								 </span>
 								 <p class="help-block "></p>
@@ -363,7 +349,8 @@
   	<script src="../../js/bootstrap-table.js"></script>
    	<script src="../../js/bootstrap-table-ko-KR.js"></script>
    	<script src="../../js/bootstrap-table-filter.js"></script>
-  	
+   	<!-- bootstrap-pagination plugin -->
+  	<script src="../../js/jquery.twbsPagination.js"></script>
 
 </body>
 

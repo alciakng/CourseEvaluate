@@ -16,26 +16,21 @@ var LocalStrategy = require('passport-local').Strategy;
 //암호화 모듈
 var bcrypt = require('bcrypt-nodejs');
 
-//db 모듈(custom 모듈)
-var db = require('../db.js');
 
-
+//mongoose 모듈 
+var mongoose = require('mongoose');
+//User모델 정의
+var User = mongoose.model('User');
+var Eval = mongoose.model('Eval');
 
 //로그인이 되어있는지 확인하는 함수.
 exports.ensureAuthenticated= function(req, res, next) {
     // 로그인이 되어 있으면, 다음 파이프라인으로 진행
     if (req.isAuthenticated()) { return next(); }
     // 로그인이 안되어 있으면 index Load
-	db.getConnection(function(err,connection){
-        connection.query("SELECT *,DATE_FORMAT(evaluationTime,'%Y-%m-%d %h:%i %p') as evalTime FROM evaluation ORDER BY evaluationTime DESC LIMIT 2", function(err, rows) {
-        	connection.release();
-        	res.render("index",{
-        		recentEval:rows
-        	});
-        	
-        });
-	});
-    
+    Eval.recentList(function(err,rows){
+    	res.render("index",{recentLists:rows})
+    });
 }
 
 //index init 함수
@@ -46,15 +41,9 @@ exports.init = function(req,res){
 //userpage loading 함수
 exports.userpage = function(req,res){
 	//userpage Load
-	db.getConnection(function(err,connection){
-        connection.query("SELECT *,DATE_FORMAT(evaluationTime,'%Y-%m-%d %h:%i %p') as evalTime FROM evaluation ORDER BY evaluationTime DESC LIMIT 2", function(err, rows) {
-        	connection.release();
-        	res.render("user",{
-        		recentEval:rows
-        	});
-        	
-        });
-	});
+	 Eval.recentList(function(err,rows){
+		    	res.render("user",{recentLists:rows})
+	 });
 }
 
 
@@ -101,10 +90,9 @@ exports.courseLoad = function(req,res){
 				 data['curriculumDiv']=course_array[i].subject_div.$cd;
 				 data['courseName']=course_array[i].subject_nm.$cd;
 				 data['professorName']=course_array[i].prof_nm.$cd;
-				 data['evaluation']='<a href="/evaluate/'+course_array[i].subject_nm.$cd+"/"+course_array[i].prof_nm.$cd+'" class="btn btn-danger btn-xs" data-title="evaluate"><span class="glyphicon glyphicon-pencil"> 평가하기</span></a>'
+				 data['evaluation']='<a href="/evaluate/'+course_array[i].subject_nm.$cd+"("+course_array[i].prof_nm.$cd+")"+'" class="btn btn-danger btn-xs" data-title="evaluate"><span class="glyphicon glyphicon-pencil"> 평가하기</span></a>'
 				 dataSet.push(data);
 			};
-	    	console.log(dataSet);
 	    	
 	    	//Array를  클라이언트로 전송.
 			res.send(dataSet);
@@ -116,61 +104,48 @@ exports.courseLoad = function(req,res){
 //evaluate 페이지 로딩 함수.
 exports.evaluate = function(req,res){
 	
-	//강의 페이지 상단에 강좌-교수 정보를 표시하기 위한 객체.
-	var course_data=[];
-	var course_name = req.params.csnm+req.params.pfnm;
+	//강의 페이지 상단에 강좌-교수 정보를 표시하기 위한 변수
+	  var courseDelimiter = req.params.courseDelimiter;
+	  var page = (req.param('page') > 0 ? req.param('page') : 1) - 1;
+	  var perPage = 20;
+	  
+	 
+	  var options = {
+	    perPage: perPage,
+	    page: page,
+	    criteria :{courseDelimiter : courseDelimiter}
+	  };
 	
-	
-	//url을 parsing하여 객체에 추가.
-	course_data.push(req.params.csnm);
-	course_data.push(req.params.pfnm);
-	console.log(course_name);
-	
-	//db에서 평가정보를 받아온다.
-	db.getConnection(function(err,connection){
-        connection.query("SELECT *,DATE_FORMAT(evaluationTime,'%Y-%m-%d %h:%i %p') as evalTime FROM evaluation WHERE courseName =?",[course_name], function(err, rows) {
-        	connection.release();
-        	//console.log(rows);
-        	//evaluate page로 전송.
-        	res.render("evaluate.ejs",
-        			{
-        	            data : course_data,
-        	            nickname : req.user.alias,
-        	            evalData : rows
-        			});
-        	
-        	
-        });
-	});
-	
-	//console.log(evalDatas);
-	
+	  Eval.list(options, function (err, evals){
+	    if(err) return res.render('500');
+	    Eval.count({courseDelimiter:courseDelimiter}).exec(function (err, count) {
+	      res.render('evaluate.ejs', {
+	        title: courseDelimiter,
+	        evals: evals,
+	        page: page + 1,
+	        pages: Math.ceil(count / perPage)
+	      });
+	    });
+	  });
 }
+
+
+exports.load = function (req, res, next, id){
+
+	  Eval.load(id, function (err, eval) {
+	    if (err) return next(err);
+	    if (!eval) return next(new Error('not found'));
+	    req.eval = eval;
+	    next();
+	  });
+};
 
 //evaluationLoad
 exports.evalView =function(req,res){
-	
-	var evalNo = req.params.evalNo;
-	var evalData;
-	var replyData;
-	
-	//db에서 평가정보를 받아온다.
-	db.getConnection(function(err,connection){
-        connection.query("SELECT *,DATE_FORMAT(evaluationTime,'%Y-%m-%d %h:%i %p') as evalTime FROM evaluation WHERE evalNo =?",[evalNo], function(err, evalData) {
-        	//배열복사
-        	connection.query("SELECT *,DATE_FORMAT(replyTime,'%Y-%m-%d %h:%i %p') as replyTime FROM reply WHERE evalNo =?",[evalNo], function(err, replyData) {
-            	//배열복사
-            	console.log(replyData);
-            		 res.render("evalView",{
-            	        	evalData : evalData,
-            	        	replyData : replyData
-            	        })
-            });  
-        	
-        });  
-
-        connection.release();
-     });
+	res.render('evalView', {
+	    title: req.eval.title,
+	    eval: req.eval
+	  });
 };
 
 //evaluationReply
@@ -178,7 +153,7 @@ exports.reply = function(req,res){
 	
 	var evaluationNo = req.params.evaluationNo;
 	var replyText = req.body.replyText;
-	
+	/*
 	db.getConnection(function(err,connection){
 	   	 connection.query("insert into reply(userNo,userAlias,evalNo,replyText) values(?,?,?,?)",[req.user.userNo,req.user.alias,evaluationNo,replyText], function(err, rows){
 	   		 connection.release();
@@ -188,6 +163,7 @@ exports.reply = function(req,res){
 	   		 
 			});
 	   	});
+	 */
 }
 
 //evaluate_post 함수.
@@ -196,20 +172,15 @@ exports.evaluationPost = function(req,res){
 	console.log(req.body.evaluate_message);
 	//console.log(req.body.evaluate_select);
 	
-	var evaluation=req.body.evaluate_message;
-	//파라미터로 전송한 rmnm(기본키:강의명+교수명)을 파싱해서 받아온다.
-	var courseName = req.params.rmnm;
-	var title = req.body.title;
-	var difficulty = req.body.difficulty;
-	var satisfaction = req.body.satisfaction;
-	var totalScore = req.body.totalScore;
+	var eval = new Eval(req.body);
+	eval.courseDelimiter = req.params.rmnm;
+	eval.user=req.user._id;
+	eval.Save(function(err){
+		 req.flash('evalMessage', '성공적으로 강의평을 게시했습니다.');
+	     return res.redirect('/evalView/'+eval._id);
+	})
 	
-
-	console.log(courseName);
-	console.log(difficulty);
-	console.log(satisfaction);
-	console.log(totalScore);
-	
+	/*
 	db.getConnection(function(err,connection){
    	 connection.query("insert into evaluation(userNo,userAlias,courseName,title,evaluation,difficulty,satisfaction,totalScore,evaluationTime) values(?,?,?,?,?,?,?,?,now());",[req.user.userNo,req.user.alias,courseName,title,evaluation,difficulty,satisfaction,totalScore], function(err, rows){
    		 connection.release();
@@ -223,12 +194,14 @@ exports.evaluationPost = function(req,res){
             }
 		});
    	});
+   	*/
 	
 }
 
 //authenticate 페이지 Get함수.
-exports.authenticatepage = function(req,res){
+exports.authenticate = function(req,res){
     res.render("authenticate",{loginMessage:req.flash('loginMessage'),signupMessage:req.flash('signupMessage')});
+    
 }
 
 //login시 세션설정 함수.
@@ -249,10 +222,9 @@ exports.pass = function(passport){
 	passport.deserializeUser(function(user,done){
 		console.log('deserialize');
 		done(null,user);
-	})
+	});
 	
 	//login
-
 	 passport.use('local-login', 
 	 new LocalStrategy({
         // by default, local strategy uses username and password, we will override with email
@@ -260,29 +232,19 @@ exports.pass = function(passport){
         passwordField : 'passwordinput',
         passReqToCallback : true 
     },
-    function(req,emailinput, passwordinput, done) { // callback with email and password from our form
-    	console.log(emailinput);
-    	console.log(passwordinput);
-    	db.getConnection(function(err,connection){
-    	 
-    	 connection.query("SELECT * FROM user WHERE email = ?",[emailinput], function(err, rows){
-    		 connection.release();
-            // if (err)
-            //     return done(err);
-             if (!rows.length) {
-                 return done(null, false,req.flash('loginMessage', '일치하는 이메일을 찾을 수 없습니다.')); // req.flash is the way to set flashdata using connect-flash
-             }
-            // if the user is found but the password is wrong
-            if (!bcrypt.compareSync(passwordinput, rows[0].password))
-                return done(null, false,req.flash('loginMessage', '비밀번호를 잘못 입력하셨습니다.')); // create the loginMessage and save it to session as flashdata
-
-			// if the user is found but the password is wrong
-            // all is well, return successful user
-            console.log("로그인성공!");
-            return done(null, rows[0],req.flash('loginMessage', rows[0].alias+"님 환영합니다!"));			
-		
-		});
+    function(req,email, password, done) { // callback with email and password from our form
+    	
+    	User.findOne({email:email},function(err,user){
+    		 if (err) { return done(err); }
+    	     if (!user) {
+    	        return done(null, false, req.flash('loginMessage', '이메일을 잘못 입력하셨습니다.'));
+    	     }
+    	     if(!user.authenticate(password)){
+    	    	 return done(null,false,req.flash('loginMessage', '비밀번호를 잘못 입력하셨습니다.'))
+    	     }
+    	     return done(null,user);
     	});
+    	
 		
     }));
 	
@@ -301,46 +263,38 @@ exports.pass = function(passport){
 	        function(req, email, password, done) {
 	            // find a user whose email is the same as the forms email
 	            // we are checking to see if the user trying to login already exists
-	        	db.getConnection(function(err,connection){
-	            connection.query("SELECT * FROM user WHERE email = ?",[email], function(err, rows) {
-	            	connection.release();
-	                if (err)
-	                    return done(err);
-	                if (rows.length) {
-	                    return done(null, false);
-	                }else {
-	                
-	                    // if there is no user with that username
-	                    // create the user
-	                	
-	                	console.log(req.body.major + req.body.alias);
-	                	
-	                    var newUserMysql = {
-	                        email: email,
-	                        password: bcrypt.hashSync(password, null, null),
-	                        major : req.body.major,
-                            alias: req.body.alias,
-                            introduction : req.body.introduction
-                         };
-
-                        var insertQuery = "INSERT INTO user(email, password,major,alias,introduction) values (?,?,?,?,?)";
-
-                            connection.query(insertQuery,[newUserMysql.email, newUserMysql.password,newUserMysql.major,newUserMysql.alias,newUserMysql.introduction],function(err, rows) {
-                            
-                            return done(
-                            		null, newUserMysql,req.flash('signupMessage', '회원가입 성공!'));
-                     });
-                   }
-                });
-              });
+	        	
+	        	User.findOne({email:email},function(err,user){
+	        		if(err) return done(err,req.flash('signupMessage','인터넷 연결을 확인하세요'));
+	        		if(user) return done(null,null,req.flash('signupMessage','이미 존재하는 아이디 입니다..'));
+	        		else{
+	        			
+	        			/*req.body 의 field를 알아서 찾아서 mapping됨.
+	        			 password field는 virtual로 정의되어 
+	        			 setter를 통해 자동으로 hashed_password로 변환됨.
+	        			*/
+	        			var pushUser = new User(req.body);
+	        			pushUser.save(function(err){
+	        				if(err){
+	        					return done(null,null,req.flash('signupMessage','db점검 중 입니다..'));
+	        				}
+	        			     req.login(user, function(err) {
+	        	    	    	  if (err) return req.flash('loginMessage',"로그인하는데 실패하였습니다.");
+	        	    	    	  return res.redirect('/');
+	        	    	    });
+	        				
+	        			})
+	        		}
+	        		
+	        	})
             })
            );
-         };
+     };
          
 //이메일 중복확인         
 exports.email_validation = function(req,res){
 	console.log(req.param("value"));
-	
+	/*
 	db.getConnection(function(err,connection){
 
 		connection.query("SELECT * FROM user WHERE email = ?",[req.param("value")], function(err, rows){
@@ -367,10 +321,12 @@ exports.email_validation = function(req,res){
 			}
 		});
 	});
+	*/
 };
 
 //별칭 중복확인
-exports.alias_validation = function(req,res){		
+exports.alias_validation = function(req,res){	
+	/*
 	db.getConnection(function(err,connection){
 		
 		console.log(req.param("value"));
@@ -399,6 +355,7 @@ exports.alias_validation = function(req,res){
 			}
 		});
 	});
+	*/
 };
 
 //autocomplete

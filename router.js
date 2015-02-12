@@ -10,20 +10,30 @@ exports.route = function(app,passport){
 	app.get('/',task.ensureAuthenticated,task.userpage);
 	
 	app.get('/courseLoad',task.courseLoad);
+	
+	
+	
+	
+	app.param('id', task.load);
 	//csnm은 강의명 pfnm은 교수명
-	app.get('/evaluate/:csnm/:pfnm',task.evaluate);
-	app.get('/evalView/:evalNo',task.evalView);
+	app.get('/evaluate/:courseDelimiter',task.evaluate);
+	app.get('/evalView/:id',task.evalView);
 	
 	//rmnm(roomname)은 강의명+교수명
 	app.post('/evaluationPost/:rmnm',task.evaluationPost);
 	
-	app.get('/authenticatepage',task.authenticatepage);
+	
+	
+	
+	
+	
+	app.get('/authenticate',task.authenticate);
 	//app.get('/login',task.login);
 	//app.get('/signup',task.signup);
 	
 	app.post('/login',passport.authenticate('local-login',{
 	    successRedirect:'/',
-	    failureRedirect:'/authenticatepage',
+	    failureRedirect:'/authenticate',
 	    failureFlash:true
 	}),task.loginSession);
 	
@@ -34,7 +44,7 @@ exports.route = function(app,passport){
 	
 	app.post('/signup',passport.authenticate('local-signup',{
         successRedirect:'/',
-        failureRedirect:'/signup',
+        failureRedirect:'/authenticate#signup',
         failureFlash:true
     }))
     

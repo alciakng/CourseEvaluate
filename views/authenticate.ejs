@@ -20,7 +20,7 @@
         </ul>
     </nav>
    
-    <section class="colorBg1 colorBg" id="demo1" data-panel="first">
+    <section class="colorBg1 colorBg" id="login" data-panel="first">
 
         <div class=" container">
 
@@ -100,7 +100,7 @@
 
     </section>
   
-    <section class="colorBg2 colorBg" id="demo2" data-panel="second">
+    <section class="colorBg2 colorBg" id="signup" data-panel="second">
         <div class=" container">
             <br />
             <br />
@@ -109,7 +109,9 @@
                 <form role="form"  accept-charset="UTF-8"  id="signup_form" action="/signup" method="POST" novalidate>
                     <div class="section-title reg-header " data-animation="fadeInDown">
                         <h3>회원가입 </h3>
-
+					 <% if(signupMessage.length>0){%>
+						     <div class="alert alert-danger"><%=signupMessage%></div> 
+				     <%}%>
                     </div>
                     <div class="clearfix">
                         <div class="col-sm-6 registration-left-section" data-animation="fadeInUp">
@@ -213,7 +215,7 @@
 
 
     </section>
-    <section class="colorBg3 colorBg" id="demo3" data-panel="third">
+    <section class="colorBg3 colorBg" id="searchUser" data-panel="third">
         <div class=" container">
             <br />
             <br />

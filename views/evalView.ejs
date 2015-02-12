@@ -55,20 +55,20 @@
 
         <div id="page-wrapper">
             
-            <div class="topic">
-		<ul id="post-container" class="posts" data-tid="3791">
-			<li class="post-row" data-pid="26936" data-uid="3984" data-username="akumbhare" data-userslug="akumbhare" data-index="0">
-				<div class="topic-item">
-					<div class="topic-body">
+            <div class="Evalpage">
+		<ul id="eval-container" class="evals" data-tid="3791">
+			<li class="eval-row" data-pid="26936" data-uid="3984" data-username="akumbhare" data-userslug="akumbhare" data-index="0">
+				<div class="Evalpage-item">
+					<div class="Evalpage-body">
 						<div class="row">
 							<div class="col-md-12">
-								<div class="topic-text">
-									<h3 class="topic-title">
-									 <p id="topic_title_26936" class="topic-title" itemprop="name"><i class="fa fa-thumb-tack hide"></i> <i class="fa fa-lock hide"></i><%=evalData[0].title%></p>
+								<div class="Evalpage-text">
+									<h3 class="Evalpage-title">
+									 <p id="Evalpage_title_26936" class="Evalpage-title" itemprop="name"><i class="fa fa-thumb-tack hide"></i> <i class="fa fa-lock hide"></i><%=eval.title%></p>
 									   <hr>
 									</h3>
-									<div id="content_26936" class="post-content" itemprop="text">
-										<%=evalData[0].evaluation%>
+									<div id="content_26936" class="eval-content" itemprop="text">
+										<%=eval.body%>
 										<div class="row">
 										</div></div>
 									
@@ -76,20 +76,20 @@
 							</div>
 						</div>
 					</div>
-					<div class="topic-footer">
+					<div class="Evalpage-footer">
 						<div class="row">
 							<div class="">
 								<small class="pull-right">
 							
-									<span>Posts</span>
-									<strong><span class="topic-post-count human-readable-number" title="1">1</span></strong> |
+									<span>Evals</span>
+									<strong><span class="Evalpage-eval-count human-readable-number" title="1">1</span></strong> |
 									<span>Views</span>
 									<strong><span class="human-readable-number" title="4">4</span></strong>
 						
 									<span>
 												<i class="fa fa-circle status offline" title="Offline"></i>
 										<span class="username-field" data-username="akumbhare" data-uid="3984">
-																						<strong><a href="/user/akumbhare" itemprop="author"><%=evalData[0].userAlias%></a></strong> posted <span class="timeago" title="2015-02-05T06:36:01.224Z"><%=evalData[0].evalTime%></span>
+																						<strong><a href="/user/akumbhare" itemprop="author"><%=eval.user.alias%></a></strong> posted <span class="timeago" title="2015-02-05T06:36:01.224Z"><%=eval.createdAt%></span>
 										</span>
 									</span>
 
@@ -114,7 +114,7 @@
 				</div>
 			</li>
 					
-			<li class="post-bar" data-index="0">
+			<li class="eval-bar" data-index="0">
 				<form method="POST" action="/reply/<%=evalData[0].evalNo%>" accept-charset="UTF-8" id="replyForm" novalidate>
 					<div class="control-group">
 						<div class="controls">
@@ -132,14 +132,14 @@
 			
 			<% if(replyData!=undefined){%>
 			<% for(var i=0;i<replyData.length; i++){%>					
-			<li class="post-row" data-pid="2274" data-uid="2" data-username="julian" data-userslug="julian" data-index="1" data-timestamp="1388257563869" data-votes="0" itemscope="" itemtype="http://schema.org/Comment" style="display: list-item;">
+			<li class="eval-row" data-pid="2274" data-uid="2" data-username="julian" data-userslug="julian" data-index="1" data-timestamp="1388257563869" data-votes="0" itemscope="" itemtype="http://schema.org/Comment" style="display: list-item;">
 
-				<div class="topic-item">
-					<div class="topic-body">
+				<div class="Evalpage-item">
+					<div class="Evalpage-body">
 						<div class="row">
 							<div class="col-md-12">
-								<div class="topic-text">
-									<div id="content_2274" class="post-content" itemprop="text">
+								<div class="Evalpage-text">
+									<div id="content_2274" class="eval-content" itemprop="text">
 									<p><%=replyData[i].replyText%></p>
 										<div class="row">
 
@@ -148,7 +148,7 @@
 							</div>
 						</div>
 					</div>
-					<div class="topic-footer">
+					<div class="Evalpage-footer">
 						<div class="row">
 							<div class="">
 								<small class="pull-right">
