@@ -7,48 +7,22 @@
   },
   "dependencies": {
     "express": "3.2.6",
-    "ejs": "*"
-  },
-  "dependencies": {
-	  "jquery":"*"
-  },
-  "dependencies":{
-	  "request":"*"
-  },
-  "dependencies":{
-	  "xml-mapping":"*"
-  },
-  "dependencies":{
-	  "node-xml2json":"*"
-  },
-  "dependencies":{
-	  "nodemon":"*"
-  },
-  "dependencies":{
-	  "mysql":"*"
-  },
-  "dependencies":{
-	"bcrypt-nodejs":"*"
-  },
-  "dependencies":{
-	 "passport":"*"
-  },
-  "dependencies":{
-	"passport-local":"*"
-  },
-  "dependencies":{
-     "connect-flash":"*"
-  },
-  "dependencies":{
-      "iconv":"*"
-  },
-  "dependencies":{
-      "socket.io":"*"
-  },
-  "dependencies":{
-  	  "mongoose":"*"
-  },
-  "dependencies":{
-  	  "crypto":"*"
+    "ejs": "*",
+    "jquery":"*",
+	"request":"*",
+	"xml-mapping":"*",
+	"node-xml2json":"*",
+    "nodemon":"*",
+	"mysql":"*",
+	"bcrypt-nodejs":"*",
+	"passport":"*",
+	"passport-local":"*",
+    "connect-flash":"*",
+    "iconv":"*",
+    "socket.io":"*",
+  	"mongoose":"*",
+  	"crypto":"*",
+  	"requirefrom":"*",
+  	"swig":"*"
   }
 }

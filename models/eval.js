@@ -88,8 +88,8 @@ EvalSchema.methods = {
 		   * @api private
 		   */
 
-		  load: function (cn, cb) {
-		    this.findOne({courseDelimiter : cn})
+		  load: function (id, cb) {
+		    this.findOne({_id:id})
 		      .populate('user', 'alias')
 		      .populate('comments.user')
 		      .exec(cb);

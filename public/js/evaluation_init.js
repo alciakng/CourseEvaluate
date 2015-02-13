@@ -96,4 +96,8 @@ var socketInit= function(){
  });
 
 };
-
+ //pageInit function
+var pageInit =function(){
+	
+	
+}

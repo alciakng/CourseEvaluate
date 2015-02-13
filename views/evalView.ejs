@@ -55,19 +55,19 @@
 
         <div id="page-wrapper">
             
-            <div class="Evalpage">
-		<ul id="eval-container" class="evals" data-tid="3791">
-			<li class="eval-row" data-pid="26936" data-uid="3984" data-username="akumbhare" data-userslug="akumbhare" data-index="0">
-				<div class="Evalpage-item">
-					<div class="Evalpage-body">
+         <div class="eval">
+		  <ul id="post-container" class="posts" data-tid="3791">
+			<li class="post-row" data-pid="26936" data-uid="3984" data-username="akumbhare" data-userslug="akumbhare" data-index="0">
+				<div class="eval-item">
+					<div class="eval-body">
 						<div class="row">
 							<div class="col-md-12">
-								<div class="Evalpage-text">
-									<h3 class="Evalpage-title">
-									 <p id="Evalpage_title_26936" class="Evalpage-title" itemprop="name"><i class="fa fa-thumb-tack hide"></i> <i class="fa fa-lock hide"></i><%=eval.title%></p>
+								<div class="eval-text">
+									<h3 class="eval-title">
+									 <p id="eval_title_26936" class="eval-title" itemprop="name"><i class="fa fa-thumb-tack hide"></i> <i class="fa fa-lock hide"></i><%=eval.title%></p>
 									   <hr>
 									</h3>
-									<div id="content_26936" class="eval-content" itemprop="text">
+									<div id="content_26936" class="post-content" itemprop="text">
 										<%=eval.body%>
 										<div class="row">
 										</div></div>
@@ -76,13 +76,13 @@
 							</div>
 						</div>
 					</div>
-					<div class="Evalpage-footer">
+					<div class="eval-footer">
 						<div class="row">
 							<div class="">
 								<small class="pull-right">
 							
-									<span>Evals</span>
-									<strong><span class="Evalpage-eval-count human-readable-number" title="1">1</span></strong> |
+									<span>Posts</span>
+									<strong><span class="eval-post-count human-readable-number" title="1">1</span></strong> |
 									<span>Views</span>
 									<strong><span class="human-readable-number" title="4">4</span></strong>
 						
@@ -114,8 +114,8 @@
 				</div>
 			</li>
 					
-			<li class="eval-bar" data-index="0">
-				<form method="POST" action="/reply/<%=evalData[0].evalNo%>" accept-charset="UTF-8" id="replyForm" novalidate>
+			<li class="post-bar" data-index="0">
+				<form method="POST" action="/reply/<%=eval._id%>" accept-charset="UTF-8" id="replyForm" novalidate>
 					<div class="control-group">
 						<div class="controls">
 							<textarea placeholder="댓글을 입력하세요." name="replyText" data-validation-required-message="댓글을 입력하세요." rows="3" type"text" class="form-control" style="width:100%" required></textarea>
@@ -128,19 +128,16 @@
 				</form>
 			</li>
 			
-			
-			
-			<% if(replyData!=undefined){%>
-			<% for(var i=0;i<replyData.length; i++){%>					
-			<li class="eval-row" data-pid="2274" data-uid="2" data-username="julian" data-userslug="julian" data-index="1" data-timestamp="1388257563869" data-votes="0" itemscope="" itemtype="http://schema.org/Comment" style="display: list-item;">
+			<% eval.comments.forEach(function(comment){%>					
+			<li class="post-row" data-pid="2274" data-uid="2" data-username="julian" data-userslug="julian" data-index="1" data-timestamp="1388257563869" data-votes="0" itemscope="" itemtype="http://schema.org/Comment" style="display: list-item;">
 
-				<div class="Evalpage-item">
-					<div class="Evalpage-body">
+				<div class="eval-item">
+					<div class="eval-body">
 						<div class="row">
 							<div class="col-md-12">
-								<div class="Evalpage-text">
-									<div id="content_2274" class="eval-content" itemprop="text">
-									<p><%=replyData[i].replyText%></p>
+								<div class="eval-text">
+									<div id="content_2274" class="post-content" itemprop="text">
+									<p><%=comment.body%></p>
 										<div class="row">
 
 										</div></div>
@@ -148,14 +145,14 @@
 							</div>
 						</div>
 					</div>
-					<div class="Evalpage-footer">
+					<div class="eval-footer">
 						<div class="row">
 							<div class="">
 								<small class="pull-right">
 									<span>
 																				<i class="fa fa-circle status offline" title="Offline"></i>
 										<span class="username-field" data-username="julian" data-uid="2">
-																						<strong><a href="/user/julian" itemprop="author"><%=replyData[i].userAlias%></a></strong> posted <span class="timeago" title="2013-12-28T19:06:03.869Z"><%=replyData[i].replyTime%></span>
+																						<strong><a href="/user/julian" itemprop="author"><%=comment.user.alias%></a></strong> posted <span class="timeago" title="2013-12-28T19:06:03.869Z"><%=comment.user.createdAt%></span>
 										</span>
 									</span>
 
@@ -168,8 +165,7 @@
 					</div>
 				</div>
 			</li>
-			<%}%>
-			<%}%>
+			<%})%>
 						</ul>	
 		
 	

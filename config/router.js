@@ -3,10 +3,15 @@
  */
 
 
-var task = require('./controllers/task-controller.js')
+var evalController = controllers('evalController.js');
+var userController = controllers('userController.js');
+var indexController = controllers('indexController.js');
+var vallidationController = controllers('vallidationController.js');
 
-exports.route = function(app,passport){
 
+module.exports = function(app,passport){
+
+	//index-router
 	app.get('/',task.ensureAuthenticated,task.userpage);
 	
 	app.get('/courseLoad',task.courseLoad);
@@ -14,39 +19,41 @@ exports.route = function(app,passport){
 	
 	
 	
-	app.param('id', task.load);
-	//csnm은 강의명 pfnm은 교수명
-	app.get('/evaluate/:courseDelimiter',task.evaluate);
-	app.get('/evalView/:id',task.evalView);
-	
-	//rmnm(roomname)은 강의명+교수명
-	app.post('/evaluationPost/:rmnm',task.evaluationPost);
-	
-	
-	
-	
-	
-	
+	//login-signup-router
 	app.get('/authenticate',task.authenticate);
-	//app.get('/login',task.login);
-	//app.get('/signup',task.signup);
-	
 	app.post('/login',passport.authenticate('local-login',{
 	    successRedirect:'/',
 	    failureRedirect:'/authenticate',
 	    failureFlash:true
 	}),task.loginSession);
-	
 	app.get('/logout', function(req, res){
 		  req.logout();
 		  res.redirect('/');
 		});
-	
 	app.post('/signup',passport.authenticate('local-signup',{
         successRedirect:'/',
         failureRedirect:'/authenticate#signup',
         failureFlash:true
     }))
+    
+    
+    
+    //validation-router
+    app.get('/email_validation',task.email_validation);
+	app.get('/alias_validation',task.alias_validation);
+	
+	
+	
+	//eval-router
+	app.param('id', task.load);
+	//csnm은 강의명 pfnm은 교수명
+	app.get('/eval/:courseDelimiter',task.evalList);
+	app.get('/eval/view/:id',task.evalView);
+	//rmnm(roomname)은 강의명+교수명
+	app.post('/eval/:rmnm',task.evalPost);
+	
+	
+
     
     
 	//modal 방식으로 로그인 구현한 예제
@@ -73,22 +80,11 @@ exports.route = function(app,passport){
         })(req, res, next);
     });
 	*/
-    //로그아웃시..
-    app.get('/logout', function(req, res){
-	    req.logout();
-	    res.redirect('/');
-	});
 	
 	
-	app.get('/email_validation',task.email_validation);
-	app.get('/alias_validation',task.alias_validation);
-	
-	
-	//autocomplete
-	app.post('/courseSearch',task.courseSearch);
-	
+
 	//evaluation reply
-	app.post('/reply/:evaluationNo',task.reply);
+	app.post('/comment/:id',task.comment);
 	
 };
 
