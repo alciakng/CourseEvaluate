@@ -1,0 +1,114 @@
+            
+            <!--  evaluation modal -->
+	<div class="modal fade" id="evaluationModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="fa fa-times"></i></button>
+        <h4 class="modal-title">evaluation</h4>
+      </div>
+      <div class="modal-body">
+   				<form method="POST" action="/eval/{{title}}" accept-charset="UTF-8" id="evaluationForm" novalidate>
+		            	<div class="control-group">
+		            		<div class="controls">
+			            		<input type="text" style="width:100%" placeholder="제목" name="title" data-validation-required-message="제목을 입력하세요"  class="form-control" required></input>
+			            		<p class="help-block "></p>
+		            		</div>
+		            	</div>
+		        
+		           		<div class="control-group">
+		           			<div class="controls">
+			                	<textarea  id="body" style="width:100%" maxlength="1000" name="body"
+			                	placeholder="강의평을 입력하세요(1000자이내)" data-validation-required-message="강의평을 입력하세요" class="form-control" rows="4" required></textarea>
+			                	<p class="help-block"></p>
+		                	</div>
+						</div>
+						
+						<div class="control-group">
+						    <label class="control-label">난이도</label>
+						    <div class="controls">
+								 <span class="btn-group" data-toggle="buttons">
+									 
+									  <label class="btn btn-primary">
+									    <input type="radio" name="difficulty" value="1" data-validation-required-message="난이도를 선택하세요" required>1
+									  </label>
+									  <label class="btn btn-primary">
+									    <input type="radio" name="difficulty"  value="2" data-validation-required-message="난이도를 선택하세요" required> 2
+									  </label>
+									  <label class="btn btn-primary">
+									    <input type="radio" name="difficulty"  value="3" data-validation-required-message="난이도를 선택하세요" required> 3
+									  </label>
+									   <label class="btn btn-primary">
+									    <input type="radio" name="difficulty"  value="4" data-validation-required-message="난이도를 선택하세요" required> 4
+									  </label>
+									   <label class="btn btn-primary">
+									    <input type="radio" name="difficulty" value="5" data-validation-required-message="난이도를 선택하세요" required> 5
+									  </label>
+								 </span>
+								 <span class="help-block"></span>
+						    </div>
+					    </div>
+					    
+					    
+					    <div class="control-group">
+					    <label class="control-label">학점만족도</label>
+						    <div class="controls">
+						    	    
+								 <span class="btn-group" data-toggle="buttons"   >
+									 
+									  <label class="btn btn-danger">
+									    <input type="radio" name="satisfaction"  value="1" data-validation-required-message="학점만족도를 선택하세요" required>1
+									  </label>
+									  <label class="btn btn-danger">
+									    <input type="radio" name="satisfaction" value="2" data-validation-required-message="학점만족도를 선택하세요" required> 2
+									  </label>
+									  <label class="btn btn-danger">
+									    <input type="radio" name="satisfaction" value="3" data-validation-required-message="학점만족도를 선택하세요" required> 3
+									  </label>
+									   <label class="btn btn-danger">
+									    <input type="radio" name="satisfaction"  value="4" data-validation-required-message="학점만족도를 선택하세요" required> 4
+									  </label>
+									   <label class="btn btn-danger">
+									    <input type="radio" name="satisfaction" value="5" data-validation-required-message="학점만족도를 선택하세요" required> 5
+									  </label>
+								 </span>
+								 <p class="help-block "></p>
+						    </div>
+					    </div>
+					    
+					    
+					    <div class="control-group">
+					    <label class="control-label">총 평점</label>
+						    <div class="controls">
+						    	    
+								 <span class="btn-group" data-toggle="buttons"  >
+									 
+									  <label class="btn btn-success">
+									    <input type="radio" name="totalScore" value="1" data-validation-required-message="총평점을 선택하세요" required>1
+									  </label>
+									  <label class="btn btn-success">
+									    <input type="radio" name="totalScore" value="2" data-validation-required-message="총평점을 선택하세요" required> 2
+									  </label>
+									  <label class="btn btn-success">
+									    <input type="radio" name="totalScore" value="3" data-validation-required-message="총평점을 선택하세요" required> 3
+									  </label>
+									   <label class="btn btn-success">
+									    <input type="radio" name="totalScore" value="4" data-validation-required-message="총평점을 선택하세요" required> 4
+									  </label>
+									   <label class="btn btn-success">
+									    <input type="radio" name="totalScore" value="5" data-validation-required-message="총평점을 선택하세요" required> 5
+									  </label>
+								 </span>
+								 <p class="help-block "></p>
+						    </div>
+					    </div>
+					 
+		                <button class="btn btn-info" type="submit">강의평 달기</button>
+		       
+		            </form>
+        	
+      </div>
+    
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->

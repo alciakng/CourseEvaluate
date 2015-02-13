@@ -1,10 +1,70 @@
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="EUC-KR">
-<title>Insert title here</title>
-</head>
-<body>
+{% extends '../layout/indexLayout.html' %}
 
-</body>
-</html>
+{% block content %}
+	 <!-- Header -->
+    <header class="hidden-md hidden-sm hidden-xs">
+        <div class="container">
+           <div class="row">
+           		<div class="col-lg-4 col-md-4">
+           			<div class="panel index-header-panel">
+           				<div class="panel-heading">공지사항</div>
+           			</div>
+           		</div>
+                
+                <div class="col-lg-4 col-md-4">
+                	<div class="panel index-header-panel">
+                		<div class="panel-heading">최근평가</div>
+                			<div class="panel-body">
+					             <div class="category-box">
+					             	{% for recentList in recentLists %}
+									  {% include 'recentEval.html'%}
+									{% endfor %}			
+								 </div>
+							</div>
+						</div>
+                	</div>	
+                	<div class="col-lg-4 col-md-4">
+           				<div class="panel index-header-panel">
+           				  <div class="panel-heading">건의사항</div>
+           				</div>
+           			</div>
+            </div>
+        </div>
+    </header>
+    <!-- Portfolio Grid Section -->
+    <section id="evaluate_and_search">
+    
+		    	 <div class="container" >
+		           	 
+		         <div class="row">
+	     		 <div class="col-sm-13">
+                    <div class="panel eval-panel">
+                        <div class="panel-heading">
+                             	강의검색
+                        </div>
+                        <div class="panel-body">
+							 
+							
+                            <table id="course" data-show-columns="true"  data-show-toggle="true"  data-search="true"
+       data-pagination="true" >
+	       						<thead>
+	       							<tr>
+	       								<th	data-field="majorDiv" data-sortable="true">학부</th>
+	       								<th	data-field="curriculumDiv" data-sortable="true">교과구분</th>
+	       								<th	data-field="courseName" data-sortable="true">교과목명</th>
+	       								<th	data-field="professorName" data-sortable="true">담당교수</th>
+	       								<th	data-field="evaluation" data-sortable="true">평가</th>
+	       							</tr>
+	    						</thead>
+	    						<tbody class="searchable">
+	    						</tbody>
+							</table>
+                        </div>  
+                    </div>
+                    <!-- /.col-lg-4 -->
+                </div>
+	     	  </div>		
+			</div>
+	</section>
+{% endblock %}
+

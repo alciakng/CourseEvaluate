@@ -1,0 +1,89 @@
+{% extends '../layout/evalLayout.html' %}
+
+{% block content %}
+	
+        <div id="page-wrapper">
+            <div class="row">
+                <div class="col-lg-10">
+                    <h1 class="page-header">{{title}}</h1>
+                </div>
+                <div class="col-lg-2">
+                	<button data-target="#evaluationModal"  data-toggle="modal">글쓰기</button>
+                </div>
+                <!-- /.col-lg-12 -->
+            </div>
+            
+            <div class="row">
+                <div class="col-lg-12">
+                 
+                   <div class="eval">
+                   	<ul id="post-container" class="posts">
+                   	{% for eval in evals%}
+		             	{% include 'eval.html'%}
+					{% endfor%}
+                   	</ul>
+                   	
+                   		<ul class="pagination">
+						  <li><a href="/evaluate/<%=title%>?page=1">1</a></li>
+						  <li><a href="/evaluate/<%=title%>?page=2">2</a></li>
+						  <li><a href="/evaluate/<%=title%>?page=3">3</a></li>
+						  <li><a href="/evaluate/<%=title%>?page=4">4</a></li>
+						  <li><a href="/evaluate/<%=title%>?page=5">5</a></li>
+						</ul>
+				 </div>
+				 
+			 		
+			 
+			 		 
+				 </div>
+					</div>	
+                
+                
+              <div class="row">
+                <div class="col-lg-12">
+                    <div class="panel chat-panel">
+                        <div class="panel-heading">
+                        <i class="fa fa-comments fa-fw"></i>
+                          	 Chat
+                        </div>
+                     
+                     
+                        <div class="panel-body">
+                            <span id="msgs"></span>
+                        </div>
+                        
+                        <div class="panel-footer">
+                            <div class="input-group">
+	                            
+		                       <div class="input-group-btn">
+							         <select id="to">
+									    <option value="ALL">ALL</option>							
+									 </select>
+							    </div><!-- /btn-group -->
+	    						
+                                <input id="msgbox" type="text" class="form-control input-md" placeholder="메세지를 입력하세요">
+                                <span class="input-group-btn">
+                                    <button class="btn btn-warning btn-md" id="btn-chat">
+                                        Send
+                                    </button>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+          	{% include 'evalPost.html'%}  	
+            
+    <!-- Scroll to Top Button (Only visible on small and extra-small screen sizes) -->
+    <div class="scroll-top page-scroll visible-xs visble-sm">
+        <a class="btn btn-primary" href="#page-top">
+            <i class="fa fa-chevron-up"></i>
+        </a>
+    </div>           
+ </div>
+        <!-- /#page-wrapper -->
+</div>
+    <!-- /#wrapper -->
+{% endblock %}
+

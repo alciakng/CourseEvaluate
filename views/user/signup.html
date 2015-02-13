@@ -1,0 +1,116 @@
+
+    <section class="colorBg2 colorBg" id="signup" data-panel="second">
+        <div class=" container">
+            <br />
+            <br />
+            <!-- #region Registration Form -->
+            <div class="registration-form-section">
+                <form role="form"  accept-charset="UTF-8"  id="signup_form" action="/signup" method="POST" novalidate>
+                    <div class="section-title reg-header " data-animation="fadeInDown">
+                        <h3>회원가입 </h3>
+					 {% if signupMessage.length>0 %}
+						     <div class="alert alert-danger">{{signupMessage}}</div> 
+				     {% endif%}
+                    </div>
+                    <div class="clearfix">
+                        <div class="col-sm-6 registration-left-section" data-animation="fadeInUp">
+                            <div class="reg-content">
+                                <div class="textbox-wrap">
+                                  <div class="control-group">
+                                   <div class="control">
+		                                    <div class="input-group">
+		                                        <span class="input-group-addon "><i class="icon-user icon-color"></i></span>
+		                                        <input class="form-control" name="email"  data-validation-ajax-ajax="/email_validation" data-validation-email-message="올바른 형식의 이메일을 입력하세요." data-validation-required-message="이메일을 입력하세요." placeholder="이메일"   type="email" placeholder="JoeSixpack@sixpacksrus.com" required aria-invalid="true"></input>
+		                                    </div>
+	                                    <p class="help-block text-danger"></p>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="textbox-wrap">
+                               	 <div class="control-group">
+                               	 	<div class="control">
+		                                    <div class="input-group">
+		                                        <span class="input-group-addon "><i class="icon-key icon-color"></i></span>
+		                                         <input class="form-control input-large"  name="password"  type="password" data-validation-required-message="비밀번호를 입력하세요."  placeholder="비밀번호" required aria-invalid="true"></input>
+		                                    </div>
+	                                     <p class="help-block text-danger"></p>
+                                    </div>
+                                 </div>
+                                </div>
+                                <div class="textbox-wrap">
+                                  <div class="control-group">
+                                    <div class="control">
+		                                    <div class="input-group">
+		                                        <span class="input-group-addon "><i class="icon-key icon-color"></i></span>
+		                                         <input class="form-control" data-validation-match-match="password" data-validation-match-message="위와 동일한 비밀번호를 입력하세요." data-validation-required-message="비밀번호를 다시 한번 입력하세요." name="reenterpassword" type="password" placeholder="비밀번호확인" required aria-invalid="true"></input>
+		                                    </div>
+	                                    <p class="help-block text-danger"></p>
+                                    </div>
+                                  </div>
+								</div>
+
+                            </div>
+                        </div>
+                        <div class="col-sm-6 registration-right-section " data-animation="fadeInUp">
+                            <div class="reg-content">
+                                <div class="textbox-wrap">
+                                <div class="control-group">
+                                   <div class="control">
+		                                    <div class="input-group">
+		                                        <span class="input-group-addon "><i class="icon-user icon-color"></i></span>
+		                                       <input id="major" name="major" class="form-control input-large" type="text" placeholder="학부" data-validation-required-message="학부를 입력하세요." required aria-invalid="true">
+		                                    </div>
+	                                    <p class="help-block text-danger"></p>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="textbox-wrap">
+                                  <div class="control-group">
+                                   <div class="control">
+		                                    <div class="input-group">
+		                                        <span class="input-group-addon "><i class="icon-user icon-color"></i></span>
+		                                         <input id="alias" name="alias" data-validation-required-message="닉네임을 입력하세요" data-validation-ajax-ajax="/alias_validation"  class="form-control input-large" type="text" placeholder="닉네임" required aria-invalid="true">
+		                                    </div>
+		                                 <p class="help-block text-danger"></p>  
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="textbox-wrap">
+	                                  <div class="control-group">
+	                                   <div class="control">
+			                                    <div class="input-group">
+			                                        <span class="input-group-addon "><i class="icon-user icon-color"></i></span>
+			                                         <input id="alias" name="introduction"  class="form-control input-large" type="text" placeholder="자기소개"  aria-invalid="true">
+			                                    </div>
+			                                 <p class="help-block text-danger"></p>  
+	                                    </div>
+	                                  </div>
+                                </div>
+
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="registration-form-action clearfix " data-animation="fadeInUp" data-animation-delay=".15s">
+                        <a href="#demo1" class="btn btn-success pull-left blue-btn ">
+                            <i class="icon-chevron-left"></i>&nbsp; &nbsp;로그인으로 가기
+                        </a>
+                       
+                      <button type="submit" class="btn btn-success pull-right green-btn ">지금 가입하기&nbsp; <i class="icon-chevron-right"></i></button>
+                    </div>
+                </form>
+            </div>
+
+
+
+        </div>
+    </section>
+    <section class="colorBg form-seprator i2">
+
+        <i class="icon-windows" data-animation="bounceInUp"></i>
+        <br />
+        <br />
+        <h1 data-animation="bounceInUp" data-animation-delay=".2s">UOS EVALUATE</h1>
+
+
+    </section>

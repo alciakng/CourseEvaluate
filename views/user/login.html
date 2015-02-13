@@ -1,0 +1,80 @@
+
+<section class="colorBg1 colorBg" id="login" data-panel="first">
+
+        <div class=" container">
+
+            <div class="login-form-section">
+                <div class="login-content " data-animation="bounceIn">
+                    <form action='/login' id="login_form" method="POST" accept-charset='UTF-8'>
+                        <div class="section-title">
+                            <h3>UOS Evaluate Login</h3>
+                        </div>
+                        
+                      
+                        
+                        <div class="textbox-wrap">
+                            <div class="control-group">
+                            <div class="controls">
+                            	<div class="input-group">
+	                                <span class="input-group-addon "><i class="icon-user icon-color"></i></span>
+	                                <input class="form-control" name="emailinput"   data-validation-email-message="올바른 형식의 이메일을 입력하세요." data-validation-required-message="이메일을 입력하세요."   type="email" placeholder="이메일" required/>
+                              		
+                                </div>
+                               <p class="help-block text-danger"></p>
+                             </div>  
+                            </div>
+                        </div>
+                        <div class="textbox-wrap">
+                        <div class="control-group">
+                        	 <div class="controls">
+                            <div class="input-group controls">
+                                <span class="input-group-addon "><i class="icon-key icon-color"></i></span>
+                                <input class="form-control input-large"  name="passwordinput"  type="password" data-validation-required-message="비밀번호를 입력하세요." placeholder="비밀번호"  required ></input>
+			             		
+                            </div>
+                          	  <p class="help-block text-danger"></p>
+                           </div>
+                                
+                            </div>
+                        </div>
+                          {% if loginMessage.length>0 %}
+						     <div class="alert alert-danger">{{loginMessage}}</div> 
+						  {% endif %}
+                        <div class="login-form-action clearfix">
+                            <div class="checkbox pull-left">
+                                <div class="custom-checkbox">
+                                    <input type="checkbox" checked name="iCheck">
+                                </div>
+                                <span class="checkbox-text pull-left">&nbsp;기억하기</span>
+                            </div>
+                            <button type="submit" class="btn btn-success pull-right green-btn">로그인 &nbsp; <i class="icon-chevron-right"></i></button>
+                        </div>
+                    </form>
+	              
+                </div>
+                <div class="login-form-links link1 " data-animation="fadeInLeftBig" data-animation-delay=".2s">
+                    <h4 class="blue">회원이 아니세요?</h4>
+                    <a href="#demo2" class="blue">여기를 눌러</a>
+                    <span>회원가입 하세요</span>
+                </div>
+                <div class="login-form-links link2 " data-animation="fadeInRightBig" data-animation-delay=".4s">
+                    <h4 class="green">비밀번호를 잊으셨나요?</h4>
+                    <span>걱정마세요</span>
+                    <a href="#demo3" class="green">여기를 눌러</a>
+                    <span>비밀번호를 찾으세요</span>
+                </div>
+            </div>
+
+
+
+        </div>
+    </section>
+     <section class="colorBg form-seprator i2">
+
+        <i class="icon-windows" data-animation="bounceInUp"></i>
+        <br />
+        <br />
+        <h1 data-animation="bounceInUp" data-animation-delay=".2s">UOS EVALUATE</h1>
+
+
+    </section>

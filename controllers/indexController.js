@@ -26,7 +26,7 @@ exports.ensureAuthenticated= function(req, res, next) {
 //indexpage loading
 exports.index =function(req,res){
 	  Eval.recentList(function(err,rows){
-	    	res.render("index",{recentLists:rows})
+	    	res.render("index/index",{recentLists:rows})
 	    });
 }
 

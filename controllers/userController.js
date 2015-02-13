@@ -8,7 +8,7 @@ var User = mongoose.model('User');
 
 //authenticate 페이지 Get함수.
 exports.authenticate = function(req,res){
-  res.render("authenticate",{loginMessage:req.flash('loginMessage'),signupMessage:req.flash('signupMessage')});
+  res.render("user/user",{loginMessage:req.flash('loginMessage'),signupMessage:req.flash('signupMessage')});
   
 }
 
