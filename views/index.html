@@ -69,8 +69,9 @@
                     <li class="page-scroll">
                         <a href="#evaluate_and_search">Search/Evaluate</a>
                     </li>
+                    
                     <li class="page-scroll">
-                        <a href="/authenticate" >Login/SignUp</a>
+                       <a href="/authenticate" >Login/SignUp</a>
                     </li>
                 </ul>
             </div>
@@ -105,7 +106,7 @@
 											<hr>
 											 <div class="content">
 												<p><a class="plugin-mentions-a" href="/user/baris">{{recentList.user.alias}}</a> 
-													{{recentList.body}}}
+													{{recentList.body}}
 												</p>
 					
 											 </div>
@@ -116,7 +117,7 @@
 													<a href="/evalView/<%=recentList._id%>">read more</a>
 												</span>
 											</div>
-											{% end for%}
+											{% endfor %}
 											
 										</div>
 							</div>
@@ -177,6 +178,19 @@
 	
 	
 	
+    	
+	<div class="modal bs-example-modal-sm" id="logout_modal" tabindex="-1" role="dialog" aria-hidden="true">
+	  <div class="modal-dialog modal-sm">
+	    <div class="modal-content">
+	      <div class="modal-header"><h4>Logout <i class="fa fa-lock"></i></h4></div>
+	      <div class="modal-body"><h4 class="text-danger">정말 로그아웃 하시겠습니까?</h4></div>
+	      <div class="modal-footer"><a href="/logout" id="logout" class="btn btn-primary btn-block">Logout</a></div>
+	    </div>
+	  </div>
+	</div>
+	
+	
+	
 
 
   
@@ -203,7 +217,6 @@
     </div>
 
   
-    
 
     <!-- jQuery -->
    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script> 

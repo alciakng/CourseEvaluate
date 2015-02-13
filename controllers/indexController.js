@@ -1,23 +1,18 @@
 /**
  * New node file
  */
-
 //request 모듈.학교 api 받아오기 위해 사용.
 var request = require('request');
-
 //xml-to-json 모듈
 var xm = require('xml-mapping');
-
 //인코딩 모듈
 var Iconv  = require('iconv').Iconv;
-
 var euckr2utf8 = new Iconv('EUC-KR', 'UTF-8');
-
 //암호화 모듈
 var bcrypt = require('bcrypt-nodejs');
-
-
-
+//mongoose와 eval 모델 정의
+var mongoose = require('mongoose');
+var Eval = mongoose.model('Eval');
 
 
 //로그인이 되어있는지 확인하는 함수.
@@ -27,7 +22,6 @@ exports.ensureAuthenticated= function(req, res, next) {
     // 로그인이 안되어 있으면 index Load
     res.redirect('/');
 }
-
 
 //indexpage loading
 exports.index =function(req,res){

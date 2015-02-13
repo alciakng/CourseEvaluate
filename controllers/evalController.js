@@ -2,6 +2,11 @@
  * New node file
  */
 
+//mongoose 모듈 
+var mongoose = require('mongoose');
+//Eval모듈정의
+var Eval = mongoose.model('Eval');
+
 //evaluate 페이지 로딩 함수.
 exports.evalList = function(req,res){
 	
@@ -20,7 +25,7 @@ exports.evalList = function(req,res){
 	  Eval.list(options, function (err, evals){
 	    if(err) return res.render('500');
 	    Eval.count({courseDelimiter:courseDelimiter}).exec(function (err, count) {
-	      res.render('evalList.ejs', {
+	      res.render('evalList', {
 	        title: courseDelimiter,
 	        evals: evals,
 	        page: page + 1,
@@ -30,6 +35,7 @@ exports.evalList = function(req,res){
 	  });
 }
 
+//param 함수 load 하여 next router로 넘겨준다.
 exports.load = function (req, res, next, id){
 
 	  Eval.load(id, function (err, eval) {
@@ -49,7 +55,7 @@ exports.evalView =function(req,res){
 };
 
 //evaluationReply
-exports.reply = function(req,res){
+exports.comment = function(req,res){
 	
 	var evaluationNo = req.params.evaluationNo;
 	var replyText = req.body.replyText;

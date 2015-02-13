@@ -88,8 +88,7 @@ var httpServer =http.createServer(app).listen(app.get('port'), function(){
   console.log('Socket IO Server has been started');
 });
 
-
-require('./socket.js').socketfunction(httpServer);
+config('socket.js').socketfunction(httpServer);
 
 
 

@@ -1,9 +1,10 @@
 /**
  * New node file
  */
-
-
-
+//mongoose 정의
+var mongoose = require('mongoose');
+//User모델 정의
+var User = mongoose.model('User');
 
 //authenticate 페이지 Get함수.
 exports.authenticate = function(req,res){

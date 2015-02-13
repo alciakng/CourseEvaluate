@@ -128,7 +128,7 @@
 				</form>
 			</li>
 			
-			<% eval.comments.forEach(function(comment){%>					
+			{% for comment in eval.comments %}				
 			<li class="post-row" data-pid="2274" data-uid="2" data-username="julian" data-userslug="julian" data-index="1" data-timestamp="1388257563869" data-votes="0" itemscope="" itemtype="http://schema.org/Comment" style="display: list-item;">
 
 				<div class="eval-item">
@@ -137,7 +137,7 @@
 							<div class="col-md-12">
 								<div class="eval-text">
 									<div id="content_2274" class="post-content" itemprop="text">
-									<p><%=comment.body%></p>
+									<p>{{comment.body}}</p>
 										<div class="row">
 
 										</div></div>
@@ -152,7 +152,7 @@
 									<span>
 																				<i class="fa fa-circle status offline" title="Offline"></i>
 										<span class="username-field" data-username="julian" data-uid="2">
-																						<strong><a href="/user/julian" itemprop="author"><%=comment.user.alias%></a></strong> posted <span class="timeago" title="2013-12-28T19:06:03.869Z"><%=comment.user.createdAt%></span>
+																						<strong><a href="/user/julian" itemprop="author">{{comment.user.alias}}</a></strong> posted <span class="timeago" title="2013-12-28T19:06:03.869Z">{{comment.user.createdAt}}</span>
 										</span>
 									</span>
 
@@ -165,7 +165,7 @@
 					</div>
 				</div>
 			</li>
-			<%})%>
+			{% endfor %}
 						</ul>	
 		
 	

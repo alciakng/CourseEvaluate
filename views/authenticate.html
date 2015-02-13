@@ -58,9 +58,9 @@
                                 
                             </div>
                         </div>
-                          <% if(loginMessage.length>0){%>
-						     <div class="alert alert-danger"><%=loginMessage%></div> 
-						  <%}%>
+                          {% if loginMessage.length>0 %}
+						     <div class="alert alert-danger">{{loginMessage}}</div> 
+						  {% endif %}
                         <div class="login-form-action clearfix">
                             <div class="checkbox pull-left">
                                 <div class="custom-checkbox">
@@ -109,9 +109,9 @@
                 <form role="form"  accept-charset="UTF-8"  id="signup_form" action="/signup" method="POST" novalidate>
                     <div class="section-title reg-header " data-animation="fadeInDown">
                         <h3>회원가입 </h3>
-					 <% if(signupMessage.length>0){%>
-						     <div class="alert alert-danger"><%=signupMessage%></div> 
-				     <%}%>
+					 {% if signupMessage.length>0 %}
+						     <div class="alert alert-danger">{{signupMessage}}</div> 
+				     {% endif%}
                     </div>
                     <div class="clearfix">
                         <div class="col-sm-6 registration-left-section" data-animation="fadeInUp">

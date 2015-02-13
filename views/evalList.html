@@ -101,7 +101,7 @@
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-10">
-                    <h1 class="page-header"><%=title%></h1>
+                    <h1 class="page-header">{{title}}</h1>
                 </div>
                 <div class="col-lg-2">
                 	<button data-target="#evaluationModal"  data-toggle="modal">글쓰기</button>
@@ -114,7 +114,7 @@
                  
                    <div class="eval">
                    	<ul id="post-container" class="posts">
-                   	<% evals.forEach(function(eval){%>
+                   	{% for eval in evals%}
 		              <li class="post-row" style="display:list-item;">
 		              	
 						<div class="eval-item">
@@ -123,7 +123,7 @@
 									<div class="col-md-12">
 										<div class="eval-text">
 											<div class="eval-content" itemprop="text">
-											<p><a href="/eval/view/<%=eval._id%>"><%=eval.title%></a></p>
+											<p><a href="/eval/view/{{eval._id}}">{{eval.title}}</a></p>
 												<div class="row">
 		
 												</div></div>
@@ -138,7 +138,7 @@
 											<span>
 																						<i class="fa fa-circle status offline" title="Offline"></i>
 												<span class="username-field" data-username="julian" data-uid="2">
-																								<strong><a href="/user/julian" itemprop="author"><%=eval.user.alias%></a></strong> posted <span class="timeago"><%=eval.createdAt.toISOString()%></span>
+																								<strong><a href="/user/julian" itemprop="author">{{eval.user.alias}}</a></strong> posted <span class="timeago">{{eval.createdAt.toISOString()}}</span>
 												</span>
 											</span>
 		
@@ -155,7 +155,7 @@
 					
 					
 					
-					<%})%>	
+					{% endfor%}
                    	</ul>
                    	
                    		<ul class="pagination">
@@ -220,7 +220,7 @@
         <h4 class="modal-title">evaluation</h4>
       </div>
       <div class="modal-body">
-   				<form method="POST" action="/eval/<%=title%>" accept-charset="UTF-8" id="evaluationForm" novalidate>
+   				<form method="POST" action="/eval/{{title}}" accept-charset="UTF-8" id="evaluationForm" novalidate>
 		            	<div class="control-group">
 		            		<div class="controls">
 			            		<input type="text" style="width:100%" placeholder="제목" name="title" data-validation-required-message="제목을 입력하세요"  class="form-control" required></input>
