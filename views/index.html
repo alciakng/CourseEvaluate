@@ -96,27 +96,27 @@
                 		<div class="panel-heading">최근평가</div>
                 			<div class="panel-body">
 					             <div class="category-box">
-					             	<% recentLists.forEach(function(recentList){%>
+					             	{% for recentList in recentLists %}
 									 <div class="post-preview clearfix">
 										<div class="post-preview-content">
 										  <strong>
-										  <a href="/evalView/<%=recentList.evalNo%>"><%=recentList.title%></a>
+										  <a href="/evalView/<%=recentList.evalNo%>">{{recentList.title}}</a>
 										  </strong>
 											<hr>
 											 <div class="content">
-												<p><a class="plugin-mentions-a" href="/user/baris"><%=recentList.user.alias%></a> 
-													<%=recentList.body%>
+												<p><a class="plugin-mentions-a" href="/user/baris">{{recentList.user.alias}}</a> 
+													{{recentList.body}}}
 												</p>
 					
 											 </div>
 											    <div class="fade-out"></div>
 												</div>
 												<span class="pull-right footer">
-													<span class="timeago" title="2015-02-06T02:21:41.604Z"><%=recentList.createdAt.toISOString()%></span> •
+													<span class="timeago" title="2015-02-06T02:21:41.604Z">{{recentList.createdAt.toISOString()}}</span> •
 													<a href="/evalView/<%=recentList._id%>">read more</a>
 												</span>
 											</div>
-											<%})%>
+											{% end for%}
 											
 										</div>
 							</div>

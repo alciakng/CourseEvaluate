@@ -22,7 +22,7 @@ var express = require('express')
   , user = models('user.js')
   , eval = models('eval.js')
   , fs =require('fs')
-  , mongoose =require('mongoose'),
+  , mongoose =require('mongoose')
   , swig = require('swig');
 
 
@@ -45,8 +45,8 @@ mongoose.connection.on('disconnected', connect);
 // all environments
 app.set('port', process.env.PORT || 3000);
 
-
-app.set('view engine', 'ejs');
+app.engine('html', swig.renderFile);
+app.set('view engine', 'html');
 app.set('views', __dirname + '/views');
 
 

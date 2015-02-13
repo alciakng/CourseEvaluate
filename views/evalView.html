@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="EUC-KR">
-	<title>서울시립대 강의평가</title>
+	<meta charset="utf-8">
+	<title>���몄��由쎈�� 媛�����媛�</title>
  	<meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -36,7 +36,7 @@
                     <ul class="nav" id="side-menu">
                         <li class="sidebar-search">
                             <div class="input-group custom-search-form">
-                                <input type="text" class="form-control" placeholder="강의검색">
+                                <input type="text" class="form-control" placeholder="媛���寃���">
                                 <span class="input-group-btn">
                                 <button class="btn btn-default" type="button">
                                     <i class="fa fa-search"></i>
@@ -64,11 +64,11 @@
 							<div class="col-md-12">
 								<div class="eval-text">
 									<h3 class="eval-title">
-									 <p id="eval_title_26936" class="eval-title" itemprop="name"><i class="fa fa-thumb-tack hide"></i> <i class="fa fa-lock hide"></i><%=eval.title%></p>
+									 <p id="eval_title_26936" class="eval-title" itemprop="name"><i class="fa fa-thumb-tack hide"></i> <i class="fa fa-lock hide"></i>{{eval.title}}</p>
 									   <hr>
 									</h3>
 									<div id="content_26936" class="post-content" itemprop="text">
-										<%=eval.body%>
+										{{eval.body}}
 										<div class="row">
 										</div></div>
 									
@@ -89,7 +89,7 @@
 									<span>
 												<i class="fa fa-circle status offline" title="Offline"></i>
 										<span class="username-field" data-username="akumbhare" data-uid="3984">
-																						<strong><a href="/user/akumbhare" itemprop="author"><%=eval.user.alias%></a></strong> posted <span class="timeago" title="2015-02-05T06:36:01.224Z"><%=eval.createdAt%></span>
+																						<strong><a href="/user/akumbhare" itemprop="author">{{eval.user.alias}}</a></strong> posted <span class="timeago" title="2015-02-05T06:36:01.224Z">{{eval.createdAt}}</span>
 										</span>
 									</span>
 
@@ -118,12 +118,12 @@
 				<form method="POST" action="/reply/<%=eval._id%>" accept-charset="UTF-8" id="replyForm" novalidate>
 					<div class="control-group">
 						<div class="controls">
-							<textarea placeholder="댓글을 입력하세요." name="replyText" data-validation-required-message="댓글을 입력하세요." rows="3" type"text" class="form-control" style="width:100%" required></textarea>
+							<textarea placeholder="��湲��� ���ν���몄��." name="replyText" data-validation-required-message="��湲��� ���ν���몄��." rows="3" type"text" class="form-control" style="width:100%" required></textarea>
 							<p class="help-block"></p>
 						</div>
 					</div>
 					<br>
-						<button type="submit" class="btn btn-primary" style="float:right">댓글달기</button>
+						<button type="submit" class="btn btn-primary" style="float:right">��湲��ш린</button>
 					<div style="clear:both;"></div>
 				</form>
 			</li>

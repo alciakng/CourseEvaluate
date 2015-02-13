@@ -2,6 +2,20 @@
  * New node file
  */
 
+//request 모듈.학교 api 받아오기 위해 사용.
+var request = require('request');
+
+//xml-to-json 모듈
+var xm = require('xml-mapping');
+
+//인코딩 모듈
+var Iconv  = require('iconv').Iconv;
+
+var euckr2utf8 = new Iconv('EUC-KR', 'UTF-8');
+
+//암호화 모듈
+var bcrypt = require('bcrypt-nodejs');
+
 
 
 
@@ -29,6 +43,7 @@ exports.user = function(req,res){
 		    	res.render("user",{recentLists:rows})
 	 });
 }
+
 
 //강의 로딩 함수(나중에 init이랑 합쳐져야함)
 exports.courseLoad = function(req,res){
@@ -84,4 +99,46 @@ exports.courseLoad = function(req,res){
 	});
 };
 
+
+//autocomplete
+exports.courseSearch = function(req,res){
+	//input에 입력된 keyword
+	var keyword = req.body.term;
+	
+	console.log(keyword);
+	
+	var headers = {
+		    'User-Agent':       'Super Agent/0.0.1',
+		    'Content-Type':     "application/xml"	
+	}
+	
+	 //api get options.옵션 content-type,encoding 아직 이해하지 못했음..
+	 var options = {
+			 url : 'http://wise.uos.ac.kr/uosdoc/api.ApiApiSubjectList.oapi',
+			 method:'GET',
+			 headers:headers,
+			 encoding:'binary',
+			 qs: {'apiKey': '201501195EQW98965','year':'2014','term':'A10','subjectNm':keyword}
+	 };
+	
+	console.log("Let's Start courseLoad");
+	//request 동작. 
+	
+	request(options, function (error, response, body) {
+	    if(error) console.log("에러에러(wise 점검 및 인터넷 연결 안됨)");
+	    if (!error && response.statusCode == 200) {
+	    	
+	    	//받아온 데이터의 euc-kr 형식을 ut8로 변환
+	    	var data = new Buffer(body, 'binary');
+	    	
+	    	var data_utf8 = euckr2utf8.convert(data).toString();
+	    
+	    	//받아온 강의 데이터 xml 형식을 json으로 변환.
+	    	var courseData = xm.load(data_utf8).root.mainlist.list;
+	    	
+	    	//Array를  클라이언트로 전송.
+			res.send(courseData);
+	    }
+	});
+}
 
