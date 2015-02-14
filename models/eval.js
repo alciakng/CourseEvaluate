@@ -46,13 +46,12 @@ EvalSchema.methods = {
 		   */
 
 		  addComment: function (user, comment, cb) {
-		    var notify = require('../mailer');
 
 		    this.comments.push({
 		      body: comment.body,
 		      user: user._id
 		    });
-
+		    
 		    this.save(cb);
 		  },
 

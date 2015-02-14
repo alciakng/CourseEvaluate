@@ -23,6 +23,7 @@
   	"mongoose":"*",
   	"crypto":"*",
   	"requirefrom":"*",
-  	"swig":"*"
+  	"swig":"*",
+  	"pagination":"*"
   }
 }

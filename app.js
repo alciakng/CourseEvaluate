@@ -28,6 +28,12 @@ var express = require('express')
 
 //express 함수
 var app = express();
+
+//development only
+if ('development' == app.get('env')) {
+  app.use(express.errorHandler());
+}
+
 //db 연결
 var connect = function () {
 	  var options = { server: { socketOptions: { keepAlive: 1 } } };
@@ -37,9 +43,6 @@ connect();
 
 mongoose.connection.on('error', console.log);
 mongoose.connection.on('disconnected', connect);
-
-
-;
 
 
 // all environments
@@ -75,19 +78,10 @@ config('passport.js')(passport);
 config('router.js')(app,passport)
 
 
-
-
-// development only
-if ('development' == app.get('env')) {
-  app.use(express.errorHandler());
-}
-
-
-
 var httpServer =http.createServer(app).listen(app.get('port'), function(){
   console.log('Socket IO Server has been started');
 });
-
+//socket set
 config('socket.js').socketfunction(httpServer);
 
 

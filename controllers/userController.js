@@ -7,9 +7,8 @@ var mongoose = require('mongoose');
 var User = mongoose.model('User');
 
 //authenticate 페이지 Get함수.
-exports.authenticate = function(req,res){
+exports.user = function(req,res){
   res.render("user/user",{loginMessage:req.flash('loginMessage'),signupMessage:req.flash('signupMessage')});
-  
 }
 
 //login시 세션설정 함수.

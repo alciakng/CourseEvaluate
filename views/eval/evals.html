@@ -16,27 +16,21 @@
             <div class="row">
                 <div class="col-lg-12">
                  
-                   <div class="eval">
+                  <div class="eval">
                    	<ul id="post-container" class="posts">
                    	{% for eval in evals%}
 		             	{% include 'eval.html'%}
 					{% endfor%}
                    	</ul>
-                   	
-                   		<ul class="pagination">
-						  <li><a href="/evaluate/<%=title%>?page=1">1</a></li>
-						  <li><a href="/evaluate/<%=title%>?page=2">2</a></li>
-						  <li><a href="/evaluate/<%=title%>?page=3">3</a></li>
-						  <li><a href="/evaluate/<%=title%>?page=4">4</a></li>
-						  <li><a href="/evaluate/<%=title%>?page=5">5</a></li>
-						</ul>
-				 </div>
-				 
-			 		
-			 
-			 		 
-				 </div>
-					</div>	
+                   	<div id="myPager" class="pagination"></div>
+                	<script>
+	                	$('#myPager').pagination({{pages}},{callback:function(page,component){
+	                	    console.info(page);
+	                	}})
+                	</script>
+				  </div>
+			    </div>
+			</div>	
                 
                 
               <div class="row">

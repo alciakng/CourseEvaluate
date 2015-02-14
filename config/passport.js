@@ -40,7 +40,7 @@ module.exports = function(passport){
     	     if(!user.authenticate(password)){
     	    	 return done(null,false,req.flash('loginMessage', '비밀번호를 잘못 입력하셨습니다.'))
     	     }
-    	     return done(null,user);
+    	     return done(null,user,req.flash('loginMessage',user.alias+'님 환영합니다.'));
     	});
     	
 		
