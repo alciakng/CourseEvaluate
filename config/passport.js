@@ -14,12 +14,13 @@ module.exports = function(passport){
 
 	passport.serializeUser(function(user,done){
 	    console.log('serialize');
-		done(null,user);
+		done(null,user.id);
 	});
 	
-	passport.deserializeUser(function(user,done){
-		console.log('deserialize');
-		done(null,user);
+	passport.deserializeUser(function(id, done) {
+	   User.load({criteria:{_id:id}}, function(err, user) {
+		    done(err, user)
+		});
 	});
 	
 	//login

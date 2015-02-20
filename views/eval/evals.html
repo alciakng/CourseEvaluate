@@ -22,7 +22,10 @@
 		             	{% include 'eval.html'%}
 					{% endfor%}
                    	</ul>
-                   	<div id="myPager" class="pagination"></div>
+                   	<div id="myPager" class="pagination">
+                   		
+                   		
+                   	</div>
                 	<script>
 	                	$('#myPager').pagination({{pages}},{callback:function(page,component){
 	                	    console.info(page);
@@ -79,5 +82,10 @@
         <!-- /#page-wrapper -->
 </div>
     <!-- /#wrapper -->
+{% endblock %}
+
+{% block customFoot %}
+<!-- evaluationPost JavaScript -->
+<script src="/js/evalInit.js"></script>
 {% endblock %}
 

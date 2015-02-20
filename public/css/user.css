@@ -10955,10 +10955,10 @@ body {
   -o-animation-duration: 0.25s;
   animation-duration: 0.25s;
 }
-.eternity-form-modal {
+.user-modal {
   background-color: #707d85;
 }
-.eternity-form {
+.user {
   font-family: 'Roboto', 'PT Sans', sans-serif;
   font-weight: 300;
   color: #95a5a6;
@@ -10973,24 +10973,24 @@ body {
   /* Retina support */
 
 }
-.eternity-form h1,
-.eternity-form h2,
-.eternity-form h3,
-.eternity-form h4,
-.eternity-form h5,
-.eternity-form h6 {
+.user h1,
+.user h2,
+.user h3,
+.user h4,
+.user h5,
+.user h6 {
   font-family: 'Roboto', 'PT Sans', sans-serif;
   font-weight: 300;
 }
-.eternity-form .login-form-section,
-.eternity-form .forgot-password-section {
+.user .login-form-section,
+.user .forgot-password-section {
   width: 100%;
   max-width: 360px;
   margin: 0 auto;
 }
-.eternity-form .login-content,
-.eternity-form .forgot-password-section,
-.eternity-form .reg-content {
+.user .login-content,
+.user .forgot-password-section,
+.user .reg-content {
   background-color: white;
   -o-box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
   -ms-box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
@@ -10998,14 +10998,14 @@ body {
   -webkit-box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
   box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
 }
-.eternity-form .section-title {
+.user .section-title {
   padding: 10px 20px;
   background-color: white;
 }
-.eternity-form .section-title h3 {
+.user .section-title h3 {
   color: #3498db;
 }
-.eternity-form .textbox-wrap {
+.user .textbox-wrap {
   padding: 10px 15px 1px 10px;
   border-left: 5px solid transparent;
   -moz-transition: border-left-color 0.5s, box-shadow 0.5s, background-color 0.5s;
@@ -11013,29 +11013,29 @@ body {
   -webkit-transition: border-left-color 0.5s, box-shadow 0.5s, background-color 0.5s;
   transition: border-left-color 0.5s, box-shadow 0.5s, background-color 0.5s;
 }
-.eternity-form .textbox-wrap .input-group {
+.user .textbox-wrap .input-group {
   border: 1px solid #e0e0e0;
   background-color: #ffffff;
 }
-.eternity-form .textbox-wrap .input-group .input-group-addon,
-.eternity-form .textbox-wrap .input-group input,
-.eternity-form .textbox-wrap .input-group .form-control {
+.user .textbox-wrap .input-group .input-group-addon,
+.user .textbox-wrap .input-group input,
+.user .textbox-wrap .input-group .form-control {
   background-color: transparent;
   border: none;
 }
-.eternity-form .textbox-wrap .input-group input,
-.eternity-form .textbox-wrap .input-group .form-control,
-.eternity-form .textbox-wrap .input-group input:focus,
-.eternity-form .textbox-wrap .input-group .form-control:focus {
+.user .textbox-wrap .input-group input,
+.user .textbox-wrap .input-group .form-control,
+.user .textbox-wrap .input-group input:focus,
+.user .textbox-wrap .input-group .form-control:focus {
   box-shadow: none;
   outline: none;
 }
-.eternity-form .textbox-wrap .input-group [class^="icon-"],
-.eternity-form .textbox-wrap .input-group [class*=" icon-"],
-.eternity-form .textbox-wrap .input-group i {
+.user .textbox-wrap .input-group [class^="icon-"],
+.user .textbox-wrap .input-group [class*=" icon-"],
+.user .textbox-wrap .input-group i {
   color: #cccccc;
 }
-.eternity-form .textbox-wrap.focused {
+.user .textbox-wrap.focused {
   border-left-color: #3498db;
   background-color: #f0f0f0;
   -o-box-shadow: inset 0 0 3px rgba(0,0,0,.1);
@@ -11044,29 +11044,29 @@ body {
   -webkit-box-shadow: inset 0 0 3px rgba(0,0,0,.1);
   box-shadow: inset 0 0 3px rgba(0,0,0,.1);
 }
-.eternity-form .green-btn,
-.eternity-form .green-btn:hover,
-.eternity-form .blue-btn {
+.user .green-btn,
+.user .green-btn:hover,
+.user .blue-btn {
   background-color: #2ecc71;
   border: none;
 }
-.eternity-form .blue-btn,
-.eternity-form .blue-btn:hover {
+.user .blue-btn,
+.user .blue-btn:hover {
   background-color: #2980b9;
 }
-.eternity-form .login-form-action {
+.user .login-form-action {
   padding: 15px 20px 30px 20px;
 }
-.eternity-form input[type="checkbox"] {
+.user input[type="checkbox"] {
   width: 30px;
 }
-.eternity-form .blue {
+.user .blue {
   color: #3498db;
 }
-.eternity-form .green {
+.user .green {
   color: #2ecc71;
 }
-.eternity-form .login-form-links {
+.user .login-form-links {
   padding: 20px;
   margin-top: 5px;
   -o-box-shadow: 0 0 4px rgba(0, 0, 0, 0.4);
@@ -11076,44 +11076,44 @@ body {
   box-shadow: 0 0 4px rgba(0, 0, 0, 0.4);
   background-color: white;
 }
-.eternity-form .login-form-links a.blue:hover,
-.eternity-form .login-form-links a a.blue:focus {
+.user .login-form-links a.blue:hover,
+.user .login-form-links a a.blue:focus {
   color: #3498db;
   text-decoration: underline;
 }
-.eternity-form .login-form-links a.green:hover,
-.eternity-form .login-form-links a a.green:focus {
+.user .login-form-links a.green:hover,
+.user .login-form-links a a.green:focus {
   color: #2ecc71;
   text-decoration: underline;
 }
-.eternity-form .forget-form-action {
+.user .forget-form-action {
   padding: 20px;
 }
-.eternity-form .registration-form-section {
+.user .registration-form-section {
   max-width: 620px;
   margin: 0 auto;
   width: 100%;
 }
-.eternity-form .reg-header {
+.user .reg-header {
   -o-box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
   -ms-box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
   -moz-box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
   -webkit-box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
   box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
 }
-.eternity-form .registration-left-section {
+.user .registration-left-section {
   padding-left: 0;
   padding-right: 2.5px;
 }
-.eternity-form .registration-right-section {
+.user .registration-right-section {
   padding-left: 2.5px;
   padding-right: 0;
 }
-.eternity-form .reg-content {
+.user .reg-content {
   margin-top: 5px;
   padding: 20px 0;
 }
-.eternity-form .registration-form-action {
+.user .registration-form-action {
   margin-top: 5px;
   padding: 20px;
   -o-box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
@@ -11123,94 +11123,94 @@ body {
   box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
   background-color: white;
 }
-.eternity-form .custom-checkbox {
+.user .custom-checkbox {
   float: left;
 }
-.eternity-form .checkbox {
+.user .checkbox {
   display: inline-block;
   padding-left: 1px;
   margin-top: 7px;
   margin-bottom: 0;
 }
-.eternity-form .checkbox-text {
+.user .checkbox-text {
   line-height: 24px;
   padding-left: 5px;
 }
-.eternity-form .form-control:-moz-placeholder {
+.user .form-control:-moz-placeholder {
   font-weight: 300;
 }
-.eternity-form .form-control::-moz-placeholder {
+.user .form-control::-moz-placeholder {
   font-weight: 300;
 }
-.eternity-form .form-control:-ms-input-placeholder {
+.user .form-control:-ms-input-placeholder {
   font-weight: 300;
 }
-.eternity-form .form-control::-webkit-input-placeholder {
+.user .form-control::-webkit-input-placeholder {
   font-weight: 300;
 }
-.eternity-form.dark,
-.eternity-form .dark {
+.user.dark,
+.user .dark {
   color: #ffffff;
 }
-.eternity-form.dark .checkbox,
-.eternity-form .dark .checkbox {
+.user.dark .checkbox,
+.user .dark .checkbox {
   margin-left: -7px;
 }
-.eternity-form.dark .checkbox .checkbox-text,
-.eternity-form .dark .checkbox .checkbox-text {
+.user.dark .checkbox .checkbox-text,
+.user .dark .checkbox .checkbox-text {
   line-height: 28px;
 }
-.eternity-form.dark .form-control,
-.eternity-form .dark .form-control {
+.user.dark .form-control,
+.user .dark .form-control {
   color: white;
 }
-.eternity-form.dark .form-control:-moz-placeholder,
-.eternity-form .dark .form-control:-moz-placeholder {
+.user.dark .form-control:-moz-placeholder,
+.user .dark .form-control:-moz-placeholder {
   color: #959595;
 }
-.eternity-form.dark .form-control::-moz-placeholder,
-.eternity-form .dark .form-control::-moz-placeholder {
+.user.dark .form-control::-moz-placeholder,
+.user .dark .form-control::-moz-placeholder {
   color: #959595;
 }
-.eternity-form.dark .form-control:-ms-input-placeholder,
-.eternity-form .dark .form-control:-ms-input-placeholder {
+.user.dark .form-control:-ms-input-placeholder,
+.user .dark .form-control:-ms-input-placeholder {
   color: #959595;
 }
-.eternity-form.dark .form-control::-webkit-input-placeholder,
-.eternity-form .dark .form-control::-webkit-input-placeholder {
+.user.dark .form-control::-webkit-input-placeholder,
+.user .dark .form-control::-webkit-input-placeholder {
   color: #959595;
 }
-.eternity-form.dark .login-content,
-.eternity-form .dark .login-content,
-.eternity-form.dark .forgot-password-section,
-.eternity-form .dark .forgot-password-section,
-.eternity-form.dark .reg-content,
-.eternity-form .dark .reg-content {
+.user.dark .login-content,
+.user .dark .login-content,
+.user.dark .forgot-password-section,
+.user .dark .forgot-password-section,
+.user.dark .reg-content,
+.user .dark .reg-content {
   background-color: #464646;
 }
-.eternity-form.dark .section-title,
-.eternity-form .dark .section-title {
+.user.dark .section-title,
+.user .dark .section-title {
   background-color: #464646;
 }
-.eternity-form.dark .section-title h3,
-.eternity-form .dark .section-title h3 {
+.user.dark .section-title h3,
+.user .dark .section-title h3 {
   color: #34dbce;
 }
-.eternity-form.dark .textbox-wrap .input-group,
-.eternity-form .dark .textbox-wrap .input-group {
+.user.dark .textbox-wrap .input-group,
+.user .dark .textbox-wrap .input-group {
   border: 1px solid #464646;
   background-color: #383838;
 }
-.eternity-form.dark .textbox-wrap .input-group [class^="icon-"],
-.eternity-form .dark .textbox-wrap .input-group [class^="icon-"],
-.eternity-form.dark .textbox-wrap .input-group [class*=" icon-"],
-.eternity-form .dark .textbox-wrap .input-group [class*=" icon-"],
-.eternity-form.dark .textbox-wrap .input-group i,
-.eternity-form .dark .textbox-wrap .input-group i {
+.user.dark .textbox-wrap .input-group [class^="icon-"],
+.user .dark .textbox-wrap .input-group [class^="icon-"],
+.user.dark .textbox-wrap .input-group [class*=" icon-"],
+.user .dark .textbox-wrap .input-group [class*=" icon-"],
+.user.dark .textbox-wrap .input-group i,
+.user .dark .textbox-wrap .input-group i {
   color: #cccccc;
 }
-.eternity-form.dark .textbox-wrap.focused,
-.eternity-form .dark .textbox-wrap.focused {
+.user.dark .textbox-wrap.focused,
+.user .dark .textbox-wrap.focused {
   border-left: 5px solid #3498db;
   background-color: #3b3b3b;
   -o-box-shadow: inset 0 0 3px rgba(0,0,0,.1);
@@ -11219,74 +11219,74 @@ body {
   -webkit-box-shadow: inset 0 0 3px rgba(0,0,0,.1);
   box-shadow: inset 0 0 3px rgba(0,0,0,.1);
 }
-.eternity-form.dark .icon-color,
-.eternity-form .dark .icon-color {
+.user.dark .icon-color,
+.user .dark .icon-color {
   color: white;
 }
-.eternity-form.dark .input-group-addon1,
-.eternity-form .dark .input-group-addon1 {
+.user.dark .input-group-addon1,
+.user .dark .input-group-addon1 {
   background-color: #2d2d2d;
   border: none;
 }
-.eternity-form.dark .addon,
-.eternity-form .dark .addon {
+.user.dark .addon,
+.user .dark .addon {
   border: 1px solid #c5c5c5;
   background-color: #393939;
 }
-.eternity-form.dark .green-btn,
-.eternity-form .dark .green-btn,
-.eternity-form.dark .green-btn:hover,
-.eternity-form .dark .green-btn:hover,
-.eternity-form.dark .blue-btn,
-.eternity-form .dark .blue-btn {
+.user.dark .green-btn,
+.user .dark .green-btn,
+.user.dark .green-btn:hover,
+.user .dark .green-btn:hover,
+.user.dark .blue-btn,
+.user .dark .blue-btn {
   background-color: #ffffff;
   color: #464646;
 }
-.eternity-form.dark .blue-btn,
-.eternity-form .dark .blue-btn,
-.eternity-form.dark .blue-btn:hover,
-.eternity-form .dark .blue-btn:hover {
+.user.dark .blue-btn,
+.user .dark .blue-btn,
+.user.dark .blue-btn:hover,
+.user .dark .blue-btn:hover {
   background-color: #ffffff;
   color: #464646;
 }
-.eternity-form.dark .blue,
-.eternity-form .dark .blue {
+.user.dark .blue,
+.user .dark .blue {
   color: #34dbce;
 }
-.eternity-form.dark .green,
-.eternity-form .dark .green {
+.user.dark .green,
+.user .dark .green {
   color: #3498db;
 }
-.eternity-form.dark .login-form-links,
-.eternity-form .dark .login-form-links {
+.user.dark .login-form-links,
+.user .dark .login-form-links {
   background-color: #464646;
 }
-.eternity-form.dark .login-form-links a.blue:hover,
-.eternity-form .dark .login-form-links a.blue:hover,
-.eternity-form.dark .login-form-links a a.blue:focus,
-.eternity-form .dark .login-form-links a a.blue:focus {
+.user.dark .login-form-links a.blue:hover,
+.user .dark .login-form-links a.blue:hover,
+.user.dark .login-form-links a a.blue:focus,
+.user .dark .login-form-links a a.blue:focus {
   color: #34dbce;
 }
-.eternity-form.dark .login-form-links a.green:hover,
-.eternity-form .dark .login-form-links a.green:hover,
-.eternity-form.dark .login-form-links a a.green:focus,
-.eternity-form .dark .login-form-links a a.green:focus {
+.user.dark .login-form-links a.green:hover,
+.user .dark .login-form-links a.green:hover,
+.user.dark .login-form-links a a.green:focus,
+.user .dark .login-form-links a a.green:focus {
   color: #3498db;
 }
-.eternity-form.dark .registration-form-action,
-.eternity-form .dark .registration-form-action {
+.user.dark .registration-form-action,
+.user .dark .registration-form-action {
   background-color: #464646;
 }
-.eternity-form.dark .checkbox,
-.eternity-form .dark .checkbox {
+.user.dark .checkbox,
+.user .dark .checkbox {
   margin-top: 4px;
 }
-.eternity-form .radio label,
-.eternity-form .checkbox label {
+.user .radio label,
+.user .checkbox label {
   font-weight: 300;
 }
-.eternity-form .icheckbox_polaris,
-.eternity-form .iradio_polaris {
+.user .icheckbox_polaris,
+.user .iradio_polaris {
   display: block;
   margin: 0;
   padding: 0;
@@ -11296,48 +11296,48 @@ body {
   border: none;
   cursor: pointer;
 }
-.eternity-form .icheckbox_polaris {
+.user .icheckbox_polaris {
   background-position: 0 0;
 }
-.eternity-form .icheckbox_polaris.hover {
+.user .icheckbox_polaris.hover {
   background-position: -31px 0;
 }
-.eternity-form .icheckbox_polaris.checked {
+.user .icheckbox_polaris.checked {
   background-position: -62px 0;
 }
-.eternity-form .icheckbox_polaris.disabled {
+.user .icheckbox_polaris.disabled {
   background-position: -93px 0;
   cursor: default;
 }
-.eternity-form .icheckbox_polaris.checked.disabled {
+.user .icheckbox_polaris.checked.disabled {
   background-position: -124px 0;
 }
-.eternity-form .iradio_polaris {
+.user .iradio_polaris {
   background-position: -155px 0;
 }
-.eternity-form .iradio_polaris.hover {
+.user .iradio_polaris.hover {
   background-position: -186px 0;
 }
-.eternity-form .iradio_polaris.checked {
+.user .iradio_polaris.checked {
   background-position: -217px 0;
 }
-.eternity-form .iradio_polaris.disabled {
+.user .iradio_polaris.disabled {
   background-position: -248px 0;
   cursor: default;
 }
-.eternity-form .iradio_polaris.checked.disabled {
+.user .iradio_polaris.checked.disabled {
   background-position: -279px 0;
 }
 @media only screen and (-webkit-min-device-pixel-ratio: 1.5), only screen and (-moz-min-device-pixel-ratio: 1.5), only screen and (-o-min-device-pixel-ratio: 3/2), only screen and (min-device-pixel-ratio: 1.5) {
-  .eternity-form .icheckbox_polaris,
-  .eternity-form .iradio_polaris {
+  .user .icheckbox_polaris,
+  .user .iradio_polaris {
     background-image: url(../img/polaris@2x.png);
     -webkit-background-size: 310px 31px;
     background-size: 310px 31px;
   }
 }
-.eternity-form .icheckbox_square-blue,
-.eternity-form .iradio_square-blue {
+.user .icheckbox_square-blue,
+.user .iradio_square-blue {
   display: block;
   margin: 0;
   padding: 0;
@@ -11347,57 +11347,57 @@ body {
   border: none;
   cursor: pointer;
 }
-.eternity-form .icheckbox_square-blue {
+.user .icheckbox_square-blue {
   background-position: 0 0;
 }
-.eternity-form .icheckbox_square-blue.hover {
+.user .icheckbox_square-blue.hover {
   background-position: -24px 0;
 }
-.eternity-form .icheckbox_square-blue.checked {
+.user .icheckbox_square-blue.checked {
   background-position: -48px 0;
 }
-.eternity-form .icheckbox_square-blue.disabled {
+.user .icheckbox_square-blue.disabled {
   background-position: -72px 0;
   cursor: default;
 }
-.eternity-form .icheckbox_square-blue.checked.disabled {
+.user .icheckbox_square-blue.checked.disabled {
   background-position: -96px 0;
 }
-.eternity-form .iradio_square-blue {
+.user .iradio_square-blue {
   background-position: -120px 0;
 }
-.eternity-form .iradio_square-blue.hover {
+.user .iradio_square-blue.hover {
   background-position: -144px 0;
 }
-.eternity-form .iradio_square-blue.checked {
+.user .iradio_square-blue.checked {
   background-position: -168px 0;
 }
-.eternity-form .iradio_square-blue.disabled {
+.user .iradio_square-blue.disabled {
   background-position: -192px 0;
   cursor: default;
 }
-.eternity-form .iradio_square-blue.checked.disabled {
+.user .iradio_square-blue.checked.disabled {
   background-position: -216px 0;
 }
 @media only screen and (-webkit-min-device-pixel-ratio: 1.5), only screen and (-moz-min-device-pixel-ratio: 1.5), only screen and (-o-min-device-pixel-ratio: 3/2), only screen and (min-device-pixel-ratio: 1.5) {
-  .eternity-form .icheckbox_square-blue,
-  .eternity-form .iradio_square-blue {
+  .user .icheckbox_square-blue,
+  .user .iradio_square-blue {
     background-image: url(../img/blue@2x.png);
     -webkit-background-size: 240px 24px;
     background-size: 240px 24px;
   }
 }
 @media (max-width: 767px) {
-  .eternity-form .registration-left-section {
+  .user .registration-left-section {
     padding-right: 0px;
   }
-  .eternity-form .registration-right-section {
+  .user .registration-right-section {
     padding-left: 0px;
   }
 }
 @media (max-width: 380px) {
-  .eternity-form .blue-btn,
-  .eternity-form .green-btn {
+  .user .blue-btn,
+  .user .green-btn {
     font-size: .8em;
   }
 }

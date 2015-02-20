@@ -460,3 +460,19 @@ small {
 font-size: 80%;
 }
 
+.eval .eval-item:hover .post-tools {
+opacity: 1;
+}
+.eval .eval-item .post-tools {
+opacity: 0;
+-webkit-transition: opacity .25s ease-in;
+-moz-transition: opacity .25s ease-in;
+-o-transition: opacity .25s ease-in;
+-ms-transition: opacity .25s ease-in;
+transition: opacity .25s ease-in;
+}
+
+.eval .eval-item .post-tools button {
+color: #333;
+}
+

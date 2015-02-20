@@ -17,13 +17,15 @@ module.exports = function(app,passport){
 		app.get('/',indexController.index);
 		app.get('/courseLoad',indexController.courseLoad);
 	
-	
-	
-	//login-signup-router
+	//user-router
+		
+		
 		app.get('/user',userController.user);
+		app.get('/user/notice',userController.notice);
+		app.delete('/user/notice/:noticeId',userController.deleteNotice);
 		app.post('/login',passport.authenticate('local-login',{
 		    successRedirect:'/',
-		    failureRedirect:'/authenticate',
+		    failureRedirect:'/user',
 		    failureFlash:true
 		}),userController.loginSession);
 		
@@ -34,7 +36,7 @@ module.exports = function(app,passport){
 		
 		app.post('/signup',passport.authenticate('local-signup',{
 	        successRedirect:'/',
-	        failureRedirect:'/authenticate#signup',
+	        failureRedirect:'/user#signup',
 	        failureFlash:true
 	    }))
     

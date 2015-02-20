@@ -16,16 +16,24 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
                   
+                  {% block customNav %}
                     <li class="page-scroll">
                         <a href="#evaluate_and_search">Search/Evaluate</a>
                     </li>
-                    
-              
-                    <li class="page-scroll">
-                       <a href="/user">Login/SignUp</a>
-                    </li>
-                    
-                    
+                   
+              	     {% if (req.isAuthenticated()) %}
+              	     	 <li class="page-scroll">
+				     	 	<a href="user/notice">Notice<span class="badge">{{req.user.notices.length}}</span></a>
+				     	 </li>
+              	         <li>
+				            <a href="/logout" title="logout">Logout</a>
+				         </li>
+				     {% else %}
+	                     <li class="page-scroll">
+	                        <a href="/user">Login/SignUp </a>
+	                     </li>
+                     {% endif %}
+                  {% endblock %}
                 </ul>
             </div>
             <!-- /.navbar-collapse -->

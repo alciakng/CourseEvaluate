@@ -1,0 +1,31 @@
+{% extends '../layout/noticeLayout.html' %}
+
+{% block content%}
+<div class="container" id="content">
+	<br><br><br><br><br>
+	<div class="notifications">
+		<h2>Notifications</h2>
+		{% if !notices.length %}
+		<div class="alert alert-info hidden">
+			새로운 알림이 없습니다!!
+		</div>
+		{% else %}
+		<ul class="notifications-list">
+			{% for notice in notices %}
+			<li>	
+				<a href="{{notice.commentURL}}"><strong>{{notice.from}}</strong> 님이 댓글을 남겼습니다.<strong>.</a>
+				<p class="timestamp">
+					<span class="timeago">{{notice.createdAt.toISOString()}}</span>
+				</p>
+				<form role="form" method="post" action="/user/notice/{{notice.id}}" onsubmit="return confirm('알림이 삭제됩니다.계속하시겠습니까?')" class="form-inline">
+			        <input type="hidden" name="_method" value="DELETE">
+			        <button class="btn btn-danger btn-link error" type="submit">delete</button>
+			    </form>
+			</li>
+			
+			{% endfor %}
+		</ul>
+		{% endif %}
+	</div>
+</div>
+{% endblock %}

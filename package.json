@@ -24,6 +24,7 @@
   	"crypto":"*",
   	"requirefrom":"*",
   	"swig":"*",
-  	"pagination":"*"
+  	"pagination":"*",
+  	"view-helpers":"*"
   }
 }

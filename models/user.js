@@ -23,7 +23,12 @@ var UserSchema = new Schema({
 	  hashed_password: { type: String},
 	  major : {type:String},
 	  alias : {type:String},
-	  introduction:{type:String,DEFAULT:''}
+	  introduction:{type:String,DEFAULT:''},
+	  notices: [{
+	    from: {type : String},
+	    commentURL : {type : String},
+	    createdAt: {type : Date, default : Date.now}
+	  }]
 });
 
 //virtual Schema is setting hashed_password
@@ -40,6 +45,17 @@ UserSchema.methods = {
 	      //사용자 인증
 		  authenticate:function (password) {
 		    return bcrypt.compareSync(password,this.hashed_password);
+		  },
+		  addNotice:function(from,url){
+				  this.notices.push({
+					  from : from.alias,
+					  commentURL :url
+				  })
+				  this.save();
+		  },
+		  removeNotice:function(noticeId,cb){
+			  var doc = this.notices.id(noticeId).remove();
+			  this.save(cb);
 		  }
 }
 		/**
@@ -54,11 +70,8 @@ UserSchema.statics = {
 		   * @param {Function} cb
 		   * @api private
 		   */
-		
 		  load: function (options, cb) {
-		    options.select = options.select || 'name username';
 		    this.findOne(options.criteria)
-		      .select(options.select)
 		      .exec(cb);
 		  }
 }

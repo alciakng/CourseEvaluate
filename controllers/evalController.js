@@ -6,6 +6,8 @@
 var mongoose = require('mongoose');
 //Eval모듈정의
 var Eval = mongoose.model('Eval');
+//User모듈 정의
+var User = mongoose.model('User');
 //pagination-module
 var evalPage = require('pagination');
 
@@ -20,7 +22,6 @@ exports.load = function (req, res, next, id){
 	    next();
 	  });
 };
-
 
 //evaluate 페이지 로딩 함수.
 exports.evalList = function(req,res){
@@ -59,9 +60,26 @@ exports.evalView =function(req,res){
 //evaluationReply
 exports.comment = function(req,res){
 		  var eval = req.eval;
+		  //user that adds comment.
 		  var user = req.user;
+		  var to = req.param('to');
+		  var commentId = req.param('commentId');
 		  
-		  eval.addComment(user, req.body, function (err) {
+		  
+		 
+		  var options = {
+			 criteria: { alias : to }
+		  };
+		  //add comment
+		  eval.addComment(user, req.body, function (err,result) {
+			//load user who posts eval or comment.  
+			User.load(options,function(err,preUser){
+				 /*To notify user who posts eval or comment new comment,
+				  call addNotice function.
+				 */
+				  preUser.addNotice(user,"http://localhost:3000/eval/view/"+eval._id+"#"+result.comments.length);
+			});
+			
 		    if (err) return res.render('500');
 		    res.redirect('/eval/view/'+ eval.id);
 		  });

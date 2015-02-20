@@ -23,7 +23,8 @@ var express = require('express')
   , eval = models('eval.js')
   , fs =require('fs')
   , mongoose =require('mongoose')
-  , swig = require('swig');
+  , swig = require('swig')
+  , viewHelper = require('view-helpers');
 
 
 //express 함수
@@ -47,30 +48,23 @@ mongoose.connection.on('disconnected', connect);
 
 // all environments
 app.set('port', process.env.PORT || 3000);
-
 app.engine('html', swig.renderFile);
 app.set('view engine', 'html');
 app.set('views', __dirname + '/views');
-
-
 
 app.configure(function() {
 	app.use(express.cookieParser('keyboard cat'));
 	app.use(express.session({ cookie: { maxAge: 36000000}}));
 	app.use(flash());
+	app.use(passport.initialize());
+	app.use(passport.session());
+	app.use(express.favicon());
+	app.use(express.logger('dev'));
+	app.use(express.bodyParser());
+	app.use(express.methodOverride());
+	app.use(express.static(path.join(__dirname, 'public')));
+	app.use(viewHelper());
 });
-
-
-app.use(passport.initialize());
-app.use(passport.session());
-
-
-app.use(express.favicon());
-app.use(express.logger('dev'));
-app.use(express.bodyParser());
-app.use(express.methodOverride());
-app.use(express.static(path.join(__dirname, 'public')));
-
 
 //passport set
 config('passport.js')(passport);

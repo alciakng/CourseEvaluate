@@ -5,7 +5,6 @@
 
 $(function() {
 
-	
     //evaluationTable Load
 	//TableLoad();
 	
@@ -13,14 +12,15 @@ $(function() {
         e.preventDefault();
         $("#wrapper").toggleClass("toggled");
     });
-    
-	$('#evalTable').bootstrapTable();
 	
 	//socket_init
     socketInit();
     
     //evaluation_post
     evaluationPost();
+    
+    //commentPost
+    //commentPost();
 })
 
 
@@ -30,7 +30,6 @@ var evaluationPost = function(){
 	$('#evaluationForm').find('input,select,textarea').not('[type=submit]').jqBootstrapValidation({
 
         submitSuccess: function ($form, event) {
-        	var courseName = localStorage.getItem('roomName');
         	
         	 $.ajax({
                  url: $form.attr('action'),
@@ -52,9 +51,9 @@ var evaluationPost = function(){
           event.preventDefault();
          
         }
-
      });
 }
+
 
  //socket_init function
 var socketInit= function(){
@@ -96,8 +95,3 @@ var socketInit= function(){
  });
 
 };
- //pageInit function
-var pageInit =function(){
-	
-	
-}

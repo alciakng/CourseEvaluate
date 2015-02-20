@@ -1,0 +1,116 @@
+body {
+font-family: Roboto,Helvetica,Arial,sans-serif;
+}
+
+
+@media(min-width:768px) {
+    .navbar-fixed-top {
+        padding: 25px 0;
+        -webkit-transition: padding .3s;
+        -moz-transition: padding .3s;
+        transition: padding .3s;
+    }
+
+    .navbar-fixed-top .navbar-brand {
+        font-size: 2em;
+        -webkit-transition: all .3s;
+        -moz-transition: all .3s;
+        transition: all .3s;
+    }
+
+    .navbar-fixed-top.navbar-shrink {
+        padding: 10px 0;
+    }
+
+    .navbar-fixed-top.navbar-shrink .navbar-brand {
+        font-size: 1.5em;
+    }
+}
+
+.navbar {
+    text-transform: uppercase;
+    font-family: Montserrat,"Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-weight: 700;
+}
+
+
+.navbar a:focus {
+    outline: 0;
+}
+
+.navbar .navbar-nav {
+    letter-spacing: 1px;
+}
+
+
+
+
+.navbar .navbar-nav li a:focus {
+    outline: 0;
+}
+
+.navbar-default,
+.navbar-inverse {
+    border: 0;
+}
+
+.navbar-default .navbar-nav>li>a {
+color: #c0c0c0;
+font-size: large;
+font-family: "Malgun Gothic",����,"Gulim","Arial";
+}
+
+
+.notifications-list {
+margin-top: 1em;
+padding: 0;
+}
+ul, ol {
+margin-top: 0;
+margin-bottom: 10px;
+}
+ul, ol {
+list-style: none;
+}
+
+.notifications-list li:last-child {
+margin-bottom: 0;
+}
+.notifications-list li:nth-child(odd) {
+background: rgba(223,223,223,0.2);
+}
+.notifications-list li {
+clear: both;
+list-style-type: none;
+padding: 1em;
+margin-bottom: .5em;
+cursor: pointer;
+}
+
+
+.notifications-list li a {
+display: block;
+overflow: hidden;
+text-overflow: ellipsis;
+white-space: nowrap;
+}
+button, a {
+-webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+a {
+color: #2461b2;
+text-decoration: none;
+}
+a {
+background-color: transparent;
+}
+
+.notifications-list li .timestamp {
+font-size: .8em;
+}
+.notifications-list li p {
+margin: 0;
+}
+p {
+margin: 0 0 10px;
+}

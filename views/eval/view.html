@@ -3,15 +3,15 @@
 {% block content %}
 	  <div id="page-wrapper">
         <div class="eval">
-		  <ul id="post-container" class="posts" data-tid="3791">
-			<li class="post-row" data-pid="26936" data-uid="3984" data-username="akumbhare" data-userslug="akumbhare" data-index="0">
+		  <ul id="post-container" class="posts">
+			<li class="post-row">
 				<div class="eval-item">
 					<div class="eval-body">
 						<div class="row">
 							<div class="col-md-12">
 								<div class="eval-text">
 									<h3 class="eval-title">
-									 <p id="eval_title_26936" class="eval-title" itemprop="name"><i class="fa fa-thumb-tack hide"></i> <i class="fa fa-lock hide"></i>{{eval.title}}</p>
+									 <p class="eval-title" itemprop="name"><i class="fa fa-thumb-tack hide"></i> <i class="fa fa-lock hide"></i>{{eval.title}}</p>
 									   <hr>
 									</h3>
 									<div id="content_26936" class="post-content" itemprop="text">
@@ -36,7 +36,7 @@
 									<span>
 												<i class="fa fa-circle status offline" title="Offline"></i>
 										<span class="username-field" data-username="akumbhare" data-uid="3984">
-																						<strong><a href="/user/akumbhare" itemprop="author">{{eval.user.alias}}</a></strong> posted <span class="timeago" title="2015-02-05T06:36:01.224Z">{{eval.createdAt.toISOString()}}</span>
+																						<strong><a href="/user/akumbhare" itemprop="author">{{eval.user.alias}}</a></strong> posted <span class="timeago" >{{eval.createdAt.toISOString()}}</span>
 										</span>
 									</span>
 
@@ -51,7 +51,10 @@
 								<a href="#" class="downvote ">
 									<i class="fa fa-chevron-down"></i>
 								</a>
-
+								
+								<span class="post-tools">																																				
+									<button class="btn btn-sm btn-link post_reply" type="button"><i class="fa fa-reply"></i><span class="hidden-xs-inline"> Reply</span></button>
+								</span>
 							
 							</div>
 						</div>
@@ -59,8 +62,9 @@
 				</div>
 			</li>
 					
-			<li class="post-bar" data-index="0">
-				<form method="POST" action="{{'/eval/'+eval._id+'/comment'}}" accept-charset="UTF-8" id="replyForm" novalidate>
+			<li class="post-bar" id="comment-bar" data-index="0">
+				<p class="help-block" id="to" to="{{eval.user.alias}}">To : 글쓴이에게</p>
+				<form method="POST" action="{{'/eval/'+eval._id+'/comment'}}" accept-charset="UTF-8" id="commentForm" novalidate>
 					<div class="control-group">
 						<div class="controls">
 							<textarea placeholder="댓글을 입력하세요" name="body" data-validation-required-message="댓글을 입력하셔야 합니다." rows="3" type="text" class="form-control" style="width:100%" required></textarea>
@@ -74,11 +78,15 @@
 			</li>
 			
 			{% for comment in eval.comments %}				
-			 {% include 'comments.html' %}
+			 {% include 'comment.html' %}
 			{% endfor %}
 				</ul>	
 			</div>
         </div>
         <!-- /#page-wrapper -->
     </div>
+{% endblock %}
+
+{% block customFoot %}
+<script src="/js/evalViewInit.js"></script>
 {% endblock %}

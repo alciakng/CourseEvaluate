@@ -13,7 +13,7 @@ var bcrypt = require('bcrypt-nodejs');
 //mongoose와 eval 모델 정의
 var mongoose = require('mongoose');
 var Eval = mongoose.model('Eval');
-
+var User = mongoose.model('User');
 
 //로그인이 되어있는지 확인하는 함수.
 exports.ensureAuthenticated= function(req, res, next) {
@@ -25,8 +25,14 @@ exports.ensureAuthenticated= function(req, res, next) {
 
 //indexpage loading
 exports.index =function(req,res){
+	
+	  var user = req.user || {notices:{}};
+	  
 	  Eval.recentList(function(err,rows){
-	    	res.render("index/index",{recentLists:rows})
+	    	res.render("index/index",
+	    	{
+	    		recentLists:rows
+	    	})
 	    });
 }
 

@@ -45,12 +45,13 @@ EvalSchema.methods = {
 		   * @api private
 		   */
 
-		  addComment: function (user, comment, cb) {
-
+		  addComment: function (user,comment,cb) {
+			 
 		    this.comments.push({
 		      body: comment.body,
 		      user: user._id
 		    });
+		    
 		    
 		    this.save(cb);
 		  },
@@ -110,7 +111,6 @@ EvalSchema.methods = {
 		   * @param {Function} cb
 		   * @api private
 		   */
-
 		  list: function (options, cb) {
 			// ||연산자는 앞이 참이면 앞에 인자를 앞이 거짓이면 뒤의 인자를 반환한다.
 		    var criteria = options.criteria || {};
