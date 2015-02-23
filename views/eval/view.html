@@ -63,18 +63,8 @@
 			</li>
 					
 			<li class="post-bar" id="comment-bar" data-index="0">
-				<p class="help-block" id="to" to="{{eval.user.alias}}">To : 글쓴이에게</p>
-				<form method="POST" action="{{'/eval/'+eval._id+'/comment'}}" accept-charset="UTF-8" id="commentForm" novalidate>
-					<div class="control-group">
-						<div class="controls">
-							<textarea placeholder="댓글을 입력하세요" name="body" data-validation-required-message="댓글을 입력하셔야 합니다." rows="3" type="text" class="form-control" style="width:100%" required></textarea>
-							<p class="help-block"></p>
-						</div>
-					</div>
-					<br>
-						<button type="submit" class="btn btn-primary" style="float:right">댓글달기</button>
-					<div style="clear:both;"></div>
-				</form>
+				
+					<button type="button" class="btn-primary btn" onclick="$('#post-bar').show()" id="commentTest">댓글달기</button>
 			</li>
 			
 			{% for comment in eval.comments %}				
@@ -84,9 +74,14 @@
 			</div>
         </div>
         <!-- /#page-wrapper -->
-    </div>
+        
+			
+    
 {% endblock %}
-
 {% block customFoot %}
 <script src="/js/evalViewInit.js"></script>
+{% endblock %}
+
+{% block composer %}
+ {% include "commentPost.html" %}
 {% endblock %}

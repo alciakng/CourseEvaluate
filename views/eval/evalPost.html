@@ -8,7 +8,7 @@
         <h4 class="modal-title">evaluation</h4>
       </div>
       <div class="modal-body">
-   				<form method="POST" action="/eval/{{title}}" accept-charset="UTF-8" id="evaluationForm" novalidate>
+   				<form method="POST" action="{{'/eval/'+courseId}}" accept-charset="UTF-8" id="evaluationForm" novalidate>
 		            	<div class="control-group">
 		            		<div class="controls">
 			            		<input type="text" style="width:100%" placeholder="제목" name="title" data-validation-required-message="제목을 입력하세요"  class="form-control" required></input>

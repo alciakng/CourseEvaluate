@@ -4,28 +4,47 @@
 
 
 $(function() {
-
-    //evaluationTable Load
-	//TableLoad();
 	
-    $("#menu-toggle").click(function(e) {
-        e.preventDefault();
-        $("#wrapper").toggleClass("toggled");
-    });
-	
-	//socket_init
-    socketInit();
-    
-    //evaluation_post
-    evaluationPost();
-    
-    //commentPost
-    //commentPost();
+	//socketInit
+    socket();
+    //evaluationPostInit
+    post();
+    //autocompleteInit
+    autocomplete();
 })
 
+//autocomplete Init 
+var autocomplete = function(){
+	var id;
+	
+	$('#search').autocomplete({
+      	source: function( request, response ) {
+      		$.ajax({
+      			url : '/course',
+      			dataType: "json",
+				data: {
+				   text: request.term
+				},
+				success: function( data ) {
+				    response($.map(data, function(item) {
+						return {
+							label: item.subject_nm+"-"+item.prof_nm,
+							id : item._id
+						}
+					}));
+			    }	
+      		});
+      	},
+      	select: function( event, ui ) {
+      		location.href="http://localhost:3000/eval/"+ui.item.id;
+      	},
+      	autoFocus: true,
+      	minLength: 2      	
+    });
+}
 
 //evaluation_post function
-var evaluationPost = function(){
+var post = function(){
     
 	$('#evaluationForm').find('input,select,textarea').not('[type=submit]').jqBootstrapValidation({
 
@@ -54,9 +73,8 @@ var evaluationPost = function(){
      });
 }
 
-
  //socket_init function
-var socketInit= function(){
+var socket= function(){
     
  var socket = io.connect('http://localhost:3000');
  

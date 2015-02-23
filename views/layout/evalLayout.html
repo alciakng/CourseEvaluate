@@ -1,8 +1,12 @@
 	{% include '../include/evalHead.html' %}
-    {% include '../include/evalHeader.html' %}  
+    
   <body>
+  <div id="wrapper">
+    {% include '../include/evalNavbar.html' %}  
     {% block content %}{% endblock %}
-    {% include '../include/evalFoot.html' %}
+  </div>
+    {% include '../include/evalFoot.html'%}
     {% block customFoot %}{% endblock %}
+    {% block composer %}{% endblock %} 
   </body>
 </html>

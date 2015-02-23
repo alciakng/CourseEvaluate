@@ -6,7 +6,7 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var EvalSchema = new Schema({
-	  courseDelimiter :{type:String,trim:true},
+	  courseId :{type:Schema.ObjectId,ref:'Course'},
 	  title: {type : String,trim : true},
 	  body: {type : String, trim : true},
 	  user: {type : Schema.ObjectId, ref : 'User'},

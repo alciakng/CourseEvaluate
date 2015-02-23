@@ -44,20 +44,21 @@
                         </div>
                         <div class="panel-body">
 							 
-							
-                            <table id="course" data-show-columns="true"  data-show-toggle="true"  data-search="true"
+							{% include 'toolbar.html' %}
+                            <table id="course" data-show-columns="true" data-toolbar='#custom-toolbar'  data-show-toggle="true"  data-search="true"
        data-pagination="true" >
 	       						<thead>
 	       							<tr>
-	       								<th	data-field="majorDiv" data-sortable="true">학부</th>
-	       								<th	data-field="curriculumDiv" data-sortable="true">교과구분</th>
-	       								<th	data-field="courseName" data-sortable="true">교과목명</th>
-	       								<th	data-field="professorName" data-sortable="true">담당교수</th>
-	       								<th	data-field="evaluation" data-sortable="true">평가</th>
+	       								<th	data-field="sub_dept" data-sortable="true">학부</th>
+	       								<th	data-field="subject_div" data-sortable="true">교과구분</th>
+	       								<th	data-field="subject_nm" data-sortable="true">교과목명</th>
+	       								<th	data-field="prof_nm" data-sortable="true">담당교수</th>
+	       								<th data-field="operate"
+							                data-formatter="operateFormatter"
+							                data-events="operateEvents">평가하기</th>
 	       							</tr>
 	    						</thead>
-	    						<tbody class="searchable">
-	    						</tbody>
+	    						
 							</table>
                         </div>  
                     </div>

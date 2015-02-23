@@ -1,0 +1,22 @@
+<div id="custom-toolbar">
+	
+		<div style="display:inline-block">
+		    <select id="year" class="form-control" >
+		    	<option value=" 2015 ">2015</option>
+		    	<option value=" 2014 ">2014</option>
+		    	<option value=" 2013 ">2013</option>
+		    	<option value=" 2012 ">2012</option>
+		    	<option value=" 2011 ">2011</option>
+		    </select>
+	    </div>
+	    <div style="display:inline-block">
+		    <select id="term" class="form-control" >
+		    	<option value=" A10 ">1학기</option>
+		    	<option value=" A20 ">2학기</option>
+		    </select>
+	    </div>
+    	<div style="display:inline-block">
+    		<button class="btn btn-success" id="submit" onClick="courseLoad($( '#year option:selected').val(),$('#term option:selected').val())"><strong>조회</strong></button>
+    	</div>
+    
+</div>

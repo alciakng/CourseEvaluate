@@ -6,7 +6,9 @@
 var evalController = controllers('evalController.js');
 var userController = controllers('userController.js');
 var indexController = controllers('indexController.js');
+var courseController = controllers('courseController.js');
 var validationController = controllers('validationController.js');
+
 
 //auth-middleware
 var auth = require('./middlewares/auth.js');
@@ -15,25 +17,36 @@ module.exports = function(app,passport){
 
 	//index-router
 		app.get('/',indexController.index);
-		app.get('/courseLoad',indexController.courseLoad);
+		
+		
+    //course-router		
+		//load course information
+		app.param('courseId',courseController.load);
+		//load course list
+		app.post('/course',courseController.list);
+		// autocomplete
+		app.get('/course',courseController.autocomplete);
 	
 	//user-router
 		
-		
+		//load login/signup page
 		app.get('/user',userController.user);
+		//load notification page
 		app.get('/user/notice',userController.notice);
+		//delete notification
 		app.delete('/user/notice/:noticeId',userController.deleteNotice);
+		//login
 		app.post('/login',passport.authenticate('local-login',{
 		    successRedirect:'/',
 		    failureRedirect:'/user',
 		    failureFlash:true
 		}),userController.loginSession);
-		
+		//logout
 		app.get('/logout', function(req, res){
 			  req.logout();
 			  res.redirect('/');
 			});
-		
+		//signup
 		app.post('/signup',passport.authenticate('local-signup',{
 	        successRedirect:'/',
 	        failureRedirect:'/user#signup',
@@ -42,28 +55,25 @@ module.exports = function(app,passport){
     
     
     
-    //validation-router
-	    app.get('/email_validation',validationController.email_validation);
-		app.get('/alias_validation',validationController.alias_validation);
+    //Validation Router
+	  //  app.get('/emailValidation',validationController.emailValidation);
+	  //  app.get('/aliasValidation',validationController.aliasValidation);
 		
-	
-	
 	
 	//eval-router
 		app.param('id',auth.requiresLogin,evalController.load);
-		//csnm은 강의명 pfnm은 교수명
-		app.get('/eval/:courseDelimiter',auth.requiresLogin,evalController.evalList);
-		app.get('/eval/view/:id',auth.requiresLogin,evalController.evalView);
-		//rmnm(roomname)은 강의명+교수명
-		app.post('/eval/:rmnm',auth.requiresLogin,evalController.evalPost);
 	
-		//evaluation comment
+		// loading evaluation list and course.
+		app.get('/eval/:courseId',auth.requiresLogin,evalController.evalList);
+		// loading evaluation. 
+		app.get('/eval/view/:id',auth.requiresLogin,evalController.evalView);
+		// evaluate
+		app.post('/eval/:courseId',auth.requiresLogin,evalController.evalPost);
+		// comment
 		app.post('/eval/:id/comment',auth.requiresLogin,evalController.comment);
 	
 	
 
-    
-    
 	//modal 방식으로 로그인 구현한 예제
 	/*
 	app.post('/login',function(req, res, next) {
@@ -88,8 +98,6 @@ module.exports = function(app,passport){
         })(req, res, next);
     });
 	*/
-	
-	
 
 };
 

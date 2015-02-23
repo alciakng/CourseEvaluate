@@ -2,19 +2,16 @@
  * New node file
  */
 
-//mongoose 모듈 
+//mongoose module
 var mongoose = require('mongoose');
-//Eval모듈정의
+//Eval model
 var Eval = mongoose.model('Eval');
-//User모듈 정의
+//User model
 var User = mongoose.model('User');
-//pagination-module
-var evalPage = require('pagination');
 
 
-//param 함수 load 하여 next router로 넘겨준다.
+//get each eval by id parameter.
 exports.load = function (req, res, next, id){
-
 	  Eval.load(id, function (err, eval) {
 	    if (err) return next(err);
 	    if (!eval) return next(new Error('not found'));
@@ -23,10 +20,10 @@ exports.load = function (req, res, next, id){
 	  });
 };
 
-//evaluate 페이지 로딩 함수.
+//load evaluation list
 exports.evalList = function(req,res){
 	//강의 페이지 상단에 강좌-교수 정보를 표시하기 위한 변수
-	  var courseDelimiter = req.params.courseDelimiter;
+	  var courseId = req.course._id;
 	  var page = (req.param('page') > 0 ? req.param('page') : 1) - 1;
 	  var perPage = 20;
 	  var searchKeyword = req.param('keyword') || {}; 
@@ -34,14 +31,15 @@ exports.evalList = function(req,res){
 	  var options = {
 	    perPage: perPage,
 	    page: page,
-	    criteria :{courseDelimiter : courseDelimiter}
+	    criteria :{courseId : courseId}
 	  };
 	  
 	  Eval.list(options, function (err, evals){
 	    if(err) return res.render('500');
-	    Eval.count({courseDelimiter:courseDelimiter}).exec(function (err, count) {
+	    Eval.count({courseId:courseId}).exec(function (err, count) {
 	      res.render('eval/evals', {
-	        title: courseDelimiter,
+	        title: req.course.subject_nm,
+	        courseId:req.course._id,
 	        evals: evals,
 	        page: page + 1,
 	        pages: Math.ceil(count / perPage)
@@ -50,14 +48,14 @@ exports.evalList = function(req,res){
 	  });
 }
 
-//evaluationLoad
+//load evaluation
 exports.evalView =function(req,res){
 	res.render('eval/view', {
 	    title: req.eval.title,
 	    eval: req.eval
 	  });
 };
-//evaluationReply
+//comment
 exports.comment = function(req,res){
 		  var eval = req.eval;
 		  //user that adds comment.
@@ -85,7 +83,6 @@ exports.comment = function(req,res){
 		  });
 }
 
-//evaluate_post 함수.
 //evalPost
 exports.evalPost = function(req,res){
 	
@@ -93,10 +90,10 @@ exports.evalPost = function(req,res){
 	//console.log(req.body.evaluate_select);
 	
 	var eval = new Eval(req.body);
-	eval.courseDelimiter = req.params.rmnm;
+	eval.courseId = req.course._id;
 	eval.user=req.user._id;
 	eval.Save(function(err){
 		 req.flash('evalMessage', '성공적으로 강의평을 게시했습니다.');
-	     return res.redirect('/evalList/'+courseDelimiter);
+	     return res.redirect('/eval/'+req.course._id);
 	})
 }
