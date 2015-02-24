@@ -36,16 +36,11 @@ var app = express();
 if ('development' == app.get('env')) {
   app.use(express.errorHandler());
 }
+//db연결.
+var uristring = process.env.MONGOLAB_URI;
+var options = { server: { socketOptions: { keepAlive: 1 } }};
+mongoose.connect(mongooseUri, options);
 
-//db 연결
-var connect = function () {
-	  var uristring = process.env.MONGOLAB_URI;
-	  var mongooseUri = uriUtil.formatMongoose(uristring);
-	  var options = { server: { socketOptions: { keepAlive: 1 } },replset :{keepAlive:1}};
-	  mongoose.connect(mongooseUri, options);
-};
-
-connect();
 
 mongoose.connection.on('error', console.log);
 mongoose.connection.on('disconnected', connect);

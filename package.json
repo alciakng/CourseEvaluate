@@ -1,9 +1,11 @@
 {
   "name": "CourseEstimate",
   "version": "0.0.1",
-  "private": true,
   "scripts": {
     "start": "node app.js"
+  },
+  "engines": {
+    "node": "0.10.x"
   },
   "dependencies": {
     "express": "3.2.6",
@@ -25,6 +27,7 @@
   	"requirefrom":"*",
   	"swig":"*",
   	"pagination":"*",
-  	"view-helpers":"*"
+  	"view-helpers":"*",
+  	"mongodb-uri":"*"
   }
 }
