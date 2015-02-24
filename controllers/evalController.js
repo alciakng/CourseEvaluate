@@ -25,14 +25,17 @@ exports.evalList = function(req,res){
 	//강의 페이지 상단에 강좌-교수 정보를 표시하기 위한 변수
 	  var courseId = req.course._id;
 	  var page = (req.param('page') > 0 ? req.param('page') : 1) - 1;
-	  var perPage = 20;
-	  var searchKeyword = req.param('keyword') || {}; 
+	  var perPage = (req.param('perPage')>0? req.param('perPage') : 10);
 	  
 	  var options = {
 	    perPage: perPage,
 	    page: page,
 	    criteria :{courseId : courseId}
 	  };
+	  //keyword를 포함하는 title을 검색.
+	 if(req.param('keyword')) options.criteria.title=new RegExp(req.param('keyword'), 'i');
+	  
+	  console.log(options.criteria);
 	  
 	  Eval.list(options, function (err, evals){
 	    if(err) return res.render('500');

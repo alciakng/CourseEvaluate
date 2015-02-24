@@ -39,7 +39,7 @@ if ('development' == app.get('env')) {
 //db 연결
 var connect = function () {
 	  var options = { server: { socketOptions: { keepAlive: 1 } } };
-	  mongoose.connect('mongodb://localhost/CourseEvaluate', options);
+	  mongoose.connect('mongodb://jonghwan:kosaf46231@ds047901.mongolab.com:47901/heroku_app34304004', options);
 };
 connect();
 

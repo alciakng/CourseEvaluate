@@ -5,6 +5,28 @@
 
 $(function() {
 	
+
+	 $("#demo_pag1").bs_pagination({
+	    currentPage: $('#post-container').attr('page'),
+		totalPages: $('#post-container').attr('pages'),
+		visiblePageLinks: 5,
+		  
+		showGoToPage: true,
+		showRowsPerPage: true,
+		showRowsInfo: false,
+		showRowsDefaultInfo: true,
+	    onChangePage: function(event, data) {
+	        
+	    	//get url parameter.
+	    	var keyword=getUrlParameter("keyword");
+	    	var link =window.location.pathname+"?page="+data.currentPage+"&perPage="+data.rowsPerPage;
+	    	//if keyword exists,then add keyword parameter to link.
+	    	if(keyword) link+="&"+keyword;
+	    	//to link
+	    	location.href= link;
+	      }
+     });
+	
 	//socketInit
     socket();
     //evaluationPostInit
@@ -12,6 +34,13 @@ $(function() {
     //autocompleteInit
     autocomplete();
 })
+
+var search =function(){
+	
+	location.href= window.location.pathname +"?keyword="+$('#keyword').val();
+	
+}
+
 
 //autocomplete Init 
 var autocomplete = function(){
@@ -113,3 +142,18 @@ var socket= function(){
  });
 
 };
+
+//get url parameter by parameter name.
+function getUrlParameter(sParam)
+{
+    var sPageURL = window.location.search.substring(1);
+    var sURLVariables = sPageURL.split('&');
+    for (var i = 0; i < sURLVariables.length; i++) 
+    {
+        var sParameterName = sURLVariables[i].split('=');
+        if (sParameterName[0] == sParam) 
+        {
+            return sURLVariables[i];
+        }
+    }
+}        
