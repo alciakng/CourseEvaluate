@@ -38,8 +38,9 @@ if ('development' == app.get('env')) {
 
 //db 연결
 var connect = function () {
+	  var uristring = process.env.MONGOLAB_URI || process.env.MONGOHQ_URL ||'mongodb://localhost:3000/CourseEvaluate';
 	  var options = { server: { socketOptions: { keepAlive: 1 } } };
-	  mongoose.connect('mongodb://heroku_app34304004:77ebi5mts8mhof1j5fvop8bfce@ds047901.mongolab.com:47901/heroku_app34304004', options);
+	  mongoose.connect(uristring, options);
 };
 connect();
 
