@@ -38,7 +38,7 @@ if ('development' == app.get('env')) {
 
 //db 연결
 var connect = function () {
-	  var uristring = 'mongodb://heroku_app34304004:77ebi5mts8mhof1j5fvop8bfce@ds047901.mongolab.com:47901/heroku_app34304004';
+	  var uristring = 'mongodb://LIGmTbnteBPO:SoRTQmubBcaJ@mongosoup-cont002.mongosoup.de:32045/cc_LIGmTbnteBPO';
 	  var options = { server: { socketOptions: { keepAlive: 1 } } };
 	  mongoose.connect(uristring, options);
 };
@@ -50,7 +50,7 @@ mongoose.connection.on('disconnected', connect);
 
 
 // all environments
-app.set('port', process.env.PORT || 3000);
+app.set('port', process.env.PORT || 5000);
 app.engine('html', swig.renderFile);
 app.set('view engine', 'html');
 app.set('views', __dirname + '/views');
