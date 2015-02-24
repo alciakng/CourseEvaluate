@@ -39,7 +39,7 @@ if ('development' == app.get('env')) {
 //db연결.
 var uristring = process.env.MONGOLAB_URI;
 var options = { server: { socketOptions: { keepAlive: 1 } }};
-mongoose.connect(mongooseUri, options);
+mongoose.connect(uristring, options);
 
 
 mongoose.connection.on('error', console.log);
