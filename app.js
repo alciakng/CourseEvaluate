@@ -39,7 +39,7 @@ if ('development' == app.get('env')) {
 
 //db 연결
 var connect = function () {
-	  var uristring = 'mongodb://LIGmTbnteBPO:SoRTQmubBcaJ@mongosoup-cont002.mongosoup.de:32045/cc_LIGmTbnteBPO';
+	  var uristring = process.env.MONGOLAB_URI;
 	  var mongooseUri = uriUtil.formatMongoose(uristring);
 	  var options = { server: { socketOptions: { keepAlive: 1 } } };
 	  mongoose.connect(mongooseUri, options);
