@@ -25,7 +25,8 @@ var express = require('express')
   , fs =require('fs')
   , mongoose =require('mongoose')
   , swig = require('swig')
-  , viewHelper = require('view-helpers');
+  , viewHelper = require('view-helpers')
+  , uriUtil =require('mongodb-uri');
 
 
 //express 함수
@@ -39,8 +40,9 @@ if ('development' == app.get('env')) {
 //db 연결
 var connect = function () {
 	  var uristring = 'mongodb://LIGmTbnteBPO:SoRTQmubBcaJ@mongosoup-cont002.mongosoup.de:32045/cc_LIGmTbnteBPO';
+	  var mongooseUri = uriUtil.formatMongoose(uristring);
 	  var options = { server: { socketOptions: { keepAlive: 1 } } };
-	  mongoose.connect(uristring, options);
+	  mongoose.connect(mongooseUri, options);
 };
 
 connect();
