@@ -41,7 +41,7 @@ if ('development' == app.get('env')) {
 var connect = function () {
 	  var uristring = process.env.MONGOLAB_URI;
 	  var mongooseUri = uriUtil.formatMongoose(uristring);
-	  var options = { server: { socketOptions: { keepAlive: 1 } } };
+	  var options = { server: { socketOptions: { keepAlive: 1 } },replset :{keepAlive:1}};
 	  mongoose.connect(mongooseUri, options);
 };
 
