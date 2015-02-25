@@ -39,12 +39,11 @@ if ('development' == app.get('env')) {
 
 //db 연결
 var connect = function () {
-	  var uristring = process.env.MONGOLAB_URI;
+	  var uristring = process.env.MONGOLAB_URI||process.env.MONGOHQ_URI||"mongodb://localhost:27017/CourseEvaluate";
 	  var mongooseUri = uriUtil.formatMongoose(uristring);
 	  var options = { server: { socketOptions: { keepAlive: 1 } }};
 	  mongoose.connect(mongooseUri, options);
 };
-
 connect();
 
 mongoose.connection.on('error', console.log);
