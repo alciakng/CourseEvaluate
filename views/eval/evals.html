@@ -25,9 +25,14 @@
     <div class="tab-content">
 	    <div class="tab-pane fade active in eval" id="eval">
 	     <div class="row">
-	     	
-	     
+	     	   <div class="input-group">
+			      <input type="text" id="keyword" class="form-control" placeholder="검색"> 
+			      <span class="input-group-btn">
+			         <button class="btn btn-default" onclick="search()" type="button">검색</button>
+			      </span>
+   				</div>  
 	     </div>
+	     <br>
 	     <div class="row">
 			  <ul id="post-container" page='{{page}}' pages='{{pages}}' class="posts">
 		            {% for eval in evals%}
