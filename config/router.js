@@ -72,7 +72,7 @@ module.exports = function(app,passport){
 		// comment
 		app.post('/eval/:id/comment',auth.requiresLogin,evalController.comment);
 	    //load average of scores
-		app.get('/statistics',evalController.evalStatistics);
+		app.get('/eval/statistics/:courseId',evalController.evalStatistics);
 	
 
 	//modal 방식으로 로그인 구현한 예제

@@ -122,11 +122,20 @@ EvalSchema.methods = {
 		      .limit(options.perPage)
 		      .skip(options.perPage * options.page)
 		      .exec(cb);
-		  }
+		  },
 		  
-		  
-		  
-		  
+		  loadAvgOfScores : function(criteria,cb){
+			   this.aggregate()
+ 				 .match(criteria)
+ 				 .group({ _id: null,
+		           avgOfDifficulty: { $avg: "$difficulty"},
+			           avgOfGrades: { $avg: "$satisfactionOfGrades"},
+			           avgOfProf: { $avg: "$satisfactionOfProf"},
+			           avgOfWork: { $avg: "$satisfactionOfWork"}})
+			     .exec(cb);
+			  
+			  
+		  } 
 		}
 
 		mongoose.model('Eval', EvalSchema);

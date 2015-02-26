@@ -67,16 +67,12 @@ exports.evalList = function(req,res){
 
 //load avg of scores
 exports.evalStatistics =function(req,res){
-	   Eval.aggregate()
-	   				 .group({ _id: null,
-  			           avgOfDifficulty: { $avg: "$difficulty"},
-    			           avgOfGrades: { $avg: "$satisfactionOfGrades"},
-    			           avgOfProf: { $avg: "$satisfactionOfProf"},
-    			           avgOfWork: { $avg: "$satisfactionOfWork"}})
-    			     .exec(function(err,result){
-    			    	 console.log(result);
-    			    	 res.send(result[1]);
-    			     });
+	  
+	var criteria ={courseId:mongoose.Types.ObjectId(req.course.id)};
+	
+	Eval.loadAvgOfScores(criteria,function(err,data){
+		res.send(data);
+	})
 }
 
 //load evaluation

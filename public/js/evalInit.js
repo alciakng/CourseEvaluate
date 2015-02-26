@@ -44,9 +44,17 @@ var search =function(){
 }
 
 //load average of score
-var loadAvgOfEvalScores = function(id){
-	$.get("/statistics",function(data){
-		alert(data);
+var loadAvgOfEvalScores = function(courseId){
+	
+	$.get("/eval/statistics/"+courseId,function(data){
+		$("#avgOfDifficultyBar").css('width',data.avgOfDifficulty*20+"%");
+		$("#avgOfGradesBar").css('width',data.avgOfGrades*20+"%");
+		$("#avgOfProfBar").css('width',data.avgOfProf*20+"%");
+		$("#avgOfWorkBar").css('width',data.avgOfWork*20+"%");
+		$("#avgOfDifficulty").text(data.avgOfDifficulty+"/5");
+		$("#avgOfGrades").text(data.avgOfGrades+"/5");
+		$("#avgOfProf").text(data.avgOfProf+"/5");
+		$("#avgOfWork").text(data.avgOfWork+"/5");
 	})
 }
 
