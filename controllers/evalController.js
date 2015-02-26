@@ -39,7 +39,21 @@ exports.evalList = function(req,res){
 	  
 	  Eval.list(options, function (err, evals){
 	    if(err) return res.render('500');
-	    Eval.count({courseId:courseId}).exec(function (err, count) {
+	    /*
+	   var avgs =Eval.aggregate()
+	   				 .group({ _id: null,
+     			           avgOfDifficulty: { $avg: "$difficulty"},
+       			           avgOfGrades: { $avg: "$satisfactionOfGrades"},
+       			           avgOfProf: { $avg: "$satisfactionOfProf"},
+       			           avgOfWork: { $avg: "$satisfactionOfWork"}})
+       			     .exec(function(err,res){
+       			    	 console.log(res[
+       			    	 return res;
+       			     });
+	    
+	    console.log(avgs);
+	    */
+	    Eval.count(options.criteria).exec(function (err, count) {
 	      res.render('eval/evals', {
 	        title: req.course.subject_nm,
 	        courseId:req.course._id,
