@@ -43,6 +43,13 @@ var search =function(){
 	
 }
 
+//load average of score
+var loadAvgOfEvalScores = function(id){
+	$.get("/statistics",function(data){
+		alert(data);
+	})
+}
+
 
 //autocomplete Init 
 var autocomplete = function(){
@@ -67,7 +74,7 @@ var autocomplete = function(){
       		});
       	},
       	select: function( event, ui ) {
-      		location.href="http://localhost:3000/eval/"+ui.item.id;
+      		location.href="http://localhost:5000/eval/"+ui.item.id;
       	},
       	autoFocus: true,
       	minLength: 2      	

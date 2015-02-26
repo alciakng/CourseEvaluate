@@ -4,6 +4,7 @@
 
  <div id="page-wrapper" style="height:100%;">
   <!-- Nav tabs -->
+  
     <ul class="nav nav-tabs" role="tablist">
       <li class="active">
           <a href="#eval" role="tab" data-toggle="tab">
@@ -14,8 +15,8 @@
           <i class="fa fa-chat"></i> 채팅
           </a>
       </li>
-      <li>
-          <a href="#statistic" role="tab" data-toggle="tab">
+      <li onclick="loadAvgOfEvalScores('{{courseId}}')">
+          <a href="#statistic"  role="tab" data-toggle="tab">
               <i class="fa fa-envelope"></i> 통계
           </a>
       </li>
@@ -46,7 +47,7 @@
 	    <div class="tab-pane fade" id="chat">
 	       
 	    </div>
-	    <div class="tab-pane fade" id="statistic">
+	    <div class="tab-pane fade" id="statistic" >
 			 <div class="row">                   
 		        <div class="progress">
 		            

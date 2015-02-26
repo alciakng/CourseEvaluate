@@ -116,10 +116,7 @@ EvalSchema.methods = {
 			// ||연산자는 앞이 참이면 앞에 인자를 앞이 거짓이면 뒤의 인자를 반환한다.
 		    var criteria = options.criteria || {};
 		    
-		    this.find(criteria,function(err,result){
-		    	console.log(result);
-		    	
-		    })
+		    this.find(criteria)
 		      .populate('user', 'alias')
 		      .sort({'createdAt': -1}) // sort by date
 		      .limit(options.perPage)

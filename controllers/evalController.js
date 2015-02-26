@@ -56,13 +56,27 @@ exports.evalList = function(req,res){
 	    Eval.count(options.criteria).exec(function (err, count) {
 	      res.render('eval/evals', {
 	        title: req.course.subject_nm,
-	        courseId:req.course._id,
+	        courseId:req.course.id,
 	        evals: evals,
 	        page: page + 1,
 	        pages: Math.ceil(count / perPage)
 	      });
 	    });
 	  });
+}
+
+//load avg of scores
+exports.evalStatistics =function(req,res){
+	   Eval.aggregate()
+	   				 .group({ _id: null,
+  			           avgOfDifficulty: { $avg: "$difficulty"},
+    			           avgOfGrades: { $avg: "$satisfactionOfGrades"},
+    			           avgOfProf: { $avg: "$satisfactionOfProf"},
+    			           avgOfWork: { $avg: "$satisfactionOfWork"}})
+    			     .exec(function(err,result){
+    			    	 console.log(result);
+    			    	 res.send(result[1]);
+    			     });
 }
 
 //load evaluation
