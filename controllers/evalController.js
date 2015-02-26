@@ -96,7 +96,6 @@ exports.evalPost = function(req,res){
 	eval.courseId = req.course._id;
 	eval.user=req.user._id;
 	eval.Save(function(err){
-		 req.flash('evalMessage', '성공적으로 강의평을 게시했습니다.');
-	     return res.redirect('/eval/'+req.course._id);
+	 res.redirect('/eval/'+req.course._id);
 	})
 }

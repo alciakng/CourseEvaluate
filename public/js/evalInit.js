@@ -26,11 +26,13 @@ $(function() {
 	    	location.href= link;
 	      }
      });
+	 
+	//validationInit
+	$('#evaluationForm').find('input,select,textarea').not('[type=submit]').jqBootstrapValidation();
 	
 	//socketInit
     socket();
-    //evaluationPostInit
-    post();
+   
     //autocompleteInit
     autocomplete();
 })
@@ -70,36 +72,6 @@ var autocomplete = function(){
       	autoFocus: true,
       	minLength: 2      	
     });
-}
-
-//evaluation_post function
-var post = function(){
-    
-	$('#evaluationForm').find('input,select,textarea').not('[type=submit]').jqBootstrapValidation({
-
-        submitSuccess: function ($form, event) {
-        	
-        	 $.ajax({
-                 url: $form.attr('action'),
-                 type: "POST",
-                 data: $form.serialize(),
-                 cache: false,
-                 success: function(result){                    	
-                	 if(result.message=="error") alert("평을 올리는데 에러가 발생하였습니다! 인터넬 연결 상태를 확인하세요. 혹은 서버 과부하 오류 일 수 있습니다.");
-                	 else{
-                		alert($("#evaluate_form").serializeArray());
-                	 }
-                 },
-                 error: function() {
-                	
-                 },
-        	 });
-
-          // will not trigger the default submission in favor of the ajax function
-          event.preventDefault();
-         
-        }
-     });
 }
 
  //socket_init function

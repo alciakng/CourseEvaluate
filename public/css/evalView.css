@@ -4,17 +4,12 @@
     width: 100%;
 }
 
-#page-wrapper {
-    padding: 0 15px;
-    min-height: 568px;
-    background-color: #fff;
-}
+
 
 @media(min-width:768px) {
     #page-wrapper {
         position: inherit;
-        padding: 0 30px;
-        border-left: 1px solid #e7e7e7;
+        padding: 0 10px;
     }
 }
 
@@ -39,8 +34,28 @@
     background: #F5F5F5;
     box-shadow: 0 0 4px rgba(0,0,0,.4);
     border-radius: 0;
-    text-align: center;
     padding: 10px;
+}
+
+.progress {
+position: relative;
+height: 25px;
+}
+
+span.progress-type {
+position: absolute;
+left: 0px;
+font-weight: 800;
+padding: 3px 30px 2px 10px;
+color: rgb(255, 255, 255);
+background-color: rgba(25, 25, 25, 0.2);
+}
+
+span.progress-completed {
+position: absolute;
+right: 0px;
+font-weight: 800;
+padding: 3px 10px 2px;
 }
 
 
@@ -266,8 +281,8 @@ display: block;
 }
 
 .row {
-margin-left: -8px;
-margin-right: -8px;
+margin-left: 5px;
+margin-right: 5px;
 }
 
 .eval .eval-profile-pic {
@@ -314,10 +329,7 @@ box-sizing: border-box;
 .eval .eval-footer .row {
 padding: 10px 10px 0px 20px;
 }
-.row {
-margin-left: -8px;
-margin-right: -8px;
-}
+
 
 .eval .eval-footer .pull-right {
 text-align: right;
@@ -429,6 +441,16 @@ color: #333;
     background-clip: padding-box;
     *border-right-width: 2px;
     *border-bottom-width: 2px;
+    max-height: 100px;
+    overflow-y: auto;
+    /* prevent horizontal scrollbar */
+    overflow-x: hidden;
+    /* add padding to account for vertical scrollbar */
+    padding-right: 20px;
+}
+
+* html .ui-autocomplete {
+    height: 100px;
 }
 
 .ui-menu-item > a.ui-corner-all {
@@ -481,9 +503,11 @@ font-size: 14px;
 -moz-border-radius: 0;
 border-radius: 0;
 overflow: auto;
+padding: 5px;
 }
-.composer .write-container{
-	padding : 0px 8px 8px 8px;
+input#search {
+margin-left: 10px;
+margin-top: 8px;
 }
 
 .composer .formatting-bar {
