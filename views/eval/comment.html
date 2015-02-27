@@ -38,6 +38,10 @@
 								<span class="post-tools">			
 									<!-- onclick method is to set p(cf.id='to')tag value-->																																	
 									<a href="#comment-bar" class="btn btn-sm btn-link post_reply" onclick='$("#to").text("{{comment.user.alias}}"); $("#to").attr("to","{{comment.user.alias}}"); $("#post-bar").show()' type="button"><i class="fa fa-reply"></i><span class="hidden-xs-inline">Reply</span></a>
+									{% if req.user.id ==comment.user.id %}
+									<a href="#comment-bar" class="btn btn-sm btn-link post_reply" onclick='$("#to").text("{{comment.user.alias}}"); $("#to").attr("to","{{comment.user.alias}}"); $("#post-bar").show()' type="button"><i class="fa fa-reply"></i><span class="hidden-xs-inline">Reply</span></a>
+									<a href="#comment-bar" class="btn btn-sm btn-link post_reply" onclick='$("#to").text("{{comment.user.alias}}"); $("#to").attr("to","{{comment.user.alias}}"); $("#post-bar").show()' type="button"><i class="fa fa-reply"></i><span class="hidden-xs-inline">Reply</span></a>
+									{% endif %}
 								</span>			
 							</div>
 						</div>

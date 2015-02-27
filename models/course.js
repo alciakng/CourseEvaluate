@@ -25,14 +25,13 @@ var CourseSchema = new Schema({
 
 
 CourseSchema.statics = {
-		 
 		//load each course
 		 load: function (id, cb) {
 		    this.findOne({_id:id})
 			    .exec(cb);
 		  },
-		  
-	    //load course lists  	
+
+	    //load course lists
 		  list: function (criteria, cb) {
 		    this.find(criteria)
 		        .select('subject_div sub_dept subject_nm prof_nm')

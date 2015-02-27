@@ -8,6 +8,8 @@ var mongoose = require('mongoose');
 var Eval = mongoose.model('Eval');
 //User model
 var User = mongoose.model('User');
+//builtin module(node.js)
+var extend = require('util')._extend;
 
 
 //get each eval by id parameter.
@@ -21,7 +23,7 @@ exports.load = function (req, res, next, id){
 };
 
 //load evaluation list
-exports.evalList = function(req,res){
+exports.list = function(req,res){
 	//강의 페이지 상단에 강좌-교수 정보를 표시하기 위한 변수
 	  var courseId = req.course._id;
 	  var page = (req.param('page') > 0 ? req.param('page') : 1) - 1;
@@ -66,7 +68,7 @@ exports.evalList = function(req,res){
 }
 
 //load avg of scores
-exports.evalStatistics =function(req,res){
+exports.statistics =function(req,res){
 	  
 	var criteria ={courseId:mongoose.Types.ObjectId(req.course.id)};
 	
@@ -76,7 +78,7 @@ exports.evalStatistics =function(req,res){
 }
 
 //load evaluation
-exports.evalView =function(req,res){
+exports.view =function(req,res){
 	res.render('eval/view', {
 	    title: req.eval.title,
 	    eval: req.eval
@@ -110,8 +112,8 @@ exports.comment = function(req,res){
 		  });
 }
 
-//evalPost
-exports.evalPost = function(req,res){
+//post eval
+exports.post = function(req,res){
 	
 	console.log(req.body.evaluate_message);
 	//console.log(req.body.evaluate_select);
@@ -120,6 +122,24 @@ exports.evalPost = function(req,res){
 	eval.courseId = req.course._id;
 	eval.user=req.user._id;
 	eval.Save(function(err){
-	 res.redirect('/eval/'+req.course._id);
+	res.redirect('/eval/'+req.course._id);
 	})
+}
+
+//edit eval
+exports.edit = function(req,res){
+	var eval= req.eval;
+	
+	delete req.body.user;
+	
+	eval = extend(eval,req.body);
+	
+	article.save(function(err){
+		res.redirect('/eval/view/'+article.id);
+	});
+}
+//get eval
+exports.get = function(req,res){
+	var eval = req.eval;
+	res.send(eval);
 }

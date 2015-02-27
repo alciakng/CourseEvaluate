@@ -5,7 +5,7 @@
 									<div class="col-md-12">
 										<div class="eval-text">
 											<div class="eval-content" itemprop="text">
-											<p><a href="{{'/eval/view/'+eval._id}}">{{eval.title}}</a></p>
+											<p><a href="{{'/eval/view/'+eval._id}}">{{eval.title}}<span class="badge">{{eval.comments.length}}</span></a></p>
 												<div class="row">
 		
 												</div></div>
@@ -15,15 +15,18 @@
 							</div>
 							<div class="eval-footer">
 								<div class="row">
-									<div class="">
+									<div>
 										<small class="pull-right">
 											<span>
-																						<i class="fa fa-circle status offline" title="Offline"></i>
-												<span class="username-field" data-username="julian" data-uid="2">
-																								<strong><a href="/user/julian" itemprop="author">{{eval.user.alias}}</a></strong> posted <span class="timeago">{{eval.createdAt.toISOString()}}</span>
+											    <i class="fa fa-circle status offline"></i>
+												<span class="username-field" data-username="julian" >
+																								<strong><a href="/user/julian" itemprop="author">{{eval.user.alias}}</a></strong><span class="timeago"> {{eval.createdAt.toISOString()|date('Y-m-d h:m')}}</span>
 												</span>
 											</span>
 										</small>	
+										<span>
+											
+										</small>
 									</div>
 								</div>
 							</div>

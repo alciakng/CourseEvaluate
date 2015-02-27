@@ -64,15 +64,18 @@ module.exports = function(app,passport){
 		app.param('id',auth.requiresLogin,evalController.load);
 	
 		// loading evaluation list and course.
-		app.get('/eval/:courseId',auth.requiresLogin,evalController.evalList);
+		app.get('/eval/:courseId',auth.requiresLogin,evalController.list);
 		// loading evaluation. 
-		app.get('/eval/view/:id',auth.requiresLogin,evalController.evalView);
+		app.get('/eval/view/:id',auth.requiresLogin,evalController.view);
+		// eval Edit
+		app.get('/eval/edit/:id',auth.requiresLogin,evalController.get);
+		app.put('/eval/edit/:id',auth.requiresLogin,evalController.edit)
 		// evaluate
-		app.post('/eval/:courseId',auth.requiresLogin,evalController.evalPost);
+		app.post('/eval/:courseId',auth.requiresLogin,evalController.post);
 		// comment
 		app.post('/eval/:id/comment',auth.requiresLogin,evalController.comment);
 	    //load average of scores
-		app.get('/eval/statistics/:courseId',evalController.evalStatistics);
+		app.get('/eval/statistics/:courseId',evalController.statistics);
 	
 
 	//modal 방식으로 로그인 구현한 예제

@@ -24,18 +24,17 @@
     
     <!-- Tab panes -->
     <div class="tab-content">
-	    <div class="tab-pane fade active in eval" id="eval">
+	    <div class="tab-pane fade active in eval">
 	     <div class="row">
                 <div class="input-group">
                     <input type="text" id="keyword" class="form-control" placeholder="검색"> 
                     <span class="input-group-btn">
     		  		    <button class="btn btn-default" onclick="search()" type="button">검색</button>
-    		  		    <button class="btn btn-default" onclick="$('#post-bar').show()" type="button">글쓰기</button>
+    		  		    <button class="btn btn-default" onclick="$('#evalPost').show()" type="button">글쓰기</button>
     			    </span>
                 </div>
 	     </div>
-	     <br>
-	     <div class="row">
+	     <div class="row eval">
 			  <ul id="post-container" page='{{page}}' pages='{{pages}}' class="posts">
 		            {% for eval in evals%}
 		           	{% include 'eval.html' %}

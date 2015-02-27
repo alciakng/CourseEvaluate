@@ -123,10 +123,7 @@ padding-right: 8px;
 list-style-type: none;
 padding : 10px 0px 10px 0px
 }
-ul, ol {
-margin-top: 0;
-margin-bottom: 10px;
-}
+
 * {
 -webkit-box-sizing: border-box;
 -moz-box-sizing: border-box;

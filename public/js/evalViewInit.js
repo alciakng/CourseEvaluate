@@ -7,17 +7,32 @@
 
 $(function() {
 	
-	$("")
-
     //commentPost
     commentPost();
 })
 
 
+//edit
+var editEval = function(id){
+	
+	$.get('/eva/view/'+id,function(data){
+		$('form').attr('action','/eval/edit/'+id);
+		$('input:text[name="title"]').text(data.title);
+		$('input:radio[name="difficulty"]:input[value='+data.difficulty+']').attr("checked", true);
+		$('input:radio[name="satisfactionOfGrades"]:input[value='+data.satisfactionOfGrades+']').attr("checked", true);
+		$('input:radio[name="satisfactionOfProf"]:input[value='+data.satisfactionOfProf+']').attr("checked", true);
+		$('input:radio[name="satisfactionOfWork"]:input[value='+data.satisfactionOfWork+']').attr("checked", true);
+		$('textarea[name="body"]').text(data.body);
+	});
+}
+
+
+
+
+//commentPost
 var commentPost = function(){
 	
 	$('#commentForm').find('input,select,textarea').not('[type=submit]').jqBootstrapValidation({
-		
 		  submitSuccess: function ($form, event) {
 			  var to = $("#to").attr('to');
 			

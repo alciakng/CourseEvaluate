@@ -27,16 +27,11 @@
 						<div class="row">
 							<div class="">
 								<small class="pull-right">
-							
-									<span>Posts</span>
-									<strong><span class="eval-post-count human-readable-number" title="1">1</span></strong> |
-									<span>Views</span>
-									<strong><span class="human-readable-number" title="4">4</span></strong>
-						
+					
 									<span>
 												<i class="fa fa-circle status offline"></i>
-										<span >
-																						<strong><a href="/user/akumbhare" itemprop="author">{{eval.user.alias}}</a></strong> posted <span class="timeago" >{{eval.createdAt.toISOString()}}</span>
+										<span>
+											    <strong><a href="/user/akumbhare" itemprop="author">{{eval.user.alias}}</a></strong> posted <span class="timeago" >{{eval.createdAt.toISOString() | date('M d, Y  h:m a')}}</span>
 										</span>
 									</span>
 
@@ -54,6 +49,10 @@
 								
 								<span class="post-tools">																																				
 									<button class="btn btn-sm btn-link post_reply" type="button"><i class="fa fa-reply"></i><span class="hidden-xs-inline"> Reply</span></button>
+									{% if req.user.id==eval.user.id %}
+									<button class="btn btn-sm btn-link post_reply" onclick="editEval('{{eval.id}}')"  type="button"><i class="fa fa-reply"></i><span class="hidden-xs-inline"> Edit</span></button>
+									<button class="btn btn-sm btn-link post_reply" onclick="remove('{{eval.id}}')" type="button"><i class="fa fa-reply"></i><span class="hidden-xs-inline"> Remove</span></button>
+									{% endif %}
 								</span>
 							
 							</div>
@@ -64,7 +63,7 @@
 					
 			<li class="post-bar" id="comment-bar" data-index="0">
 				
-					<button type="button" class="btn-primary btn" onclick="$('#post-bar').show()" id="commentTest">댓글달기</button>
+					<button type="button" class="btn-primary btn" onclick="$('#commentPost').show()" id="commentTest">댓글달기</button>
 			</li>
 			
 			{% for comment in eval.comments %}				
@@ -84,4 +83,5 @@
 
 {% block composer %}
  {% include "commentPost.html" %}
+ {% include "evalPost.html"%}
 {% endblock %}
