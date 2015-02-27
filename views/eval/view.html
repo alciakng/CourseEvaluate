@@ -63,7 +63,7 @@
 					
 			<li class="post-bar" id="comment-bar" data-index="0">
 				
-					<button type="button" class="btn-primary btn" onclick="$('#commentPost').show()" id="commentTest">댓글달기</button>
+					<button type="button" class="btn-primary btn" onclick="$('#postComment').show()" id="commentTest">댓글달기</button>
 			</li>
 			
 			{% for comment in eval.comments %}				
@@ -82,6 +82,6 @@
 {% endblock %}
 
 {% block composer %}
- {% include "commentPost.html" %}
- {% include "evalPost.html"%}
+ {% include "postComment.html" %}
+ {% include "postEval.html"%}
 {% endblock %}

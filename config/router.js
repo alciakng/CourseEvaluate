@@ -48,7 +48,7 @@ module.exports = function(app,passport){
 			});
 		//signup
 		app.post('/signup',passport.authenticate('local-signup',{
-	        successRedirect:'/',
+	        successRedirect:'/user#login',	
 	        failureRedirect:'/user#signup',
 	        failureFlash:true
 	    }))
@@ -68,8 +68,8 @@ module.exports = function(app,passport){
 		// loading evaluation. 
 		app.get('/eval/view/:id',auth.requiresLogin,evalController.view);
 		// eval Edit
-		app.get('/eval/edit/:id',auth.requiresLogin,evalController.get);
-		app.put('/eval/edit/:id',auth.requiresLogin,evalController.edit)
+		app.get('/eval/update/:id',auth.requiresLogin,evalController.get);
+		app.post('/eval/update/:id',auth.requiresLogin,evalController.update);
 		// evaluate
 		app.post('/eval/:courseId',auth.requiresLogin,evalController.post);
 		// comment

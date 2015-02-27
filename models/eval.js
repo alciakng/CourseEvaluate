@@ -53,7 +53,6 @@ EvalSchema.methods = {
 		      user: user._id
 		    });
 		    
-		    
 		    this.save(cb);
 		  },
 

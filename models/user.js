@@ -70,8 +70,8 @@ UserSchema.statics = {
 		   * @param {Function} cb
 		   * @api private
 		   */
-		  load: function (options, cb) {
-		    this.findOne(options.criteria)
+		  load: function (criteria, cb) {
+		    this.findOne(criteria)
 		      .exec(cb);
 		  }
 }

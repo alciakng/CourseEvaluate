@@ -63,22 +63,23 @@ module.exports = function(passport){
 	            // find a user whose email is the same as the forms email
 	        	User.findOne({email:email},function(err,user){
 	        		if(err) return done(err,req.flash('signupMessage','인터넷 연결을 확인하세요'));
-	        		if(user) return done(null,null,req.flash('signupMessage','이미 존재하는 아이디 입니다..'));
+	        		if(user) return done(null,null,req.flash('signupMessage','이미 존재하는 이메일 입니다..'));
 	        		else{
 	        			
 	        			/*req.body 의 field를 알아서 찾아서 mapping됨.
 	        			 password field는 virtual로 정의되어 
 	        			 setter를 통해 자동으로 hashed_password로 변환됨.
 	        			*/
+	        			
 	        			var pushUser = new User(req.body);
-	        			pushUser.save(function(err){
+	        			pushUser.save(function(err,user){
 	        				if(err){
 	        					return done(null,null,req.flash('signupMessage','db점검 중 입니다..'));
 	        				}
-	        			     req.login(user, function(err) {
-	        	    	    	  if (err) return req.flash('loginMessage',"로그인하는데 실패하였습니다.");
-	        	    	    	  return res.redirect('/');
-	        	    	    });
+	        				
+	        	    	        return done(null,user,req.flash('loginMessage','회원가입에 성공했습니다. 이제 로그인 하세요!'));
+	        	    	    
+	        	    	    
 	        				
 	        			})
 	        		}

@@ -1,0 +1,27 @@
+	        
+				<div class="composer" id="postComment" style="display:none">
+					<div class="composer-container">
+					  <form method="POST" action="{{'/eval/'+eval._id+'/comment'}}" accept-charset="UTF-8" id="commentForm" novalidate>
+						<div class="row">
+				                <div class="btn-toolbar formatting-bar input-group row">
+				            	  
+								    <input class="title form-control" id="to" type="text" to="{{eval.user.id}}"  name="title" tabindex="1" placeholder="글쓴이에게" disabled>
+									<span class="input-group-btn">
+										<a class="btn btn-default" onclick="$('#postComment').hide()"tabindex="5"><i class="fa fa-times"></i>닫기</a>
+										<button class="btn btn-primary" data-action="post" tabindex="4"><i class="fa fa-check"></i> Submit</button>
+									</span> 
+								  
+								</div>
+							</div>
+						
+						<div class="row write-container">
+							<div class="control-group">
+								<div class="controls">
+									<textarea class="write" rows="6"  tabindex="3" placeholder="댓글을 입력하세요" name="body" data-validation-required-message="댓글을 입력하셔야 합니다." required></textarea>
+									<p class="help-block"></p>
+								</div>
+							</div>
+						</div>
+					 </form>
+					</div>
+				</div>

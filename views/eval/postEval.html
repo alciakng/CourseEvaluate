@@ -1,13 +1,13 @@
             
-           		<div class="composer" id="evalPost" style="display:none">
+           		<div class="composer" id="postEval" style="display:none">
 				  <div class="composer-container">
-	   				<form method="POST" action="{{'/eval/'+courseId}}" accept-charset="UTF-8" id="evaluationForm" novalidate>
+	   				<form method="POST"  action="{{'/eval/'+courseId}}" accept-charset="UTF-8" id="evaluationForm" novalidate>
 			            	<div class="row">
 				                <div class="btn-toolbar formatting-bar input-group row">
 				            	  
-								    <input class="title form-control" type="text" name="title" tabindex="1" placeholder="제목입력">
+								    <input  class="title form-control" type="text" name="title" tabindex="1" placeholder="제목입력">
 									<span class="input-group-btn">
-										<a class="btn btn-default" onclick="$('#post-bar').hide()"tabindex="5"><i class="fa fa-times"></i>닫기</a>
+										<a class="btn btn-default" onclick="$('#postEval').hide()"tabindex="5"><i class="fa fa-times"></i>닫기</a>
 										<button class="btn btn-primary" data-action="post" tabindex="4"><i class="fa fa-check"></i> Submit</button>
 									</span> 
 								  

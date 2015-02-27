@@ -25,7 +25,7 @@ exports.load = function (req, res, next, id){
 //load evaluation list
 exports.list = function(req,res){
 	//강의 페이지 상단에 강좌-교수 정보를 표시하기 위한 변수
-	  var courseId = req.course._id;
+	  var courseId = req.course.id;
 	  var page = (req.param('page') > 0 ? req.param('page') : 1) - 1;
 	  var perPage = (req.param('perPage')>0? req.param('perPage') : 10);
 	  
@@ -34,6 +34,7 @@ exports.list = function(req,res){
 	    page: page,
 	    criteria :{courseId : courseId}
 	  };
+	  
 	  //keyword를 포함하는 title을 검색.
 	 if(req.param('keyword')) options.criteria.title=new RegExp(req.param('keyword'), 'i');
 	  
@@ -94,17 +95,17 @@ exports.comment = function(req,res){
 		  
 		  
 		 
-		  var options = {
-			 criteria: { alias : to }
+		  var criteria = {
+			  alias : to 
 		  };
 		  //add comment
 		  eval.addComment(user, req.body, function (err,result) {
 			//load user who posts eval or comment.  
-			User.load(options,function(err,preUser){
+			User.load(criteria,function(err,originalWriter){
 				 /*To notify user who posts eval or comment new comment,
 				  call addNotice function.
 				 */
-				  preUser.addNotice(user,"http://localhost:3000/eval/view/"+eval._id+"#"+result.comments.length);
+				  originalWriter.addNotice(user,"http://localhost:5000/eval/view/"+eval._id+"#"+result.comments.length);
 			});
 			
 		    if (err) return res.render('500');
@@ -127,17 +128,18 @@ exports.post = function(req,res){
 }
 
 //edit eval
-exports.edit = function(req,res){
+exports.update = function(req,res){
 	var eval= req.eval;
 	
 	delete req.body.user;
 	
 	eval = extend(eval,req.body);
 	
-	article.save(function(err){
-		res.redirect('/eval/view/'+article.id);
+	eval.save(function(err){
+		res.redirect('/eval/view/'+eval.id);
 	});
 }
+
 //get eval
 exports.get = function(req,res){
 	var eval = req.eval;

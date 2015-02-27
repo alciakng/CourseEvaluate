@@ -15,14 +15,16 @@ $(function() {
 //edit
 var editEval = function(id){
 	
-	$.get('/eva/view/'+id,function(data){
-		$('form').attr('action','/eval/edit/'+id);
-		$('input:text[name="title"]').text(data.title);
-		$('input:radio[name="difficulty"]:input[value='+data.difficulty+']').attr("checked", true);
-		$('input:radio[name="satisfactionOfGrades"]:input[value='+data.satisfactionOfGrades+']').attr("checked", true);
-		$('input:radio[name="satisfactionOfProf"]:input[value='+data.satisfactionOfProf+']').attr("checked", true);
-		$('input:radio[name="satisfactionOfWork"]:input[value='+data.satisfactionOfWork+']').attr("checked", true);
-		$('textarea[name="body"]').text(data.body);
+	$('#postEval').show();
+	
+	$.get('/eval/update/'+id,function(data){
+		$('#postEval form').attr('action','/eval/update/'+id);
+		$('#postEval input[name="title"]').val(data.title);
+		$('input:radio[name="difficulty"]').filter('[value='+data.difficulty+']').parent().addClass('active');
+		$('input:radio[name="satisfactionOfGrades"][value='+data.satisfactionOfGrades+']').parent().addClass('active');
+		$('input:radio[name="satisfactionOfProf"][value='+data.satisfactionOfProf+']').parent().addClass('active');
+		$('input:radio[name="satisfactionOfWork"][value='+data.satisfactionOfWork+']').parent().addClass('active');
+		$('#postEval textarea').text(data.body);
 	});
 }
 
@@ -45,6 +47,7 @@ var commentPost = function(){
 	                 cache: false,
 	                 success: function(result){                    	
 	                	 if(result.message=="error") alert("댓글을 다는데 에러가 발생하였습니다! 인터넬 연결 상태를 확인하세요. 혹은 서버 과부하 오류 일 수 있습니다.");
+	                	 location.reload();
 	                 },
 	                 error: function() {
 	                	
