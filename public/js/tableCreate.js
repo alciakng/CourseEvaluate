@@ -3,9 +3,21 @@
  */
 $(document).ready(function() {
    //table_init
-   courseLoad(" 2013 "," A10 ");
+   //courseLoad(" 2013 "," A10 ");
    
-});
+});	
+
+
+function queryParams(params) {
+	
+	var year = $('#year option:selected').val();
+	var term = $('#term option:selected').val();
+	
+    params.year = year; // add param1
+    params.term = term; // add param2
+  
+    return params;
+}
 
 function courseLoad(year,term){
 	
@@ -13,6 +25,7 @@ function courseLoad(year,term){
 	      year:year,
 		  term:term
 	  };
+	  
 	  /*
 	  $.post( "/courseLoad",criteria).done(function(data){
 		  $('#course').bootstrapTable("load",data);
@@ -44,3 +57,6 @@ function operateFormatter(value, row, index) {
         '</a>'
     ].join('');
 }
+
+
+

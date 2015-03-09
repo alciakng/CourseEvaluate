@@ -45,20 +45,27 @@
                         <div class="panel-body">
 							 
 							{% include 'toolbar.html' %}
-                            <table id="course" data-show-columns="true" data-toolbar='#custom-toolbar'  data-show-toggle="true"  data-search="true"
-       data-pagination="true" >
+                            <table
+                            id="table"
+                            data-toggle="table" 
+                            data-toolbar='#custom-toolbar' 
+                            data-url="/course/list" 
+                            data-pagination="true"
+                            data-side-pagination="server" 
+                            data-page-list="[5, 10, 20, 50, 100, 200]" 
+                            data-search="true"
+                            data-height="500"
+       						data-query-params="queryParams"
+       						data-show-columns="true">
 	       						<thead>
 	       							<tr>
 	       								<th	data-field="sub_dept" data-sortable="true">학부</th>
 	       								<th	data-field="subject_div" data-sortable="true">교과구분</th>
 	       								<th	data-field="subject_nm" data-sortable="true">교과목명</th>
 	       								<th	data-field="prof_nm" data-sortable="true">담당교수</th>
-	       								<th data-field="operate"
-							                data-formatter="operateFormatter"
-							                data-events="operateEvents">평가하기</th>
+	       								<th data-formatter="operateFormatter">평가하기</th>
 	       							</tr>
 	    						</thead>
-	    						
 							</table>
                         </div>  
                     </div>
@@ -68,4 +75,3 @@
 			</div>
 	</section>
 {% endblock %}
-

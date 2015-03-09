@@ -32,11 +32,15 @@ CourseSchema.statics = {
 		  },
 
 	    //load course lists
-		  list: function (criteria, cb) {
-		    this.find(criteria)
-		        .select('subject_div sub_dept subject_nm prof_nm')
-		        .exec(cb);
-		  }
+		  list: function (options, cb) {
+				// ||연산자는 앞이 참이면 앞에 인자를 앞이 거짓이면 뒤의 인자를 반환한다.
+			    this.find(options.criteria)
+			      .sort(options.sort) // sort by date
+			      .select('subject_div sub_dept subject_nm prof_nm')
+			      .limit(options.perPage)
+			      .skip(options.page)
+			      .exec(cb);
+			  }
 }
 
 mongoose.model('Course', CourseSchema);

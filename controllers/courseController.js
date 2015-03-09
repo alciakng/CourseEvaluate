@@ -8,8 +8,6 @@ var Eval = mongoose.model('Eval');
 var User = mongoose.model('User');
 var Course =mongoose.model('Course');
 
-
-
 exports.load = function(req, res, next, id){
 	
 	Course.load(id, function (err,course) {
@@ -23,20 +21,33 @@ exports.load = function(req, res, next, id){
 //강의 로딩 함수(나중에 init이랑 합쳐져야함)
 exports.list = function(req,res){
 	console.log("let's start courseLoad");
+	 
+	var page = req.param('offset');
+	var perPage = req.param('limit');
+	var sortBy = req.param('sort');
+	var year = req.param('year');
+	var term = req.param('term');
 	
-	var year =req.param("year");
-	var term = req.param("term");
+	console.log(page);
+	console.log(perPage);
+	console.log(year);
+	console.log(term);
 	
-	console.log(year+term);
-	
-	var options ={
-			year : year,
-			term : term
-	}
+	var options = {
+	    perPage: perPage,
+	    page: page,
+	    criteria :{year:year,term:term},
+	    sort : {sortBy : -1 }
+	};
 	
 	Course.list(options,function(err,rows){
 		console.log(rows);
-		res.send(rows);
+		Course.count().exec(function (err, count) {
+			res.send({
+				total: count,
+				rows : rows
+			});
+		});
 	});
 
 	/*

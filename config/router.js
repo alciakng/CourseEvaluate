@@ -23,9 +23,9 @@ module.exports = function(app,passport){
 		//load course information
 		app.param('courseId',courseController.load);
 		//load course list
-		app.post('/course',courseController.list);
+		app.get('/course/list',courseController.list);
 		// autocomplete
-		app.get('/course',courseController.autocomplete);
+		app.get('/course/autocomplete',courseController.autocomplete);
 	
 	//user-router
 		
@@ -40,7 +40,7 @@ module.exports = function(app,passport){
 		    successRedirect:'/',
 		    failureRedirect:'/user',
 		    failureFlash:true
-		}),userController.loginSession);
+		}));
 		//logout
 		app.get('/logout', function(req, res){
 			  req.logout();

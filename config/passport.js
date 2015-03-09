@@ -18,8 +18,9 @@ module.exports = function(passport){
 	});
 	
 	passport.deserializeUser(function(id, done) {
-	   User.load({criteria:{_id:id}}, function(err, user) {
-		    done(err, user)
+	   console.log('deserialize');
+	   User.load({_id:id}, function(err, user) {
+		    done(err, user);
 		});
 	});
 	
