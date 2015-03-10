@@ -7,7 +7,6 @@ $(document).ready(function() {
    
 });	
 
-
 function queryParams(params) {
 	
 	var year = $('#year option:selected').val();
@@ -51,11 +50,13 @@ function courseLoad(year,term){
 }
 
 function operateFormatter(value, row, index) {
+	
     return [
         '<a class="btn btn-success btn-sm" href="/eval/'+row._id+'">',
         '<strong>평가하기</strong>',
         '</a>'
     ].join('');
+    
 }
 
 
