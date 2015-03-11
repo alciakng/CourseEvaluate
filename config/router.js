@@ -72,11 +72,17 @@ module.exports = function(app,passport){
 		app.post('/eval/update/:id',auth.requiresLogin,evalController.update);
 		// evaluate
 		app.post('/eval/:courseId',auth.requiresLogin,evalController.post);
-		// comment
-		app.post('/eval/:id/comment',auth.requiresLogin,evalController.comment);
 	    //load average of scores
 		app.get('/eval/statistics/:courseId',evalController.statistics);
 	
+		
+	//comment-router
+		app.param('commentId',auth.requiresLogin,commentController.load);
+		
+		app.post('eval/:id/commentToEval',auth.requiresLogin,commentController.commentToEval);
+		app.post('eval/:commentId/commentToComment',auth.requiresLogin,commentController.commentToComment);
+		
+		
 
 	//modal 방식으로 로그인 구현한 예제
 	/*

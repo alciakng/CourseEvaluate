@@ -10,11 +10,6 @@ var EvalSchema = new Schema({
 	  title: {type : String,trim : true},
 	  body: {type : String, trim : true},
 	  user: {type : Schema.ObjectId, ref : 'User'},
-	  comments: [{
-	    body: { type : String},
-	    user: { type : Schema.ObjectId, ref : 'User' },
-	    createdAt: { type : Date, default : Date.now }
-	  }],
 	  difficulty:{type:Number},
 	  satisfactionOfGrades:{type:Number},
 	  satisfactionOfProf:{type:Number},
@@ -35,43 +30,7 @@ EvalSchema.methods = {
 		  Save: function (cb) {
 		    var self = this;
 		    self.save(cb);
-		  },
-
-		  /**
-		   * Add comment
-		   *
-		   * @param {User} user
-		   * @param {Object} comment
-		   * @param {Function} cb
-		   * @api private
-		   */
-
-		  addComment: function (user,comment,cb) {
-			 
-		    this.comments.push({
-		      body: comment.body,
-		      user: user._id
-		    });
-		    
-		    this.save(cb);
-		  },
-
-		  /**
-		   * Remove comment
-		   *
-		   * @param {commentId} String
-		   * @param {Function} cb
-		   * @api private
-		   */
-
-		  removeComment: function (commentId, cb) {
-		    var index = utils.indexof(this.comments, { id: commentId });
-		    if (~index) this.comments.splice(index, 1);
-		    else return cb('not found');
-		    this.save(cb);
 		  }
-		  
-		
 }
 
 		/**

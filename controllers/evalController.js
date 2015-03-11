@@ -42,20 +42,7 @@ exports.list = function(req,res){
 	  
 	  Eval.list(options, function (err, evals){
 	    if(err) return res.render('500');
-	    /*
-	   var avgs =Eval.aggregate()
-	   				 .group({ _id: null,
-     			           avgOfDifficulty: { $avg: "$difficulty"},
-       			           avgOfGrades: { $avg: "$satisfactionOfGrades"},
-       			           avgOfProf: { $avg: "$satisfactionOfProf"},
-       			           avgOfWork: { $avg: "$satisfactionOfWork"}})
-       			     .exec(function(err,res){
-       			    	 console.log(res[
-       			    	 return res;
-       			     });
 	    
-	    console.log(avgs);
-	    */
 	    Eval.count(options.criteria).exec(function (err, count) {
 	      res.render('eval/evals', {
 	        title: req.course.subject_nm,
@@ -80,10 +67,27 @@ exports.statistics =function(req,res){
 
 //load evaluation
 exports.view =function(req,res){
-	res.render('eval/view', {
-	    title: req.eval.title,
-	    eval: req.eval
-	  });
+    var evalId = req.eval.id;
+	var page = (req.param('page') > 0 ? req.param('page') : 1) - 1;
+	var perPage = (req.param('perPage')>0? req.param('perPage') : 10);
+	  
+	var options = {
+			    perPage: perPage,
+			    page: page,
+			    criteria :{evalId : evalId}
+			  };
+			  
+	Comment.list(options,function(err,comments){
+		Comment.count(options.criteria).exec(function(err,count){
+			res.render('eval/view', {
+		        title: req.eval.title,
+		        evalId:req.eval.id,
+		        comments: comments,
+		        page: page + 1,
+		        pages: Math.ceil(count / perPage)
+		      });
+		});
+	});
 };
 
 

@@ -17,7 +17,8 @@ var CommentSchema = new Schema({
 	    to : {type :Schema.ObjectId, ref:'User'},
 	    createdAt: { type : Date, default : Date.now }
 	  }],
-	  createdAt: { type : Date, default : Date.now }
+	  createdAt: { type : Date, default : Date.now },
+	  evalId :{type :Schema.ObjectId, ref:'Eval'}
 });
 
 CommentSchema.methods = {
@@ -77,7 +78,7 @@ CommentSchema.methods = {
 		 * Statics
 		 */
 
-		CommentSchema.statics = {
+  CommentSchema.statics = {
 		  load: function (id, cb) {
 		    this.findOne({_id:id})
 		      .populate('user', 'alias')
