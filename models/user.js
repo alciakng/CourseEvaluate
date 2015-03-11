@@ -15,20 +15,22 @@ var crypto = require('crypto');
 var Schema = mongoose.Schema;
 
 /*userSchema
-value중에 salt라고 cypto에 쓰이는 변수가 있는데 
-이 변수도 나중에 사용해보자.
+there is a value named salt using crypto.
+I'll use this value later.
 */
 var UserSchema = new Schema({
+	
 	  email: { type: String},
 	  hashed_password: { type: String},
 	  major : {type:String},
 	  alias : {type:String},
-	  introduction:{type:String,DEFAULT:''},
+	  introduction:{type:String,default:''},
 	  notices: [{
-	    from: {type : String},
-	    commentURL : {type : String},
+	    from : { type : Schema.ObjectId, ref : 'User' },
+	    about : { type : Schema.ObjectId},
 	    createdAt: {type : Date, default : Date.now}
 	  }]
+	  
 });
 
 //virtual Schema is setting hashed_password
