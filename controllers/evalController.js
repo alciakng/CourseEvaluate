@@ -85,33 +85,7 @@ exports.view =function(req,res){
 	    eval: req.eval
 	  });
 };
-//comment
-exports.comment = function(req,res){
-		  var eval = req.eval;
-		  //user that adds comment.
-		  var user = req.user;
-		  var to = req.param('to');
-		  var commentId = req.param('commentId');
-		  
-		  
-		 
-		  var criteria = {
-			  alias : to 
-		  };
-		  //add comment
-		  eval.addComment(user, req.body, function (err,result) {
-			//load user who posts eval or comment.  
-			User.load(criteria,function(err,originalWriter){
-				 /*To notify user who posts eval or comment new comment,
-				  call addNotice function.
-				 */
-				  originalWriter.addNotice(user,"http://localhost:5000/eval/view/"+eval._id+"#"+result.comments.length);
-			});
-			
-		    if (err) return res.render('500');
-		    res.redirect('/eval/view/'+ eval.id);
-		  });
-}
+
 
 //post eval
 exports.post = function(req,res){
